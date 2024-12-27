@@ -9,3 +9,25 @@ You can make predictions on the organs most likely to have age-related declines 
 Perhaps increasing mitochondrial density would allow for higher rates of energy production and growth rates, which could be confirmed in yeast, perhaps also through alcohol concentrations.
 
 If mitochondrial energy production occurs in the bloodstream, would the ATP enter cells? I'm pretty sure the answer is no, because ATP would decompose into ADP, which would have other effects like pain modulation.
+
+
+
+Are there any ATP transport proteins?
+
+Are there ATP injections available?
+
+How are human mitochondria different from other organisms?
+
+What is the rate of aging as a function of stress - chronic and acute?
+
+How do you make bioreactors?
+
+How does the bioreactor creation process differ for mammalian and bacterial cultures?
+
+What's the connection between mitochondrial DNA and aging?
+
+How can we repurpose mitochondria as nanobots capable of existing and traveling to any cell with version-controlled modifications?
+
+What is the role of mitochondria in the hallmarks of aging?
+
+What are the effects of chronic and acute cold exposure on mitochondria?
