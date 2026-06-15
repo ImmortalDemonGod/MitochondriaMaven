@@ -1,0 +1,16 @@
+intervention,scenario,objective,tw_mean,tw_ci_low,tw_ci_high,tw_std
+baseline,A,atp,5.0,4.0,6.0,0.4898979485566356
+cold_chain,A,atp,72.0,72.0,72.0,0.0
+mitoq_selective,A,atp,5.14,4.0,6.0,0.49030602688525055
+mitoq_uniform,A,atp,6.58,5.225,8.0,0.6954135460285485
+substrate_supp,A,atp,5.68,5.0,7.0,0.7332121111929345
+baseline,B,atp,5.68,5.0,7.0,0.7332121111929345
+cold_chain,B,atp,72.0,72.0,72.0,0.0
+mitoq_selective,B,atp,6.26,5.0,8.0,0.7696752561957543
+mitoq_uniform,B,atp,7.58,6.0,10.0,0.9610411021387171
+substrate_supp,B,atp,5.68,5.0,7.0,0.7332121111929345
+baseline,C,atp,5.74,4.0,8.0,0.9551963149007643
+cold_chain,C,atp,72.0,72.0,72.0,0.0
+mitoq_selective,C,atp,5.82,4.0,8.0,0.9526804291051644
+mitoq_uniform,C,atp,7.68,6.0,10.774999999999999,1.2073110618229255
+substrate_supp,C,atp,5.68,5.0,7.0,0.7332121111929345

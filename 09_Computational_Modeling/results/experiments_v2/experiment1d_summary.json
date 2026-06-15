@@ -1,0 +1,15 @@
+{
+  "atp": {
+    "baseline": 100.89230387215609,
+    "tw_full_decay": 29.0,
+    "tw_minimal_set": 29.0,
+    "tw_control": 41.0
+  },
+  "dpsi": {
+    "baseline": 88.68762741606218,
+    "tw_full_decay": 29.0,
+    "tw_minimal_set": 29.0,
+    "tw_control": 41.0
+  },
+  "run_date": "2026-04-22T22:24:41.985111"
+}

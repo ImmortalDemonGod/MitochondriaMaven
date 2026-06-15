@@ -1,0 +1,42 @@
+{
+  "run_date": "2026-04-23T01:45:15.320636",
+  "three_reaction_deep_dive": [
+    {
+      "metabolite": "pyruvate",
+      "class": "Carbon substrate (glycolysis endpoint)",
+      "mito_id": "PYRt2m",
+      "syn3a_direct": false,
+      "equivalence": "DIVERGENT: mito imports pyruvate; Syn3A makes it internally. Both systems REQUIRE pyruvate for ATP \u2014"
+    },
+    {
+      "metabolite": "inorganic phosphate (Pi)",
+      "class": "Inorganic ion (ATP synthesis substrate)",
+      "mito_id": "PIt2mB_mitoMap",
+      "syn3a_direct": true,
+      "equivalence": "EQUIVALENT: both systems import phosphate via dedicated transporter; both require it stoichiometrica"
+    },
+    {
+      "metabolite": "glutamate",
+      "class": "Amino acid (anaplerotic / redox carrier)",
+      "mito_id": "GLUt2mB_mitoMap",
+      "syn3a_direct": true,
+      "equivalence": "EQUIVALENT: both import glutamate via dedicated transporter. Both rely on imported AAs (neither synt"
+    }
+  ],
+  "mito_exchange_counts": {
+    "total": 70,
+    "active_at_baseline": 18,
+    "importers": 14,
+    "exporters": 4
+  },
+  "category_overlap": {
+    "both_import": 10,
+    "only_syn3a": 4,
+    "only_mito": 8,
+    "neither": 0,
+    "jaccard": 0.45454545454545453,
+    "odds_ratio": 0.0,
+    "fisher_p": 1.0
+  },
+  "verdict": "EQUIVALENCE WEAKENED"
+}

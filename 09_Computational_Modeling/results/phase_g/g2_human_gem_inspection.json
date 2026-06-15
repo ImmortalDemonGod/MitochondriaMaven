@@ -1,0 +1,10 @@
+{
+  "model": "Human-GEM",
+  "reactions": 12931,
+  "metabolites": 8461,
+  "genes": 2848,
+  "mito_metabolites": 939,
+  "mito_reactions": 1550,
+  "etc_candidates": 8,
+  "baseline_objective": 124.86814837744568
+}

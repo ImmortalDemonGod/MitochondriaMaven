@@ -1,0 +1,57 @@
+Document infos:
+- CreationDate = D:20220226223418+08'00'
+- ModDate = D:20220226223419+08'00'
+- Pages = 31
+- Producer = iTextSharp’ 5.5.10 ©2000-2016 iText Group NV (AGPL-version)
+- Title = Isolation and reconstruction of cardiac mitochondria from SBEM images using a deep learning-based method
+- Version = 1.7
+- dc = {'title': {'x-default': 'Isolation and reconstruction of cardiac mitochondria from SBEM images using a deep learning-based method'}}
+- rdf = {'li': 'Isolation and reconstruction of cardiac mitochondria from SBEM images using a deep learning-based method'}
+
+References: 43
+- URL: 43
+
+URL References:
+- https://doi.org/10.1371/journal.pbio.0020329
+- https://doi.org/10.1016/j.bpj.2017.11.3742
+- https://doi.org/10.1016/S0006-3495(98)77832-4
+- https://doi.org/10.1016/j.bpj.2012.12.004
+- https://doi.org/10.1016/j.yjmcc.2009.02.023
+- https://doi.org/10.1006/jsbi.1996.0013
+- https://doi.org/10.1016/j.bpj.2013.02.059
+- https://doi.org/10.1161/CIRCRESAHA.117.311307
+- https://doi.org/10.1016/j.bpj.2011.05.027
+- https://doi.org/10.1152/ajpheart.00833.2011
+- https://doi.org/10.1111/bph.14499
+- https://doi.org/10.1038/nrm3013
+- https://doi.org/10.1016/j.jsb.2018.02.005
+- https://doi.org/10.1038/nrm2275
+- https://doi.org/10.3389/fphys.2013.00102
+- https://doi.org/10.1371/journal.pcbi.1005714
+- https://doi.org/10.1038/nmeth.4405
+- https://doi.org/10.1152/ajpregu.00584.2012
+- https://doi.org/10.1038/nature14614
+- https://doi.org/10.1016/j.bpj.2011.10.020
+- t.u-tokyo.ac.jp
+- https://doi.org/10.1113/jphysiol.2012.227926
+- https://doi.org/10.1016/j.bpj.2015.04.031
+- https://doi.org/10.1016/j.yjmcc.2014.12.018
+- https://doi.org/10.1109/bigdata50022.2020.9378053
+- https://doi.org/10.1016/j.jsb.2014.10.013
+- https://doi.org/10.1371/journal.pcbi.1006719
+- https://doi.org/10.1242/jcs.028175
+- https://www.elsevier.com/open-access/userlicense/1.0/
+- https://doi.org/10.1016/j.freeradbiomed.2008.06.021
+- https://doi.org/10.1093/cvr/cvq237
+- https://doi.org/10.1016/j.celrep.2017.03.063
+- https://doi.org/10.1002/ar.23917
+- https://doi.org/10.1016/j.yjmcc.2016.04.008
+- https://doi.org/10.1016/j.yjmcc.2014.08.010
+- https://doi.org/10.1128/mcb.00911-10
+- https://doi.org/10.1152/physrev.00030.2008
+- https://doi.org/10.1161/CIRCRESAHA.113.301348
+- https://doi.org/10.1371/journal.pcbi.1006640
+- https://www.sciencedirect.com/science/article/pii/S1047847721001118
+- https://github.com/CRBS/cdeep3m
+- https://doi.org/10.1038/s41592-018-0106-z
+- https://github.com/Asuka-Hatano/MitoIsolator/

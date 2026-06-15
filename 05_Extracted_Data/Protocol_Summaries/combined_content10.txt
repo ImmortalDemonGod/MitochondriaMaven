@@ -1,0 +1,411 @@
+
+
+Paper Title:A_novel,_simple_and_rapid_method_for_the_isolation_of_mitochondria_which_exhibit_respiratory_co.docx
+
+### Summary of Mitochondria Extraction Technique from Rat Small Intestinal Mucosa
+
+#### **Organism(s) Extraction:**
+The study focused on the extraction of mitochondria from the small intestinal mucosa of male rats (Rowett Hooded Lister strain, approximately 300 g) and also included samples from 9-10 month old steers. The choice of rat small intestine is due to its high content of Goblet cells, which complicates mitochondrial isolation due to mucus presence.
+
+#### **Protocol(s) Used:**
+A novel method was described involving the removal of mucus using DEAE-cellulose during the homogenization of rat intestinal mucosa. This approach aimed to simplify the isolation process and improve the yield and functionality of the extracted mitochondria. The protocol involved multiple steps:
+- Homogenization of mucosa with DEAE-cellulose to adsorb mucus.
+- Sequential centrifugation to remove cell debris and isolate the mitochondrial fraction.
+- Use of specific isolation mediums (with modifications for steer mucosa) to enhance mitochondrial yield and functionality.
+
+#### **Yield of Protocols:**
+The protocol enabled the isolation of coupled mitochondria with satisfactory yields, exhibiting high State-3 respiration rates and respiratory control ratios exceeding 3. This indicates a successful isolation of functional mitochondria with minimal mucus and other subcellular component contamination.
+
+#### **Assessment of Isolated Mitochondria:**
+Mitochondrial functionality was confirmed through acceptable ADP:O ratios, high State-3 respiration rates, and respiratory control ratios in excess of 3 using test substrates like succinate, β-hydroxybutyrate, glutamate/malate, and glutamine. These metrics suggest the mitochondria maintained integrity and functionality post-isolation.
+
+#### **Equipment Used:**
+Key equipment included DEAE-cellulose for mucus removal, Potter-Elvehjem homogeniser for mucosa homogenization, MSE 18 refrigerated centrifuge for centrifugation steps, and a Gilson Oxygraph with a Clark electrode for respiration studies.
+
+#### **Purpose of Extraction:**
+The extraction aimed to develop a rapid and simple method for isolating functional mitochondria from rat intestinal mucosa to facilitate studies on the transepithelial movement of substrates that are both transported and metabolized by the intestinal mucosa.
+
+#### **Difficulty of Extraction Protocol:**
+The protocol is described as both simple and rapid, suggesting a lower difficulty level compared to traditional methods, which are complicated by mucus presence. The use of DEAE-cellulose significantly simplified the mucus removal process.
+
+#### **Protocol Category:**
+This protocol falls into the category of biochemical isolation techniques with a novel approach for mucus removal, specifically tailored for tissues with high mucus content, like the rat small intestine.
+
+### Reflections and Implications:
+The success of this protocol, particularly its applicability to other species with fewer Goblet cells, suggests potential for broader application in mitochondrial isolation from various mucosal tissues. The study's innovation lies in addressing the longstanding challenge of mucus interference in mitochondrial isolation from the small intestine, opening avenues for more efficient and cleaner mitochondrial isolation techniques in gastrointestinal research.
+
+Paper Title:Isolation_of_functional_mitochondria_from_rat_kidney_and_skeletal_muscle_without_manual_homogen.docx
+
+V1: Thank you for sharing this research article. Here is a summary of key information regarding mitochondria extraction techniques:
+
+Organisms:
+- Mitochondria extracted from rat skeletal muscle and kidney tissue
+
+Protocols Used:
+- For muscle: Mechanical disruption with PCT Shredder, with or without pressure cycling at 10,000-30,000 psi, 5-10 cycles. Compared to manual Potter-Elvehjem homogenization.
+- For kidney: Pressure cycling at 10,000-20,000 psi, 5-20 cycles. Compared to manual homogenization.  
+
+Yields:
+- Muscle: PCT Shredder + 10,000 psi pressure cycling approached yields of manual method
+- Kidney: Increasing pressure cycle number did not improve yields
+
+Assessments:
+- Respiration assays - RCR and ADP/O ratios showed functionality comparable to manual method
+- Morphology by EM confirmed intact mitochondria
+- Multiparameter assays of muscle mitochondria showed comparable calcium retention capacity
+
+Equipment:
+- PCT Shredder mechanical homogenizer
+- Barocycler for pressure cycling  
+
+Purpose:
+To develop simplified and reproducible methods for functional mitochondria extraction
+
+Difficulty:
+- Protocols are less technique-dependent than traditional manual methods
+- Can be learned quickly by novices
+
+Protocol Category:
+Mechanical disruption, with or without pressure cycling
+
+The key points focus on demonstrating these new techniques can extract functional and intact mitochondria, with less reliance on operator skill than traditional manual methods. Let me know if you need any clarification or have additional questions!
+
+Paper Title:A_method_for_isolating_intact_mitochondria_and_nuclei_from_the_same_homogenate,_and_the_influen.docx
+
+V1:
+This research article by Alexander L. Dounce et al. introduces an innovative method for isolating intact mitochondria and nuclei from the same liver homogenate, improving upon past techniques that required separate homogenates for high-quality isolation of these components. The technique also explores the effects of mitochondrial integrity on the properties of cell nuclei, highlighting the significance of preserving mitochondrial structure for accurate nuclear analysis.
+
+### Organism(s) Extraction
+The study primarily utilized rat liver for mitochondria and nuclei isolation, indicating its effectiveness with soft tissues. The technique was developed with a consideration for potentially extending its application to other tissues, albeit with modifications for fibrous materials.
+
+### Protocol(s) Used
+A detailed protocol employing a novel type of glass homogenizer and specific conditions (0.44 M sucrose, pH 6.2 adjusted with citric acid) was outlined. This approach allowed for the simultaneous isolation of mitochondria and nuclei from the same homogenate, which is a notable improvement over previous methods requiring separate homogenates.
+
+### Yield of Protocols
+Although exact yield data were not provided, the method is presented as efficient for the isolation of both mitochondria and nuclei, with an emphasis on the morphological preservation of mitochondria and the functionality of isolated nuclei.
+
+### Assessment of Isolated Mitochondria
+The mitochondria isolated using this method were described as morphologically intact and biochemically functional, meeting criteria such as latent ATP-ase activity and the necessity for a phosphate acceptor for optimal oxidase activity.
+
+### Equipment Used
+The custom-designed glass homogenizer is highlighted as a key piece of equipment, offering advantages over previous models in terms of cell disruption and preservation of mitochondrial structure.
+
+### Purpose of Extraction
+The study aimed to improve isolation techniques for mitochondria and nuclei, demonstrating the importance of mitochondrial integrity on nuclear properties and facilitating advanced biochemical and cytochemical research.
+
+### Difficulty of Extraction Protocol
+The protocol is depicted as meticulous, requiring precise control over conditions such as temperature, pH, and homogenization force to ensure the integrity and functionality of isolated components.
+
+### Protocol Category
+The described method falls into the category of biochemical extraction protocols, with specific focus on cellular components isolation from liver homogenate, offering advancements in both technique and application scope.
+
+The article combines detailed methodological instructions with theoretical insights into cellular component interactions, contributing significantly to the fields of biochemistry and cellular biology.
+
+V2:
+
+### Summary of "A Method for Isolating Intact Mitochondria and Nuclei from the Same Homogenate, and the Influence of Mitochondrial Destruction on the Properties of Cell Nuclei" by Alexander L. Dounce et al.
+
+#### Organism(s) Extraction:
+The study primarily used rat liver for the extraction of mitochondria and nuclei. It also mentions potential applicability to other soft tissues and attempts with Walker carcinoma 256, although with noted limitations in the latter case.
+
+#### Protocol(s) Used:
+The protocol introduced a new technique for isolating mitochondria and nuclei from the same liver homogenate, maintaining mitochondrial integrity during nuclei isolation. It involved homogenization in 0.44 M sucrose adjusted to pH 6.2 with citric acid. A novel type of glass homogenizer was used for better preservation and isolation efficiency. The procedure was detailed in steps for both mitochondria and nuclei isolation, with specific measures to control temperature and pH, and use of centrifugation for separation.
+
+#### Yield of Protocols:
+Yields were not quantified in specific numbers within the text, but the protocol emphasizes efficiency in isolating biochemically and morphologically intact mitochondria alongside nuclei from the same homogenate.
+
+#### Assessment of Isolated Mitochondria:
+The isolated mitochondria were assessed based on morphology and biochemical integrity, showing latent ATP-ase activity and requirement for a phosphate acceptor for optimal oxidase activity. This indicates preservation of functional integrity.
+
+#### Equipment Used:
+A new type of glass homogenizer was introduced, designed to minimize cellular and mitochondrial damage during homogenization. Centrifuges and other standard lab equipment were also utilized for the isolation processes.
+
+#### Purpose of Extraction:
+The study aimed to improve mitochondrial and nuclear isolation techniques for better biochemical and morphological preservation, and to explore the effects of mitochondrial integrity on nuclear properties, particularly regarding the gel-forming ability of isolated nuclei.
+
+#### Difficulty of Extraction Protocol:
+The protocol requires precise control over conditions like temperature, pH, and homogenization force. It is detailed and requires careful attention to ensure mitochondrial and nuclear integrity, indicating a moderate to high level of difficulty.
+
+#### Protocol Category:
+This protocol is categorized as a biochemical method for cellular component isolation, with specific emphasis on preserving the integrity and functionality of isolated mitochondria and nuclei for further biochemical analysis.
+
+### Supplementary Information:
+- The protocol discusses the importance of maintaining pH and temperature, and introduces a novel homogenization technique for better preservation of cellular components.
+- The study demonstrates that mitochondrial disruption releases an enzyme that prevents nuclei from forming gels, suggesting a biochemical interaction between mitochondria and nuclei that affects nuclear properties.
+
+### Reflective Questions/Scenarios:
+- How might the introduction of this dual isolation technique impact the study of mitochondrial-nuclear interactions in cellular biology?
+- Could the protocol's sensitivity to pH and temperature be optimized for use with other tissue types, potentially expanding its applicability?
+- What future research directions could be pursued to further understand the enzyme released by mitochondria and its impact on nuclear gel formation?
+
+Paper Title:Mitochondria_from_the_hepatopancreas_of_the_marine_clam_Mercenaria_mercenaria_substrate_prefere.docx
+
+The study by Ballantyne and Storey (1984) presents a comprehensive examination of mitochondria extraction from the hepatopancreas of the marine clam Mercenaria mercenaria. This summary distills the key findings and methodologies employed in their research, providing insights into the extraction process, substrate preferences, and the effects of environmental conditions on mitochondrial function.
+
+### Organism(s) Extraction:
+- **Species:** Mercenaria mercenaria (marine clam)
+- **Tissue:** Hepatopancreas
+- **Rationale:** The hepatopancreas is a critical organ for energy storage and metabolism in molluscs, containing significant lipid reserves. The study aimed to understand the substrate preferences of mitochondria in this organ, especially given the clam's euryhaline nature, which subjects it to varying salinity levels and potential anoxic conditions.
+
+### Protocol(s) Used:
+- **Isolation Medium:** 400 mM sucrose, 1 mM EDTA, 2 mM EGTA, 10 mM Hepes (pH 7.4), and 1% bovine serum albumin, with homogenization and centrifugation steps to isolate the mitochondria.
+- **Assessment Methods:** Oxygen uptake was measured using a Clark type oxygen electrode in a specific assay medium, with variations in KCl concentration and pH to test different conditions.
+
+### Yield of Protocols:
+- **Mitochondrial Protein Content:** Adjusted to 0.1-0.5 mg/ml in the final suspension.
+- **Observation:** High respiratory control ratios (RCR) indicate the successful isolation of intact mitochondria with good respiratory control.
+
+### Assessment of Isolated Mitochondria:
+- **Substrate Preferences:** Palmitoyl-L-carnitine was the preferred substrate, indicating a significant role for lipid metabolism in the hepatopancreas. Krebs cycle intermediates were also oxidized, albeit at varying rates.
+- **Effects of Environmental Conditions:** Optimal salt concentration and pH ranges were determined for the oxidation of palmitoyl-L-carnitine and succinate, highlighting the mitochondria's adaptability to the clam's changing environmental conditions.
+
+### Equipment Used:
+- **Homogenizer:** Potter-Elvehjem with a loosely fitting Teflon pestle.
+- **Centrifuge:** For separation of mitochondrial fractions.
+- **Oxygen Electrode:** Clark type, for measuring oxygen uptake.
+
+### Purpose of Extraction:
+- To explore the substrate preferences of hepatopancreas mitochondria in Mercenaria mercenaria, and assess how salt concentrations and pH affect the oxidation of specific substrates, providing insights into the organ's energy metabolism under varying environmental conditions.
+
+### Difficulty of Extraction Protocol:
+- The protocol appears to be moderately complex, requiring precise control of environmental conditions (e.g., temperature, salt concentration, pH) and careful handling during the isolation process to ensure the integrity and functionality of the extracted mitochondria.
+
+### Protocol Category:
+- **Category:** Biochemical assay for mitochondrial function and isolation.
+- **Significance:** This protocol facilitates understanding the metabolic preferences and resilience of molluscan mitochondria in response to environmental stresses.
+
+### Reflections and Future Directions:
+The study underscores the hepatopancreas's role in lipid metabolism within molluscs, with implications for understanding energy utilization and adaptation to stress in marine invertebrates. Future research could explore the molecular mechanisms underlying substrate preference changes in response to environmental variations, potentially revealing new aspects of metabolic regulation in euryhaline organisms.
+
+Paper Title:Isolation_of_mitochondria_from_cultured_cells_and_liver_tissue_biopsies_for_molecular_and_bioch.docx
+
+### Summary of "Isolation of Mitochondria from Cultured Cells and Liver Tissue Biopsies for Molecular and Biochemical Analyses"
+
+#### Organism(s) Extraction
+Mitochondria were extracted from both cultured cells and liver tissue biopsies. This choice is pertinent for comparative mitochondrial investigations under normal and pathological conditions, aiding in the identification of specific mitochondrial alterations linked to diseases such as Wilson disease, neurodegenerative disorders, and cancer.
+
+#### Protocol(s) Used
+The protocol utilized a semi-automated method known as the Pump Controlled Cell Rupture system (PCC), coupled with subsequent purification steps. The PCC method involves a semi-automated cell rupture using a specific cell homogenizer to ensure efficient cell breakage while preserving mitochondrial integrity. This is followed by a purification process involving Nycodenz® density gradient centrifugation to obtain high-purity mitochondrial fractions suitable for molecular and biochemical analyses.
+
+#### Yield of Protocols
+Yields varied depending on the cell type, with specific examples listed (e.g., primary rat hepatocytes yielded 1,230 μg per 5×10^6 cells). The protocol emphasizes balancing cell rupture efficiency with mitochondrial integrity to achieve high yields of functionally intact mitochondria.
+
+#### Assessment of Isolated Mitochondria
+Mitochondrial functionality was assessed by their ability to build up and maintain an inner transmembrane potential (Δψm) stable for at least 1 hour, indicating the integrity of the isolated mitochondria.
+
+#### Equipment Used
+The protocol employed the Balch-homogenizer, high precision pumps, tungsten carbide balls for cell rupture, and ultracentrifuges for purification. This equipment was chosen for its precision and effectiveness in isolating high-quality mitochondria.
+
+#### Purpose of Extraction
+The main objective was to enable detailed molecular and biochemical analyses of mitochondria from both healthy and diseased tissues, facilitating the identification of mitochondrial targets for therapeutic intervention or understanding disease progression.
+
+#### Difficulty of Extraction Protocol
+The protocol is described as semi-automated and detailed, indicating a moderate to high complexity level. It requires precise adjustments and control over the cell rupture process and subsequent purification steps.
+
+#### Protocol Category
+This protocol falls into the category of semi-automated isolation techniques, combining mechanical and density gradient centrifugation methods to achieve high purity and functionality of the isolated mitochondria.
+
+### Reflection
+This detailed protocol underscores the importance of balancing efficient cell rupture with the preservation of mitochondrial integrity for successful isolation from small sample sizes. The use of semi-automated equipment like the PCC system, combined with meticulous purification steps, exemplifies the technical advances enabling precise molecular and biochemical analyses of mitochondria. The application of this protocol across different cell types and tissue biopsies highlights its versatility and potential in advancing our understanding of mitochondrial roles in health and disease.
+
+Paper Title:Two-Step_Tag-Free_Isolation_of_Mitochondria_for_Improved_Protein_Discovery_and_Quantification.docx
+
+### Two-Step Tag-Free Isolation of Mitochondria for Improved Protein Discovery and Quantification
+
+#### **Organism(s) Extraction:**
+- **Organisms**: The protocol was applied to mouse macrophage cell lines (RAW264.7) and primary bone marrow-derived macrophages (BMDMs).
+- **Tissues Used**: For BMDMs, bone marrow was harvested from the femurs, tibias, and hips of C57BL/6 mice.
+- **Rationale**: These cell types were chosen for their relevance to studying innate immune responses and metabolic changes, reflecting mitochondria's role in these processes.
+
+#### **Protocol(s) Used:**
+1. **Mechanical Homogenization and Differential Centrifugation**: For initial crude mitochondrial isolation.
+2. **Tag-Free Immune Capture**: Using superparamagnetic beads bound to antibodies against Tomm22 for purifying mitochondria.
+
+#### **Yield of Protocols:**
+- Quantitative mass spectrometry analysis of mitochondrial proteins at each purification stage, enabling novel protein discovery through subtractive proteomics.
+
+#### **Assessment of Isolated Mitochondria:**
+- Immunoblotting and electron microscopy confirmed the enrichment and structural integrity of isolated mitochondria.
+- Proteome analysis showed significant enrichment of mitochondrial proteins and depletion of non-mitochondrial components in the purified fractions.
+
+#### **Equipment Used:**
+- Centrifuges, superparamagnetic beads, magnetic columns, laminar flow hood, syringe with 25 G needle, and electron microscopy for structural assessment.
+
+#### **Purpose of Extraction:**
+- To enhance the discovery and quantification of mitochondrial proteins, contributing to our understanding of mitochondria's role in various physiological and disease processes.
+
+#### **Difficulty of Extraction Protocol:**
+- The protocol is described as straightforward and robust, suitable for a wide range of research models without the need for genetic modification.
+
+#### **Protocol Category:**
+- Combines physical separation (centrifugation) and biological specificity (immune capture), categorizing it as a hybrid protocol aimed at maximizing purity and applicability across various sample types.
+
+### Reflection and Implications:
+This innovative two-step, tag-free protocol represents a significant advancement in mitochondrial research. It addresses the limitations of existing methods by eliminating the need for genetic modification and providing a high-purity mitochondrial sample suitable for sensitive proteomic analyses. The ability to isolate mitochondria from unmodified organisms and human donors greatly expands the potential for discovering novel therapeutic targets for diseases linked to mitochondrial dysfunction. The protocol's compatibility with quantitative mass spectrometry further enhances its utility in the proteomic field, offering a comprehensive approach to studying mitochondrial composition and function under different physiological and pathological conditions.
+
+Paper Title:A_mitosome_purification_protocol_based_on_percoll_density_gradients_and_its_use_in_validating_t.docx
+
+### Mitosome Purification Protocol and Its Validation in Entamoeba histolytica
+
+#### Organism(s) Extraction
+- **Organism:** Entamoeba histolytica, specifically strain HM-1:IMSS Clone 9.
+- **Rationale:** E. histolytica is a mitosome-containing human intestinal parasite, studied due to its unique mitochondrial-related organelles, known as mitosomes, despite being considered a "primitive" eukaryote due to the apparent absence of mitochondria.
+
+#### Protocol(s) Used
+- **Techniques:** Cellular fractionation followed by density gradient centrifugation using Percoll.
+- **Key Steps:** Culturing of E. histolytica trophozoites, cell harvesting, cellular lysis through freeze-thaw cycles, removal of cell debris and nuclei, separation of cytosol and organellar fractions, and mitosome purification using a Percoll gradient.
+- **Reagents & Conditions:** Utilization of LYI-S-2 axenic culture medium, MOPS-HCl, sucrose solutions, DTT, PBS, and specific inhibitors to preserve organelle integrity.
+
+#### Yield of Protocols
+- **Outcome:** The protocol enables the isolation of highly enriched mitosomal preparations from E. histolytica, facilitating further research into the organelles' roles in cellular metabolism.
+
+#### Assessment of Isolated Mitochondria
+- **Validation:** The presence of mitochondrial heat-shock protein Hsp70 in the mitosomal fraction was confirmed, reinforcing the mitochondrial nature of these organelles in E. histolytica.
+
+#### Equipment Used
+- **Key Equipment:** Centrifuges for different speed and temperature settings, glass culture tubes, cell culture flasks, and standard laboratory equipment for polyacrylamide gel electrophoresis and Western blotting.
+
+#### Purpose of Extraction
+- **Objective:** To advance the understanding of mitosomes in E. histolytica, particularly their role in cellular metabolism and to validate the mitochondrial nature of these organelles through the identification of mitochondrial-type chaperone Hsp70.
+
+#### Difficulty of Extraction Protocol
+- **Complexity:** The protocol involves multiple precise steps including specific culture conditions, careful handling during fractionation, and meticulous gradient preparation, indicating a moderate to high level of complexity.
+
+#### Protocol Category
+- **Classification:** This protocol is classified as a specialized organelle isolation technique tailored to mitosomes in E. histolytica, incorporating elements from traditional mitochondrial isolation methods adapted for these unique organelles.
+
+### Reflections and Future Directions
+The successful validation of Hsp70 within E. histolytica's mitosomes not only adds to our understanding of the organelle's composition but also highlights the evolutionary complexity of this protozoan parasite. Further investigations using the described protocol could reveal additional components and functions of mitosomes, potentially uncovering novel aspects of cellular metabolism in anaerobic or microaerophilic conditions. How might the discovery of new mitosomal proteins influence our understanding of mitosome evolution and function in E. histolytica and related organisms?
+
+Paper Title:Isolation_of_Intact_Mitochondria_from_Skeletal_Muscle_by_Differential_Centrifugation_for_High-r.docx
+
+V1: Here is a summary of the key information from the research article "Isolation of Intact Mitochondria from Skeletal Muscle by Differential Centrifugation for High-resolution Respirometry Measurements":
+
+Organism: Porcine skeletal muscle tissue (quadriceps)
+
+Protocols Used:
+- Tissue minced and homogenized in isolation buffer using glass homogenizer
+- Differential centrifugation at 350 x g, 7000 x g to isolate mitochondria  
+- Protease treatment to dissociate tissue
+- Washing steps between centrifugations
+
+Yields:
+- Mitochondrial suspension obtained at 0.4 mg/mL protein concentration
+- Yields not explicitly reported but sufficient for high-resolution respirometry
+
+Assessment of Isolated Mitochondria:
+- High-resolution respirometry to assess respiratory states
+- Respiratory control ratio 4-5, indicating well-coupled mitochondria
+- Cytochrome c test showed no enhanced respiration, confirming outer membrane integrity
+
+Equipment Used:
+- Glass homogenizer for tissue dissociation
+- Fixed-angle rotors for differential centrifugation
+- Oxygraph chambers for high-resolution respirometry
+
+Purpose of Extraction:
+- Investigate mitochondrial bioenergetics and respiratory function in skeletal muscle
+- Establish optimized protocols for isolating intact mitochondria from skeletal muscle
+
+Difficulty of Protocol:
+- Relatively quick and simple differential centrifugation protocol
+- Critical to maintain cold temperatures and gentle homogenization
+
+Protocol Category:
+- Differential centrifugation for isolation of crude mitochondrial fraction
+
+The article provides a detailed methodological workflow for isolating mitochondria from skeletal muscle tissue via differential centrifugation. The isolated mitochondria showed high integrity and respiratory function, indicating the protocol efficiently extracts intact and active mitochondria for bioenergetic studies. Key optimizations include protease treatment for muscle dissociation and maintaining cold temperatures throughout. Overall, this represents a straightforward and effective technique for skeletal muscle mitochondria extraction.
+
+Paper Title:A_semi-automated_method_for_isolating_functionally_intact_mitochondria_from_cultured_cells_and_.docx
+
+V1: The article presents a semi-automated method for isolating functionally intact mitochondria from cultured cells and tissue biopsies, developed by Sabine Schmitt and colleagues. This method addresses the critical need for precise and reproducible mitochondrial isolation techniques, which are essential for studying mitochondrial functions and their implications in human diseases. Below is a detailed summary based on the specified aspects:
+
+### Organism(s) Extraction
+Mitochondria were extracted from a variety of sources, including cultured cells (e.g., McA 7777, HEK 293, HeLa, 1205Lu, Panc02, MEF cells) and tissue samples from rats and mice. The selection of diverse cell lines and tissue types, including liver, kidney, and various brain regions, underscores the method's broad applicability.
+
+### Protocol(s) Used
+The core of this technique involves a "Balch-homogenizer" combined with a high-precision pump system, termed the "pump controlled cell rupture system" (PCC). This setup allows for precisely controlled cell homogenization, using a tunable clearance adjusted by spherical tungsten carbide balls, ensuring reproducible cell breakage and intact mitochondria isolation. The process includes an initial homogenization followed by differential centrifugation for purification, with the ability to further refine the mitochondrial preparation through density gradient centrifugation or free-flow electrophoresis.
+
+### Yield of Protocols
+Yields from this protocol are sufficient for subsequent analyses, with 5x10^6 cells or 30 mg of tissue producing adequate mitochondria. This yield efficiency is vital for both experimental and clinical applications, enabling detailed functional and biochemical studies with relatively small sample sizes.
+
+### Assessment of Isolated Mitochondria
+The functionality and integrity of the isolated mitochondria were confirmed through various assessments, including respiratory measurements, Δψm (mitochondrial inner transmembrane potential) stability, and mitochondrial permeability transition kinetics. These assessments demonstrated that mitochondria isolated via this method retain functional activity and structural integrity, making them suitable for further experimental analyses.
+
+### Equipment Used
+The isolation technique primarily utilizes the "Balch-homogenizer" and a high-precision pump system for cell homogenization, along with standard laboratory equipment for differential centrifugation and optional purification steps.
+
+### Purpose of Extraction
+The primary goal is to isolate functionally intact mitochondria for studying their role in bioenergetics, metabolic signaling, and cell death decisions. This research has significant implications for understanding mitochondrial dysfunctions in various diseases and developing targeted therapeutic strategies.
+
+### Difficulty of Extraction Protocol
+The method described is semi-automated and designed for high reproducibility and precision, reducing operator dependency and variability. While the technique requires specific equipment and optimization for different cell types and tissues, its detailed description and the provision of clear parameters facilitate its replication and application in other laboratories.
+
+### Protocol Category
+This mitochondrial isolation protocol can be categorized as a semi-automated, high-precision method suitable for both research and clinical applications. It stands out for its ability to produce functionally intact mitochondria in a reproducible and operator-independent manner, applicable across a wide range of cell lines and tissue types.
+
+The development of this isolation technique represents a significant advancement in mitochondrial research, offering a reliable and efficient method for studying mitochondria's role in health and disease. Its broad applicability and the ability to obtain functionally active mitochondria from small sample sizes open new avenues for both experimental research and clinical diagnostics.
+
+V2:This research article presents a semi-automated method for the isolation of functionally intact mitochondria from cultured cells and tissue biopsies, developed by Sabine Schmitt and colleagues. The method employs a Balch homogenizer coupled with a high-precision pump system, termed "pump controlled cell rupture system" (PCC), for the precise and reproducible isolation of mitochondria. Below is a summary based on the outlined requirements:
+
+### Organism(s) Extraction:
+Mitochondria were extracted from various sources, including primary rat liver cells, rat hepatoma (McA 7777), human hepatoma (HepG2), human cervical carcinoma (HeLa), mouse embryonic fibroblasts (MEF), and other cultured cells, as well as small tissue samples from rat liver, kidney, and selected mouse brain areas. The choice of these organisms and tissues was likely influenced by their relevance to mitochondrial dysfunction in human diseases and the need for a versatile method applicable to both experimental and clinical research.
+
+### Protocol(s) Used:
+The extraction protocol involves cell or tissue homogenization using the PCC, followed by differential centrifugation for mitochondria purification. The PCC system allows for precisely controlled cell rupture, with tunable parameters such as clearance width, pressure, volume, and flow rates. This method is noted for its ability to maintain the functional and structural integrity of the isolated mitochondria.
+
+### Yield of Protocols:
+The protocol yields sufficient mitochondria from as few as 5x10^6 cells or 30 mg of tissue for subsequent analyses, including functional assays and electron microscopy. The yield and functionality of the isolated mitochondria were optimized through adjustments in cell density, buffer composition, and PCC settings.
+
+### Assessment of Isolated Mitochondria:
+The functionality of the isolated mitochondria was assessed through standard respiratory measurements, Δψm (mitochondrial inner transmembrane potential) stability, and sensitivity to calcium-induced mitochondrial permeability transition (MPT). These assays demonstrated that the mitochondria retained their bioenergetic functions and structural integrity post-isolation.
+
+### Equipment Used:
+Key equipment includes the Balch homogenizer, high precision pump, differential centrifuges, and standard laboratory apparatus for mitochondrial function assays (Clark-type oxygen electrode, fluorescence quenching equipment).
+
+### Purpose of Extraction:
+The primary goal is to provide a reliable method for isolating functionally intact mitochondria to study mitochondrial dysfunctions in various diseases, facilitating the development of therapeutic strategies targeting mitochondria.
+
+### Difficulty of Extraction Protocol:
+While the method is described as simple and rapid, requiring about 30 minutes for completion, it necessitates precise adjustments and optimization for different cell types and tissues, indicating a moderate level of complexity.
+
+### Protocol Category:
+This method can be classified as a semi-automated, mechanical homogenization technique optimized for the isolation of mitochondria from a wide range of biological samples, emphasizing reproducibility, operator independence, and minimal contamination.
+
+This research contributes significantly to mitochondrial biology by providing a versatile and efficient method for isolating mitochondria, thereby enabling detailed functional and structural analyses. The method's adaptability to both experimental and clinical settings underscores its potential impact on advancing our understanding of mitochondrial roles in health and disease.
+
+Paper Title:Mitochondrial_Isolation_and_Real-Time_Monitoring_of_MOMP.docx
+
+The article by Luna-Vargas et al., published in Methods in Molecular Biology in 2019, details a comprehensive protocol for the isolation of mitochondria from mouse liver, the labeling of these mitochondria with JC-1 dye for assessing mitochondrial membrane potential (MOMP), and the real-time monitoring of MOMP as a measure of apoptosis. Below, I have summarized the key points of the article, organized by the requested headings:
+
+### Organism(s) Extraction:
+- **Organism:** The protocol utilizes liver mitochondria isolated from C57BL/6 mice. The choice of mouse liver as the source of mitochondria likely reflects the organ's rich mitochondrial content, making it an ideal tissue for isolation procedures.
+
+### Protocol(s) Used:
+- **Isolation:** The mitochondria are isolated using a combination of mechanical homogenization (using a Potter-Elvehjem Dounce homogenizer) and differential centrifugation steps. This is followed by mitochondria labeling with JC-1, a dye that changes color based on mitochondrial membrane potential, to assess MOMP.
+- **Labeling and Purification:** Post-isolation, mitochondria are labeled with JC-1 and purified using a Sepharose CL-2B resin column to ensure the isolation of mitochondria with intact membrane potentials for accurate MOMP measurements.
+- **Real-Time MOMP Measurements:** The labeled mitochondria are then utilized in real-time assays to monitor MOMP, using a 96-well plate format and a plate reader, enabling the quantitative assessment of apoptosis-related changes in mitochondrial membrane potential.
+
+### Yield of Protocols:
+- The protocol details do not provide specific yield numbers but describe a method for quantifying the amount of isolated mitochondria using spectrophotometry to ensure standardization across experiments.
+
+### Assessment of Isolated Mitochondria:
+- **Functionality:** The JC-1 labeling technique serves as an assessment of mitochondrial functionality, specifically through the monitoring of changes in mitochondrial membrane potential associated with MOMP.
+
+### Equipment Used:
+- Key equipment includes a Potter-Elvehjem Dounce homogenizer, a swinging bucket centrifuge, a spectrophotometer, and a Sepharose CL-2B column for purification. A plate reader is used for the real-time monitoring of MOMP.
+
+### Purpose of Extraction:
+- The extraction serves to facilitate a detailed study of the mitochondrial pathway of apoptosis, specifically examining the role of BCL-2 family proteins in MOMP, by providing a controlled system free from the complexities of intact cellular environments.
+
+### Difficulty of Extraction Protocol:
+- The protocol is complex, involving precise steps for the isolation, labeling, and measurement processes. It requires careful handling and timing to ensure the integrity and functionality of the isolated mitochondria.
+
+### Protocol Category:
+- This protocol falls into the category of biochemical assays for studying cellular apoptosis mechanisms, with a specific focus on mitochondrial dynamics and the intrinsic pathway of apoptosis.
+
+### Efficiency, Purity, Specificity, Scalability:
+- The detailed centrifugation and purification steps aim to ensure high purity and specificity of the isolated mitochondria. The use of JC-1 labeling enhances the specificity by selecting for mitochondria with intact membrane potentials. The protocol is designed for detailed laboratory studies rather than large-scale applications but provides a foundation for scaling up or adapting for different tissues or conditions.
+
+### Future Directions:
+Given the focus on MOMP in apoptosis, advancements in this protocol might include the integration of high-throughput screening methods for apoptosis regulators, the application to different cell types or organisms to broaden the understanding of apoptosis, and the development of more sensitive and specific assays for mitochondrial function. This could lead to deeper insights into the role of mitochondria in diseases and the identification of new therapeutic targets.

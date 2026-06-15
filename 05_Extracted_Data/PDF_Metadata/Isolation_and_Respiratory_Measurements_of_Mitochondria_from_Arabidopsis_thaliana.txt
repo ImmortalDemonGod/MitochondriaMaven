@@ -1,0 +1,18 @@
+Document infos:
+- CreationDate = D:20180419203236Z
+- Creator = Apache FOP Version 1.1
+- Pages = 10
+- Producer = Apache FOP Version 1.1
+- dc = {'language': 'x-unknown', 'format': 'application/pdf', 'date': '2018-04-19T20:32:36Z'}
+- pdf = {'PDFVersion': '1.4', 'Producer': 'Apache FOP Version 1.1'}
+- xap = {'CreateDate': '2018-04-19T20:32:36Z', 'CreatorTool': 'Apache FOP Version 1.1', 'MetadataDate': '2018-04-19T20:32:36Z'}
+
+References: 5
+- URL: 5
+
+URL References:
+- https://www.jove.com/video/56627/
+- 10.3791/56627
+- www.jove.com
+- edu.au
+- https://www.jove.com/video/56627

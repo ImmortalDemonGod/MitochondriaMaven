@@ -1,0 +1,14 @@
+name,value,unit,compartment,source,notes
+DPsi,175e-3,V,membrane,Beard 2005 / QAMAS in_vitro,membrane potential ~175 mV; steady-state baseline
+sumATP_x,0.5e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix total ATP (includes Mg-bound and free)
+sumADP_x,9.5e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix total ADP (large pool)
+sumPi_x,0.3e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix total Pi
+NADH_x,0.297e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix NADH (0.1 * NAD_tot initially)
+NAD_x,2.673e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix NAD+ (0.9 * NAD_tot initially)
+QH2_x,0.135e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix QH2 (0.1 * Q_tot initially)
+Q_x,1.215e-3,mol/L_matrix_water,matrix,QAMAS in_vitro,matrix Q (0.9 * Q_tot initially)
+cred_i,2.7e-4,mol/L_IM_water,IMS,QAMAS in_vitro,reduced cyt c (0.1 * c_tot)
+cox_i,2.43e-3,mol/L_IM_water,IMS,QAMAS in_vitro,oxidized cyt c (0.9 * c_tot)
+sumATP_c,5e-3,mol/L_cyto_water,cyto,QAMAS in_vitro,cytosol total ATP (buffer; elevated baseline)
+sumADP_c,0.0,mol/L_cyto_water,cyto,QAMAS in_vitro,cytosol total ADP (starts at zero; builds via ANT)
+sumPi_c,1.0e-3,mol/L_cyto_water,cyto,QAMAS in_vitro,cytosol total Pi (low-Pi baseline; sweep 1-5 mM in QAMAS)

@@ -1,0 +1,119 @@
+{
+  "run_date": "2026-04-22T21:09:48.481310",
+  "baseline_transit_window_hours": 29.0,
+  "complex_sensitivity": [
+    {
+      "complex": "Complex I",
+      "n_immortal_subunits": 84,
+      "transit_window_hours": 29.0,
+      "delta_transit_hours": 0.0,
+      "transit_window_str": "29.0"
+    },
+    {
+      "complex": "Complex II",
+      "n_immortal_subunits": 6,
+      "transit_window_hours": 29.0,
+      "delta_transit_hours": 0.0,
+      "transit_window_str": "29.0"
+    },
+    {
+      "complex": "Complex III",
+      "n_immortal_subunits": 21,
+      "transit_window_hours": 29.0,
+      "delta_transit_hours": 0.0,
+      "transit_window_str": "29.0"
+    },
+    {
+      "complex": "Complex IV",
+      "n_immortal_subunits": 35,
+      "transit_window_hours": 29.0,
+      "delta_transit_hours": 0.0,
+      "transit_window_str": "29.0"
+    },
+    {
+      "complex": "Complex V",
+      "n_immortal_subunits": 33,
+      "transit_window_hours": 29.0,
+      "delta_transit_hours": 0.0,
+      "transit_window_str": "29.0"
+    },
+    {
+      "complex": "ATPtranslocase",
+      "n_immortal_subunits": 5,
+      "transit_window_hours": 29.0,
+      "delta_transit_hours": 0.0,
+      "transit_window_str": "29.0"
+    },
+    {
+      "complex": "All nuclear (control)",
+      "n_immortal_subunits": 769,
+      "transit_window_hours": 72.0,
+      "delta_transit_hours": 43.0,
+      "transit_window_str": ">72h"
+    }
+  ],
+  "top10_knockout_genes": [
+    {
+      "rank": 1,
+      "gene_id": "ENSMUSG00000020163",
+      "complex": "Complex III",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 2,
+      "gene_id": "ENSMUSG00000061518",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 3,
+      "gene_id": "ENSMUSG00000035885",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 4,
+      "gene_id": "ENSMUSG00000017778",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 5,
+      "gene_id": "ENSMUSG00000031231",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 6,
+      "gene_id": "ENSMUSG00000024248",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 7,
+      "gene_id": "ENSMUSG00000032330",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 8,
+      "gene_id": "ENSMUSG00000074218",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 9,
+      "gene_id": "ENSMUSG00000014313",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    },
+    {
+      "rank": 10,
+      "gene_id": "ENSMUSG00000051811",
+      "complex": "Complex IV",
+      "atp_impact_pct": 97.916
+    }
+  ],
+  "total_nuclear_genes_scored": 769,
+  "zero_impact_genes": 348
+}

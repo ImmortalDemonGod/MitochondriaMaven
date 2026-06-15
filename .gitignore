@@ -1,0 +1,42 @@
+# ─── OS / editor / Python noise ───
+.DS_Store
+**/.DS_Store
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+
+# ─── Local Claude Code tooling config (personal) ───
+.claude/
+
+# ─── Oversized archive (exceeds GitHub's 100 MB hard limit) ───
+03_Study_Registry/source_archive.zip
+
+# ─── Embedded external repos — re-clone via 09_Computational_Modeling/setup_environment.sh ───
+09_Computational_Modeling/Whole_Cell_Modeling/mitomammal/
+09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/
+
+# ─── Large external reference data ───
+09_Computational_Modeling/Whole_Cell_Modeling/mitocarta/
+*.mat
+*.xls
+*.xlsx
+
+# ─── Copyright: published-paper PDFs (kept local only) ───
+*.pdf
+
+# ─── Copyright (verified by inspecting actual file content) ───
+# Structured_JSON 'article' field = verbatim published-paper text → excluded
+05_Extracted_Data/Structured_JSON/
+# Consolidated_Protocols.txt reproduces verbatim bibliographic front-matter → excluded (borderline)
+06_Synthesis/Consolidated_Protocols.txt
+# NOTE: 05_Extracted_Data/Protocol_Summaries/ are AI-generated summaries (transformative) → INCLUDED
+
+# ─── Unpublished manuscript — held back per repo-visibility decision ───
+09_Computational_Modeling/docs/conference_planning/ABSTRACT_DRAFT_2026-04-23.md
+
+# ─── Personal meta-artifact (recovered raw prompt log) ───
+09_Computational_Modeling/docs/RECOVERED_history_Mitochondria-Maven_sessions.md
+
+# ─── Bulky raw evidence dump (~25MB of LLM research JSON); synthesized findings kept as DOCINSIGHT_*.md ───
+09_Computational_Modeling/docs/conference_planning/docinsight_raw_results/

@@ -1,0 +1,10 @@
+regime,scenario,tw_delta_psi_h,tw_atp_h,first_failure_mode,dominant_mechanism
+in_vivo_141h,A,,,,no_failure_in_window
+in_vivo_141h,B,,,,no_failure_in_window
+in_vivo_141h,C,,,,no_failure_in_window
+uniform_12h,A,,33.64824120603015,atp,atp
+uniform_12h,B,,14.472361809045227,atp,atp
+uniform_12h,C,,13.748743718592966,atp,atp
+accel_30x_4.7h,A,66.57286432160804,13.748743718592966,atp,atp
+accel_30x_4.7h,B,,5.788944723618091,atp,atp
+accel_30x_4.7h,C,55.71859296482412,5.788944723618091,atp,atp

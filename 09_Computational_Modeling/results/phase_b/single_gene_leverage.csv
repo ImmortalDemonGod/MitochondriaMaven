@@ -1,0 +1,146 @@
+rank,ensembl_id,tw_hours,delta_tw_hours,tw_exceeds_72h,gene_symbol,full_name,complex,atp_impact_pct
+1,ENSMUSG00000038462,29.0,0.0,False,Uqcrfs1,"ubiquinol-cytochrome c reductase, Rieske iron-sulfur polypeptide 1",Complex III,97.9215
+2,ENSMUSG00000022110,29.0,0.0,False,Sucla2,"succinate-Coenzyme A ligase, ADP-forming, beta subunit",Other,68.4361
+3,ENSMUSG00000026568,29.0,0.0,False,Mpc2,mitochondrial pyruvate carrier 2,Other,36.5862
+4,ENSMUSG00000031299,29.0,0.0,False,Pdha1,pyruvate dehydrogenase E1 alpha 1,Other,35.255
+5,ENSMUSG00000021748,29.0,0.0,False,Pdhb,pyruvate dehydrogenase (lipoamide) beta,Other,35.255
+6,ENSMUSG00000000168,29.0,0.0,False,Dlat,dihydrolipoamide S-acetyltransferase,Other,35.255
+7,ENSMUSG00000057666,29.0,0.0,False,Gapdh,glyceraldehyde-3-phosphate dehydrogenase,Other,26.3675
+8,ENSMUSG00000062070,29.0,0.0,False,Pgk1,phosphoglycerate kinase 1,Other,26.3675
+9,ENSMUSG00000033065,29.0,0.0,False,Pfkm,"phosphofructokinase, muscle",Other,25.5504
+10,ENSMUSG00000023456,29.0,0.0,False,Tpi1,triosephosphate isomerase 1,Other,18.4855
+11,ENSMUSG00000036427,29.0,0.0,False,Gpi1,glucose-6-phosphate isomerase 1,Other,11.5878
+12,ENSMUSG00000030246,29.0,0.0,False,Ldhb,lactate dehydrogenase B,Other,5.6874
+13,ENSMUSG00000026526,29.0,0.0,False,Fh1,fumarate hydratase 1,Other,3.3394
+14,ENSMUSG00000025190,29.0,0.0,False,Got1,"glutamic-oxaloacetic transaminase 1, soluble",Other,2.1526
+15,ENSMUSG00000014606,29.0,0.0,False,Slc25a11,"solute carrier family 25 (mitochondrial carrier oxoglutarate carrier), member 11",Other,2.0026
+16,ENSMUSG00000020321,29.0,0.0,False,Mdh1,"malate dehydrogenase 1, NAD (soluble)",Other,1.9604
+17,ENSMUSG00000022477,29.0,0.0,False,Aco2,"aconitase 2, mitochondrial",Other,1.8384
+18,ENSMUSG00000023861,29.0,0.0,False,Mpc1,mitochondrial pyruvate carrier 1,Other,36.5862
+19,ENSMUSG00000032279,29.0,0.0,False,Idh3a,isocitrate dehydrogenase 3 (NAD+) alpha,Other,41.5892
+20,ENSMUSG00000002010,29.0,0.0,False,Idh3g,"isocitrate dehydrogenase 3 (NAD+), gamma",Other,41.5892
+21,ENSMUSG00000026817,29.0,0.0,False,Ak1,adenylate kinase 1,Other,51.3373
+22,ENSMUSG00000025465,29.0,0.0,False,Echs1,"enoyl Coenzyme A hydratase, short chain, 1, mitochondrial",Other,53.0713
+23,ENSMUSG00000027984,29.0,0.0,False,Hadh,hydroxyacyl-Coenzyme A dehydrogenase,Other,52.7432
+24,ENSMUSG00000029545,29.0,0.0,False,Acads,"acyl-Coenzyme A dehydrogenase, short chain",Other,51.9462
+25,ENSMUSG00000036880,29.0,0.0,False,Acaa2,acetyl-CoA acyltransferase 2,Other,51.4756
+26,ENSMUSG00000027809,29.0,0.0,False,Etfdh,"electron transferring flavoprotein, dehydrogenase",Other,51.4681
+27,ENSMUSG00000020089,29.0,0.0,False,Ppa1,pyrophosphatase (inorganic) 1,Other,51.3373
+28,ENSMUSG00000078937,29.0,0.0,False,Cpt1b,"carnitine palmitoyltransferase 1b, muscle",Other,51.3255
+29,ENSMUSG00000027406,29.0,0.0,False,Idh3b,isocitrate dehydrogenase 3 (NAD+) beta,Other,41.5892
+30,ENSMUSG00000059447,29.0,0.0,False,Hadhb,hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit beta,Other,51.3255
+31,ENSMUSG00000062908,29.0,0.0,False,Acadm,"acyl-Coenzyme A dehydrogenase, medium chain",Other,51.3255
+32,ENSMUSG00000026003,29.0,0.0,False,Acadl,"acyl-Coenzyme A dehydrogenase, long-chain",Other,51.3255
+33,ENSMUSG00000032602,29.0,0.0,False,Slc25a20,"solute carrier family 25 (mitochondrial carnitine/acylcarnitine translocase), member 20",Other,51.3255
+34,ENSMUSG00000028607,29.0,0.0,False,Cpt2,carnitine palmitoyltransferase 2,Other,51.3255
+35,ENSMUSG00000025745,29.0,0.0,False,Hadha,hydroxyacyl-CoA dehydrogenase trifunctional multienzyme complex subunit alpha,Other,51.3255
+36,ENSMUSG00000031672,29.0,0.0,False,Got2,"glutamatic-oxaloacetic transaminase 2, mitochondrial",Other,1.7792
+37,ENSMUSG00000022186,29.0,0.0,False,Oxct1,3-oxoacid CoA transferase 1,Other,1.3193
+38,ENSMUSG00000021794,29.0,0.0,False,Glud1,glutamate dehydrogenase 1,Other,0.1916
+39,ENSMUSG00000032607,29.0,0.0,False,Amt,aminomethyltransferase,Other,0.0112
+40,ENSMUSG00000032527,29.0,0.0,False,Pccb,"propionyl Coenzyme A carboxylase, beta polypeptide",Other,0.0179
+41,ENSMUSG00000030934,29.0,0.0,False,Oat,ornithine aminotransferase,Other,0.0171
+42,ENSMUSG00000037686,29.0,0.0,False,Aspg,asparaginase,Other,0.0169
+43,ENSMUSG00000022546,29.0,0.0,False,Gpt,"glutamic pyruvic transaminase, soluble",Other,0.0127
+44,ENSMUSG00000030088,29.0,0.0,False,Aldh1l1,"aldehyde dehydrogenase 1 family, member L1",Other,0.0116
+45,ENSMUSG00000025403,29.0,0.0,False,Shmt2,serine hydroxymethyltransferase 2 (mitochondrial),Other,0.0112
+46,ENSMUSG00000024827,29.0,0.0,False,Gldc,glycine decarboxylase,Other,0.0112
+47,ENSMUSG00000023921,29.0,0.0,False,Mmut,methylmalonyl-Coenzyme A mutase,Other,0.0179
+48,ENSMUSG00000021460,29.0,0.0,False,Auh,AU RNA binding protein/enoyl-coenzyme A hydratase,Other,0.0104
+49,ENSMUSG00000021646,29.0,0.0,False,Mccc2,methylcrotonoyl-Coenzyme A carboxylase 2 (beta),Other,0.0104
+50,ENSMUSG00000027709,29.0,0.0,False,Mccc1,methylcrotonoyl-Coenzyme A carboxylase 1 (alpha),Other,0.0104
+51,ENSMUSG00000027332,29.0,0.0,False,Ivd,isovaleryl coenzyme A dehydrogenase,Other,0.0104
+52,ENSMUSG00000028672,29.0,0.0,False,Hmgcl,3-hydroxy-3-methylglutaryl-Coenzyme A lyase,Other,0.0104
+53,ENSMUSG00000021238,29.0,0.0,False,Aldh6a1,"aldehyde dehydrogenase family 6, subfamily A1",Other,0.0102
+54,ENSMUSG00000041650,29.0,0.0,False,Pcca,"propionyl-Coenzyme A carboxylase, alpha polypeptide",Other,0.0179
+55,ENSMUSG00000033429,29.0,0.0,False,Mcee,methylmalonyl CoA epimerase,Other,0.0179
+56,ENSMUSG00000004902,29.0,0.0,False,Slc25a18,"solute carrier family 25 (mitochondrial carrier), member 18",Other,0.0759
+57,ENSMUSG00000060376,29.0,0.0,False,Bckdha,"branched chain ketoacid dehydrogenase E1, alpha polypeptide",Other,0.034
+58,ENSMUSG00000025815,29.0,0.0,False,Dhtkd1,dehydrogenase E1 and transketolase domain containing 1,Other,0.0653
+59,ENSMUSG00000057228,29.0,0.0,False,Aadat,aminoadipate aminotransferase,Other,0.0653
+60,ENSMUSG00000029695,29.0,0.0,False,Aass,aminoadipate-semialdehyde synthase,Other,0.0653
+61,ENSMUSG00000003809,29.0,0.0,False,Gcdh,glutaryl-Coenzyme A dehydrogenase,Other,0.0653
+62,ENSMUSG00000046598,29.0,0.0,False,Bdh1,"3-hydroxybutyrate dehydrogenase, type 1",Other,0.0574
+63,ENSMUSG00000000340,29.0,0.0,False,Dbt,dihydrolipoamide branched chain transacylase E2,Other,0.034
+64,ENSMUSG00000032263,29.0,0.0,False,Bckdhb,"branched chain ketoacid dehydrogenase E1, beta polypeptide",Other,0.034
+65,ENSMUSG00000025059,29.0,0.0,False,Gk,glycerol kinase,Other,0.0192
+66,ENSMUSG00000030826,29.0,0.0,False,Bcat2,"branched chain aminotransferase 2, mitochondrial",Other,0.0261
+67,ENSMUSG00000028737,29.0,0.0,False,Aldh4a1,"aldehyde dehydrogenase 4 family, member A1",Other,0.0227
+68,ENSMUSG00000034456,29.0,0.0,False,Uroc1,urocanase domain containing 1,Other,0.0209
+69,ENSMUSG00000015890,29.0,0.0,False,Amdhd1,amidohydrolase domain containing 1,Other,0.0209
+70,ENSMUSG00000001155,29.0,0.0,False,Ftcd,formiminotransferase cyclodeaminase,Other,0.0209
+71,ENSMUSG00000020017,29.0,0.0,False,Hal,histidine ammonia lyase,Other,0.0209
+72,ENSMUSG00000032047,29.0,0.0,False,Acat1,acetyl-Coenzyme A acetyltransferase 1,Other,57.0697
+73,ENSMUSG00000019179,29.0,0.0,False,Mdh2,"malate dehydrogenase 2, NAD (mitochondrial)",Other,72.9029
+74,ENSMUSG00000020163,29.0,0.0,False,Uqcr11,"ubiquinol-cytochrome c reductase, complex III subunit XI",Complex III,97.9215
+75,ENSMUSG00000058076,29.0,0.0,False,Sdhc,"succinate dehydrogenase complex, subunit C, integral membrane protein",Complex II,74.9315
+76,ENSMUSG00000025781,29.0,0.0,False,Atp5f1c,ATP synthase F1 subunit gamma,Complex V,92.5082
+77,ENSMUSG00000016252,29.0,0.0,False,Atp5f1e,ATP synthase F1 subunit epsilon,Complex V,92.5082
+78,ENSMUSG00000022956,29.0,0.0,False,Atp5po,ATP synthase peripheral stalk subunit OSCP,Complex V,92.5082
+79,ENSMUSG00000038690,29.0,0.0,False,Atp5mf,ATP synthase membrane subunit f,Complex V,92.5082
+80,ENSMUSG00000038717,29.0,0.0,False,Atp5mg,ATP synthase membrane subunit g,Complex V,92.5082
+81,ENSMUSG00000025393,29.0,0.0,False,Atp5f1b,ATP synthase F1 subunit beta,Complex V,92.5082
+82,ENSMUSG00000050856,29.0,0.0,False,Atp5me,ATP synthase membrane subunit e,Complex V,92.5082
+83,ENSMUSG00000022890,29.0,0.0,False,Atp5pf,ATP synthase peripheral stalk subunit F6,Complex V,92.5082
+84,ENSMUSG00000025428,29.0,0.0,False,Atp5f1a,ATP synthase F1 subunit alpha,Complex V,92.5082
+85,ENSMUSG00000037152,29.0,0.0,False,Ndufc1,NADH:ubiquinone oxidoreductase subunit C1,Complex I,85.1467
+86,ENSMUSG00000013593,29.0,0.0,False,Ndufs2,NADH:ubiquinone oxidoreductase core subunit S2,Complex I,85.1467
+87,ENSMUSG00000024038,29.0,0.0,False,Ndufv3,NADH:ubiquinone oxidoreductase core subunit V3,Complex I,85.1467
+88,ENSMUSG00000071014,29.0,0.0,False,Ndufb6,NADH:ubiquinone oxidoreductase subunit B6,Complex I,85.1467
+89,ENSMUSG00000000399,29.0,0.0,False,Ndufa9,NADH:ubiquinone oxidoreductase subunit A9,Complex I,85.1467
+90,ENSMUSG00000063856,29.0,0.0,False,Gpx1,glutathione peroxidase 1,Other,85.1467
+91,ENSMUSG00000000563,29.0,0.0,False,Atp5pb,ATP synthase peripheral stalk-membrane subunit b,Complex V,92.5082
+92,ENSMUSG00000003072,29.0,0.0,False,Atp5f1d,ATP synthase F1 subunit delta,Complex V,92.5082
+93,ENSMUSG00000034566,29.0,0.0,False,Atp5pd,ATP synthase peripheral stalk subunit d,Complex V,92.5082
+94,ENSMUSG00000061518,29.0,0.0,False,Cox5b,cytochrome c oxidase subunit 5B,Complex IV,97.9215
+95,ENSMUSG00000017778,29.0,0.0,False,Cox7c,cytochrome c oxidase subunit 7C,Complex IV,97.9215
+96,ENSMUSG00000042298,29.0,0.0,False,Ttc19,tetratricopeptide repeat domain 19,Complex III,97.9215
+97,ENSMUSG00000031231,29.0,0.0,False,Cox7b,cytochrome c oxidase subunit 7B,Complex IV,97.9215
+98,ENSMUSG00000014313,29.0,0.0,False,Cox6c,cytochrome c oxidase subunit 6C,Complex IV,97.9215
+99,ENSMUSG00000000088,29.0,0.0,False,Cox5a,cytochrome c oxidase subunit 5A,Complex IV,97.9215
+100,ENSMUSG00000059534,29.0,0.0,False,Uqcr10,"ubiquinol-cytochrome c reductase, complex III subunit X",Complex III,97.9215
+101,ENSMUSG00000025651,29.0,0.0,False,Uqcrc1,ubiquinol-cytochrome c reductase core protein 1,Complex III,97.9215
+102,ENSMUSG00000005683,29.0,0.0,False,Cs,citrate synthase,Other,95.0457
+103,ENSMUSG00000030884,29.0,0.0,False,Uqcrc2,ubiquinol cytochrome c reductase core protein 2,Complex III,97.9215
+104,ENSMUSG00000063882,29.0,0.0,False,Uqcrh,ubiquinol-cytochrome c reductase hinge protein,Complex III,97.9215
+105,ENSMUSG00000021520,29.0,0.0,False,Uqcrb,ubiquinol-cytochrome c reductase binding protein,Complex III,97.9215
+106,ENSMUSG00000063694,29.0,0.0,False,Cycs,"cytochrome c, somatic",Complex III,97.9215
+107,ENSMUSG00000022551,29.0,0.0,False,Cyc1,cytochrome c-1,Complex III,97.9215
+108,ENSMUSG00000061904,29.0,0.0,False,Slc25a3,"solute carrier family 25 (mitochondrial carrier, phosphate carrier), member 3",Other,96.2946
+109,ENSMUSG00000030869,29.0,0.0,False,Ndufab1,NADH:ubiquinone oxidoreductase subunit AB1,Complex I,85.1467
+110,ENSMUSG00000031584,29.0,0.0,False,Gsr,glutathione reductase,Other,85.1467
+111,ENSMUSG00000021764,29.0,0.0,False,Ndufs4,NADH:ubiquinone oxidoreductase core subunit S4,Complex I,85.1467
+112,ENSMUSG00000002416,29.0,0.0,False,Ndufb2,NADH:ubiquinone oxidoreductase subunit B2,Complex I,85.1467
+113,ENSMUSG00000002379,29.0,0.0,False,Ndufa11,NADH:ubiquinone oxidoreductase subunit A11,Complex I,85.1467
+114,ENSMUSG00000026032,29.0,0.0,False,Ndufb3,NADH:ubiquinone oxidoreductase subunit B3,Complex I,85.1467
+115,ENSMUSG00000025204,29.0,0.0,False,Ndufb8,NADH:ubiquinone oxidoreductase subunit B8,Complex I,85.1467
+116,ENSMUSG00000040048,29.0,0.0,False,Ndufb10,NADH:ubiquinone oxidoreductase subunit B10,Complex I,85.1467
+117,ENSMUSG00000033938,29.0,0.0,False,Ndufb7,NADH:ubiquinone oxidoreductase subunit B7,Complex I,85.1467
+118,ENSMUSG00000030647,29.0,0.0,False,Ndufc2,NADH:ubiquinone oxidoreductase subunit C2,Complex I,85.1467
+119,ENSMUSG00000041881,29.0,0.0,False,Ndufa7,NADH:ubiquinone oxidoreductase subunit A7,Complex I,85.1467
+120,ENSMUSG00000027673,29.0,0.0,False,Ndufb5,NADH:ubiquinone oxidoreductase subunit B5,Complex I,85.1467
+121,ENSMUSG00000035674,29.0,0.0,False,Ndufa3,NADH:ubiquinone oxidoreductase subunit A3,Complex I,85.1467
+122,ENSMUSG00000020664,29.0,0.0,False,Dld,dihydrolipoamide dehydrogenase,Other,79.0
+123,ENSMUSG00000004789,29.0,0.0,False,Dlst,dihydrolipoamide S-succinyltransferase,Other,78.045
+124,ENSMUSG00000020456,29.0,0.0,False,Ogdh,oxoglutarate (alpha-ketoglutarate) dehydrogenase (lipoamide),Other,77.2858
+125,ENSMUSG00000009863,29.0,0.0,False,Sdhb,"succinate dehydrogenase complex, subunit B, iron sulfur (Ip)",Complex II,74.9315
+126,ENSMUSG00000021577,29.0,0.0,False,Sdha,"succinate dehydrogenase complex, subunit A, flavoprotein (Fp)",Complex II,74.9315
+127,ENSMUSG00000022450,29.0,0.0,False,Ndufa6,NADH:ubiquinone oxidoreductase subunit A6,Complex I,85.1467
+128,ENSMUSG00000022820,29.0,0.0,False,Ndufb4,NADH:ubiquinone oxidoreductase subunit B4,Complex I,85.1467
+129,ENSMUSG00000024099,29.0,0.0,False,Ndufv2,NADH:ubiquinone oxidoreductase core subunit V2,Complex I,85.1467
+130,ENSMUSG00000020022,29.0,0.0,False,Ndufa12,NADH:ubiquinone oxidoreductase subunit A12,Complex I,85.1467
+131,ENSMUSG00000059734,29.0,0.0,False,Ndufs8,NADH:ubiquinone oxidoreductase core subunit S8,Complex I,85.1467
+132,ENSMUSG00000005510,29.0,0.0,False,Ndufs3,NADH:ubiquinone oxidoreductase core subunit S3,Complex I,85.1467
+133,ENSMUSG00000020153,29.0,0.0,False,Ndufs7,NADH:ubiquinone oxidoreductase core subunit S7,Complex I,85.1467
+134,ENSMUSG00000037916,29.0,0.0,False,Ndufv1,NADH:ubiquinone oxidoreductase core subunit V1,Complex I,85.1467
+135,ENSMUSG00000025968,29.0,0.0,False,Ndufs1,NADH:ubiquinone oxidoreductase core subunit S1,Complex I,85.1467
+136,ENSMUSG00000021606,29.0,0.0,False,Ndufs6,NADH:ubiquinone oxidoreductase core subunit S6,Complex I,85.1467
+137,ENSMUSG00000026260,29.0,0.0,False,Ndufa10,NADH:ubiquinone oxidoreductase subunit A10,Complex I,85.1467
+138,ENSMUSG00000036199,29.0,0.0,False,Ndufa13,NADH:ubiquinone oxidoreductase subunit A13,Complex I,85.1467
+139,ENSMUSG00000023089,29.0,0.0,False,Ndufa5,NADH:ubiquinone oxidoreductase subunit A5,Complex I,85.1467
+140,ENSMUSG00000113902,29.0,0.0,False,Ndufb1,NADH:ubiquinone oxidoreductase subunit B1,Complex I,85.1467
+141,ENSMUSG00000014294,29.0,0.0,False,Ndufa2,NADH:ubiquinone oxidoreductase subunit A2,Complex I,85.1467
+142,ENSMUSG00000028648,29.0,0.0,False,Ndufs5,NADH:ubiquinone oxidoreductase core subunit S5,Complex I,85.1467
+143,ENSMUSG00000022354,29.0,0.0,False,Ndufb9,NADH:ubiquinone oxidoreductase subunit B9,Complex I,85.1467
+144,ENSMUSG00000026895,29.0,0.0,False,Ndufa8,NADH:ubiquinone oxidoreductase subunit A8,Complex I,85.1467
+145,ENSMUSG00000041426,29.0,0.0,False,Hibch,3-hydroxyisobutyryl-Coenzyme A hydrolase,Other,0.0102

@@ -1,0 +1,42 @@
+Document infos:
+- CreationDate = D:20230302095339+05'30'
+- Creator = Arbortext Advanced Print Publisher 9.1.510/W Unicode
+- ModDate = D:20230302095339+05'30'
+- Pages = 8
+- Producer = Acrobat Distiller 7.0 (Windows)
+- crossmark = {'MajorVersionDate': None, 'CrossmarkDomainExclusive': 'false', 'DOI': None}
+- dc = {'identifier': None, 'title': 'Rapid isolation of respiring skeletal muscle mitochondria using nitrogen cavitation', 'creator': ['Awais Z. Younis', 'Gareth G. Lavery', 'Mark Christian', 'Craig L. Doig'], 'description': 'Methods of isolating mitochondria commonly utilise mechanical force and shear stress to homogenize tissue followed by purification by multiple rounds of ultracentrifugation.', 'subject': ['mitochondria', 'cavitation', 'skeletal muscle', 'protocol', 'methodolody'], 'source': None, 'rights': None}
+- http://prismstandard.org/namespaces/pur/3.0/ = {'copyright': None}
+- http://www.niso.org/schemas/jav/1.0/ = {'journal_article_version': None}
+- pdf = {'Producer': 'dvips + MiKTeX GPL Ghostscript  9.0', 'Keywords': 'mitochondria, cavitation, skeletal muscle, protocol, methodolody'}
+- pdfx = {'doi': None, 'Title': None, 'CrossmarkMajorVersionDate': None, 'CrossmarkDomainExclusive': 'false'}
+- prism = {'doi': None, 'url': None}
+- rdf = {'li': None}
+- rights = {'Marked': None, 'WebStatement': None}
+
+References: 22
+- URL: 22
+
+URL References:
+- 10.1016/s0076-
+- 10.3389/fcell.2019.00172
+- 10.3389/fphys.2023.1114595
+- 10.1016/j.ab.2009.02.040
+- 10.3791/2452
+- 10.1186/s13578-019-0289-8
+- 10.3791/55251-v
+- 10.1371/journal.pone.0082392
+- ac.uk
+- 10.1111/febs.12502
+- frontiersin.org
+- 10.1093/nar/
+- 10.1007/s11064-020-02970-y
+- 10.1007/s11357-018-0021-3
+- 10.1152/ajpheart.00227.2014
+- https://www.frontiersin.org/articles/10.3389/fphys.2023.1114595/
+- 10.1016/bs.mcb
+- 10.14348/
+- 10.1016/s0014-5793(00)01633-1
+- 10.1002/elps.200900771
+- 10.1177/1753425911398279
+- 10

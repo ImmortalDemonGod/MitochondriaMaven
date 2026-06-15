@@ -1,0 +1,17 @@
+Document infos:
+- Author = biblioteca
+- CreationDate = D:20080109164511+01'00'
+- Creator = Acrobat PDFMaker 7.0.5 para Word
+- ModDate = D:20130103122012+01'00'
+- Pages = 1
+- Producer = Acrobat Distiller 7.0.5 (Windows)
+- SourceModified = D:20080109154445
+- Title = The requested paper is not presently available in its full-text version for it lies behind the moving wall established by the editors of "Materiales de Construcción"
+- dc = {'format': 'application/pdf', 'title': {'x-default': 'The requested paper is not presently available in its full-text version for it lies behind the moving wall established by the editors of "Materiales de Construcción"'}, 'creator': ['biblioteca']}
+- pdf = {'Producer': 'Acrobat Distiller 7.0.5 (Windows)'}
+- pdfx = {'SourceModified': 'D:20080109154445'}
+- rdf = {'li': 'biblioteca'}
+- xap = {'CreateDate': '2008-01-09T16:45:11+01:00', 'CreatorTool': 'Acrobat PDFMaker 7.0.5 para Word', 'ModifyDate': '2013-01-03T12:20:12+01:00', 'MetadataDate': '2013-01-03T12:20:12+01:00'}
+- xapmm = {'DocumentID': 'uuid:c21f2cce-69c4-4666-b440-d99858d257fe', 'InstanceID': 'uuid:6ab91f42-b946-4692-a882-44acd353fb97'}
+
+References: 0

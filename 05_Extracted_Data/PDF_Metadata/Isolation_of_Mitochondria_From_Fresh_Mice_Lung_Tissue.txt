@@ -1,0 +1,74 @@
+Document infos:
+- Author = Leonardo Maciel
+- CreationDate = D:20211127104308+05'30'
+- Creator = LaTeX with hyperref package
+- Keywords = lung mitochondria isolation, O2-consumption, ROS, ATP, mitochondrial assessment
+- ModDate = D:20211127112215+05'30'
+- PDFVersion = 1.5
+- Pages = 13
+- Producer = pdfTeX-1.40.18
+- Subject = Direct analysis of isolated mitochondria enables a better understanding of lung dysfunction.
+- Title = Isolation of Mitochondria From Fresh Mice Lung Tissue
+- dc = {'format': 'application/pdf', 'source': 'fphys-12-748261.tex', 'title': {'x-default': 'Isolation of Mitochondria From Fresh Mice Lung Tissue'}, 'description': {'x-default': 'Direct analysis of isolated mitochondria enables a better understanding of lung dysfunction.'}, 'creator': ['Leonardo Maciel'], 'date': ['2021-11-27T10:43:08+05:30'], 'subject': ['lung mitochondria isolation', 'O2-consumption', 'ROS', 'ATP', 'mitochondrial assessment']}
+- pdf = {'Keywords': 'lung mitochondria isolation, O2-consumption, ROS, ATP, mitochondrial assessment', 'Producer': 'pdfTeX-1.40.18', 'PDFVersion': '1.5'}
+- rdf = {'li': 'mitochondrial assessment'}
+- xap = {'CreateDate': '2021-11-27T10:43:08+05:30', 'ModifyDate': '2021-11-27T11:22:15+05:30', 'MetadataDate': '2021-11-27T11:22:15+05:30', 'CreatorTool': 'LaTeX with hyperref package'}
+- xapmm = {'DocumentID': 'uuid:7ae418d1-d139-40a8-abb6-75fdc41dc900', 'InstanceID': 'uuid:118b074d-1927-4a9c-a7c0-e213c084a0d9'}
+
+References: 53
+- URL: 53
+
+URL References:
+- https://www.frontiersin.org/journals/physiology
+- https://doi.org/10.1080/17435390.2020.1863498
+- https://www.frontiersin.org/
+- 10.3389/fphys.2021.748261
+- 10.1007/978-1-4939-9027-6_5
+- https://doi.org/10.3389/fphys.2021.748261
+- https://doi.org/10.1007/978-1-4939-9027-6_5
+- https://doi.org/10.1161/JAHA.120.019685
+- www.frontiersin.org
+- https://doi.org/10.1371/journal.pone.0240060
+- https://doi.org/10.1249/mss.0b013e31822b0bd4
+- https://doi.org/10.1155/2021/4593496
+- https://doi.org/10.2337/db12-1219
+- 10.1517/17425247.2.1.89
+- https://doi.org/10.1016/0003-2697(78)90025-8
+- 10.1371/journal.pone.0197921
+- 10.1016/j.biochi.2008.06.013
+- 10.1038/nprot
+- https://doi.org/10.1016/s0076-6879(09)05020-4
+- https://doi.org/10.5114/aoms.2016.61789
+- https://doi.org/10.1002/jcp.26335
+- https://doi.org/10.1517/17425247.2.1.89
+- 10.2337/db12-1219
+- https://doi.org/10.1113/jphysiol.2011.212712
+- 10.1155/2021/459
+- https://doi.org/10.1177/0960327117715900
+- 10.1002/jcp.26335
+- https://doi.org/10.1042/bse0470053
+- 10.1371/journal.pone.024
+- https://www.frontiersin.org/journals/physiology#editorial-board
+- 10.1177/
+- http://creativecommons.org/licenses/by/4.0/
+- https://doi.org/10.1042/bj20081386
+- https://www.frontiersin.org/journals/physiology#articles
+- 10.1007/978-1-4939-2550-6_7
+- https://doi.org/10.1038/nprot.2008.61
+- https://doi.org/10.1016/j.tox.2017.07.019
+- http://crossmark.crossref.org/dialog/?doi=10.3389/fphys.2021.748261&domain=pdf&date_stamp=2021-11-30
+- https://doi.org/10.1007/978-1-4939-2550-6_7
+- https://doi.org/10.3389/fphar.2020.00545
+- 10.1016/s0076-
+- 10.1042/bse0470053
+- 10.5114/
+- 10.1016/0003-2697(78)90025-8
+- https://www.frontiersin.org/articles/10.3389/fphys.2021.748261/full
+- 10.1113/
+- 10.1042/bj20081386
+- 10.1249/mss
+- 10.1016/j.tox.2017.07
+- https://doi.org/10.1016/j.biochi.2008.06.013
+- 10.1161/JAHA.120.01
+- https://doi.org/10.1371/journal.pone.0197921
+- 10.3389/fphar.2020.00545

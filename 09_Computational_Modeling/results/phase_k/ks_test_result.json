@@ -1,0 +1,7 @@
+{
+  "run_date": "2026-04-23T02:09:46.033501",
+  "status": "data_pending",
+  "predicted_tw_hours": 8.0,
+  "empirical_data_location": "/Users/tomriddle1/Dropbox/Mitochondria Maven/09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.csv",
+  "instructions": "Digitize 2024 lab notebook JC-1 timepoints to CSV, then re-run."
+}

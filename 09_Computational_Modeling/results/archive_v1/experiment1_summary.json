@@ -1,0 +1,17 @@
+{
+  "run_date": "2026-04-22T21:02:20.237799",
+  "model": "MitoMAMMAL 6_universal_mito_model.xml",
+  "reactions": 560,
+  "genes_total": 782,
+  "genes_nuclear": 769,
+  "genes_mt_encoded": 13,
+  "halflife_regime_hours": 12.0,
+  "empirical_halflives_loaded": 0,
+  "baseline_atp_flux": 100.89230387215605,
+  "reuptake_threshold_fraction": 0.2,
+  "transit_windows": {
+    "A": 29.0,
+    "B": 29.0,
+    "C": 29.0
+  }
+}

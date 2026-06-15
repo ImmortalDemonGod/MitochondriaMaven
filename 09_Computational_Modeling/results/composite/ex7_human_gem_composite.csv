@@ -1,0 +1,3 @@
+model,scenario,halflife_h,n_reactions_mapped,tw_delta_psi_h,tw_atp_h,first_failure_mode,integration_success
+Human-GEM,A,12.0,6,,,,True
+MitoMAMMAL,A,12.0,6,,33.64824120603015,atp,True

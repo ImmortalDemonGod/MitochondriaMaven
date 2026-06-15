@@ -1,0 +1,280 @@
+Unknown Speaker  0:03  
+Right? Testing, testing, 123, all right, perfect. So it's actually recording it, all right, so
+
+Unknown Speaker  0:21  
+I've been working through I've been reading through the intelligence 2026, 0407, ecosystem analysis with you, and I am just going to go through my internal notebooks that I've had over the course of a few years now, and this context will probably be very helpful for planning out the next step of the iteration.
+
+Unknown Speaker  0:52  
+So I'll take my time, and I'll read through the notebooks out loud for you, and
+
+Unknown Speaker  1:00  
+I will most likely also provide some file paths to the new projects. Well, I wouldn't say they're new, like, for instance, the mitochondria Maven project I'm was working on. I think you saw that in the dossier, but because I noticed that the RNA predict was holding so much sway, I went ahead and found my documentation for the mitochondria projects, and I have organized them so that it should be easier for you to go through and understand how they kind of fit into our system.
+
+Unknown Speaker  1:41  
+But anyway, let me read through some of the let's
+
+Unknown Speaker  2:08  
+there's a connection between mitochondria and aging, more specifically, development speed development and bio speed. Autonomous, programmable mitochondria are nanobot capable.
+
+Unknown Speaker  2:20  
+Nanobots capable of existing and traveling to any location in the body, simple enough to Version Control modifications, version control and conduct modifications, and can be self sourced and modified. These are attributes of a potential tool to solve many problems and to enhance the body
+
+Unknown Speaker  2:46  
+overarching goal, biological mortality.
+
+Unknown Speaker  2:53  
+And it says, use the definition from REM note. Let me just check REM note. What's the definition of
+
+Unknown Speaker  3:49  
+here it is, immortality is achieved by systematically eliminating any and all physical processes that can threaten your existence. And I'll even read a little bit more from the REM notes, notes, and this was a project that has been in REM note for quite some number of years, but so it may be a little out of date, but the goals were, overall goal to reach longevity, Escape Velocity estimate and predict the current and future rate of longevity increases measure with decent accuracy how long you can expect it to live. That's your personal life expectancy to identify and adopt anti aging therapies and general bio modifications mitigate life expectancy limiting factors. What was under those sub points? A lot of notes that we don't need to go into.
+
+Unknown Speaker  4:45  
+Yeah, a lot of notes.
+
+Unknown Speaker  4:50  
+Anyway, going back to the other notebook, overarching goal, biological mortality. Use the definition for REM note. We just did that within this century. Perfect. Yes, obviously we need to do this before you die. I want to run and again, this is past notebooks, so we should analyze and take what's useful. But want to run the Methuselah fly algorithm. But I'll need lots of biological data in order to collect.
+
+Unknown Speaker  5:21  
+I'll need people to voluntarily give me their biological material,
+
+Unknown Speaker  5:26  
+a few cells create organoids on a chip that I can then use to run experiments and to test lifespan increasing therapies and also solve all diseases. In order to incentivize people, I will use the money generated to essentially provide UBI for everyone, selling their biological data to companies that will use it for R and D and drugs, etc. The problem is that no company will want to buy biological data from us until we prove that the data is useful, and before we prove the data, before we prove the data is useful, we won't be able to attract people willing to donate their biological material. The biological material crafting the automated bio machines will be difficult,
+
+Unknown Speaker  6:17  
+all while not even generating profits. This is why my current research projects are aimed with generating the demand for biological self, for self biological modifications.
+
+Unknown Speaker  6:34  
+The bio mod that I think has the most potential to generate demand are mods aimed at increasing physical performance and energy system modifications, for example, increasing mitochondria amounts will simultaneously decrease lactate production and the increase
+
+Unknown Speaker  7:01  
+it's still recording.
+
+Unknown Speaker  7:04  
+For example, increasing mitochondria amounts will simultaneously decrease lactate production and increase the clearance rate, thus allowing for increasing performance in any aerobic activity, almost certainly leading to new, more insane world records, as well as laying the groundwork for therapies aimed at very sick or old people with elevated lactate levels. In order to do this, I will make the mitochondria able to exist outside the normal cells, live in an external live in the extracellular environment, the splash cardiovascular system, potentially allowing for several orders of magnitude more mitochondria. The buzz and height this will create will be enough to generate demand i and then it will goes into some college stuff, just some general thoughts so far after reading this, I
+
+Unknown Speaker  8:05  
+um organ organoids on a chips.
+
+Unknown Speaker  8:10  
+The organoids on a chip are technology that I don't think we've properly put on our agenda, but it is very important.
+
+Unknown Speaker  8:20  
+I
+
+Unknown Speaker  8:23  
+lab on a chip technology like the microfluidic stuff. This is because being able to manipulate small volumes of liquids reliably at this scale allows you to cut down on reagents, allows you to do centrifugation, a lot easier
+
+Unknown Speaker  8:42  
+to wrap move. More rapidly in terms of research on biological systems, just better in all ways that kind of connects down to organized on a chip. I don't really know about this UBI thing. I think pastor Miguel was on some type of trip trying to help people. I don't particularly care about helping people. I'm just trying to get the job done. So I guess this is where past Miguel and current Miguel kind of differ.
+
+Unknown Speaker  9:08  
+I mean, if we can help people cool, I mean, but that's at the end of the day. You got to get a word about yourself first.
+
+Unknown Speaker  9:15  
+Let's see
+
+Unknown Speaker  9:19  
+buzz hype. I mean, yeah, I probably agree with the buzz in height. But more importantly, the general thesis is pretty straightforward.
+
+Unknown Speaker  9:30  
+Focus on mitochondria. Because if you actually look at what are the causes of death, all causes of death stem towards the same root cause analysis. Why do people die? Because they stop producing ATP. That's it, unless you're getting nuked by a thermonuclear weapon, in which case you don't have a body in order to produce ATP so that in the same triphosphate. So like you have bigger problems. But the point here is that heart disease choking all the other fucking diseases.
+
+Unknown Speaker  10:04  
+A real single cause of death is the same cause of death. It's energy production. Energy is the is the root cause of all failures of biological organisms. If you can't produce energy, you die. Period anyway, so I guess past Miguel was on something, at least on that front let's keep going through let's see what we have here.
+
+Unknown Speaker  10:38  
+I can see that Miguel was working on past iterations of Doc insight here so
+
+Unknown Speaker  11:06  
+Okay, yeah, I think.
+
+Unknown Speaker  11:13  
+I think that's it for this particular notebook. Oh, hold on. Let me just Yeah, I think that's it for this particular notebook. Let me move on to the next notebook. This is a much more recent notebook.
+
+Unknown Speaker  11:25  
+He wrote down my god, god. Oh, my Lord. Past Miguel wrote down over 113 research projects. We're
+
+Unknown Speaker  11:37  
+not going to go over all of these, at least not right now. Let's focus on what's meaningful at this point,
+
+Unknown Speaker  12:00  
+I'm going to skip this part and come back to it, but he seems to have written down some what, what is the origins of the holistic performance enhancement repo, which you wrote your analysis earlier, that it was, wasn't a real project. It is real project. You just looked in the wrong location. But we'll that's not important right now, because that project has been mostly retired, we can analyze it later, but I'm gonna come back to the raising potential and focus on the mitochondria stuff right now.
+
+Unknown Speaker  12:32  
+All right, so here's another dialog that he wrote.
+
+Unknown Speaker  12:35  
+I've been looking for a long time, but I might have finally found the path. There are a number of different projects that I set out on accumulate power, increase human potential, achieve immortality, understand nature and the natural laws, and establish a pace at the galactic core. So right, right here, we can sell we can tell that over two years ago, Miguel was thinking about those five core goals. So anyway, let me keep reading.
+
+Unknown Speaker  13:06  
+There are many. There are there were many. Unex. Were many explored ideas before the genesis of these and a few connecting themes. Here are the themes time is short, and thus automation must be used strategically. So
+
+Unknown Speaker  13:24  
+time is short, and thus automation must be used strategically, self interest, pain and internal suffering, hard work and sacrifice are all the price of ambition. Energy is at the source of everything, and its manipulation breeds opportunities and insights.
+
+Unknown Speaker  13:43  
+Limits were made to be broken. Limits exist because of a particular scenario based factors that then that then themselves can be tabulated and modified. Mental ability must be cultivated, even immortality. This is achieved by systematically eliminating any and all physical processes that threaten your existence.
+
+Unknown Speaker  14:06  
+One of the problems in this project troubled me for a long time. It was the it was the question, how do you make arbitrary number of genetic modifications to all the cells in an organism.
+
+Unknown Speaker  14:23  
+I'm going to pause the reading real quick this.
+
+Unknown Speaker  14:27  
+Miguel did not know this, but what he was really thinking about was, how do you make a pull request on biology?
+
+Unknown Speaker  14:35  
+And what I find fascinating is that, like,
+
+Unknown Speaker  14:42  
+how do you do you do it? Right? You have to first audit your physiology, right? You have to have a complete app and understanding of the current state of the system. That system just happens to be biology, your physiology.
+
+Unknown Speaker  14:55  
+Once you have a complete audit, then you can start proposing changes request.
+
+Unknown Speaker  15:02  
+But of course, your pull request, your changes, proposed changes, need to be verified, and so you need to have some system, some type of model, in order to properly test the changes before they go into production or physiology.
+
+Unknown Speaker  15:20  
+Anyway, let me go back to reading
+
+Unknown Speaker  15:26  
+one of the problems in this project that troubled me for so long is the question, how do you make an arbitrary number of genetic modifications to all the cells in an organism? A possible answer might be to use electric eel might a possible answer might be to use electric eel like cells to cause holes to develop, increase the probability of horizontal gene transfer. You didn't forgot to add this, but
+
+Unknown Speaker  15:58  
+high voltage electricity weakens the cell membranes, allowing for this type of DNA transfer to occur. You like that, but he should have Anyway, anyway, ones that you actually want to optimize for, for your specific attribute, the electric eel like cells would need to affect all relevant cell types. This could be through electric eel cells throughout the body, in an uniform ratio throughout the body, or through specific channels transporting energy rich substances to drive an appropriate electro biochemistry. This set of structures
+
+Unknown Speaker  16:43  
+to could be powered by mitochondria. Oh, so this set of structures could be powered by mitochondria, right? So the mitochondria can themselves be modified to produce large amounts of ATP, increase the mitochondria numbers, improve efficiency, improve energy transfer from mitochondria to cell processes modified to perform themselves, modified themselves to perform targeted gene delivery as a platform and other nanobot roles, given its relatively Simple dynamics. So this is an wholesale modeling. So this is actually the origin of the synth three, a
+
+Unknown Speaker  17:30  
+wholesale modeling that I did.
+
+Unknown Speaker  17:34  
+And I should probably find a little bit more of my research material from that time. But basically, by trying to model the simplest possible organism, I basically realized that mitochondria were, in some ways a little bit more complicated, but in some ways very similar to that since three a organism,
+
+Unknown Speaker  17:58  
+and so wholesale modeling on that level, has been largely successful, especially since Lux three lab has produced another computational paper on Civ three a so that's useful. Anyway, let me keep reading the pursuit and satisfaction of the five. This is not important. Let me move on.
+
+Unknown Speaker  18:24  
+Let's see here I'm
+
+Unknown Speaker  18:43  
+sting, Sting, but
+
+Unknown Speaker  19:07  
+here we have a set of research questions from that mitochondria Maven project, and I'll read them sequentially. So there's 10 of these. Number one, how do you preserve mitochondria over long periods of time. Research question number two, how autonomous can you reasonably make mitochondria? Number three, can plants uptake mitochondria and at what rate or ATP four? Research question number four, what are the mitochondria
+
+Unknown Speaker  19:45  
+to biosynthesis rates?
+
+Unknown Speaker  19:48  
+So I'm guessing he was asking, how do mitochondria drive biosynthesis? Which would be an important question.
+
+Unknown Speaker  19:56  
+Research question number five, how do I extract mitochondria at scale? Research question number six, what is the maximum mitochondrial density, probably referring to intracellular and extracellular environments.
+
+Unknown Speaker  20:12  
+Research question number seven, what are the imported materials from the cell to the mitochondria?
+
+Unknown Speaker  20:22  
+Research question number eight, how can you transfer mitochondria from one organism to a number to another? Question number nine, what are the best yeast strains to extract mitochondria from? Research question number 10, how can I leverage modeling, I guess, computation. Computational modeling to answer these questions. So those are the research questions he had on a post it note there.
+
+Unknown Speaker  20:51  
+Let's see here.
+
+Unknown Speaker  20:57  
+Ah, interesting, interesting.
+
+Unknown Speaker  21:00  
+So this probably won't make any sense unless you already have some information on
+
+Unknown Speaker  21:09  
+holistic performance management repo, which laid out, well, I will get you the this is a note. I will get you the actual repository location for the holistic performance enhancement repo, but I need to read these notes from the notebook first.
+
+Unknown Speaker  21:26  
+All right, so he has another dialog here.
+
+Unknown Speaker  21:30  
+All right. Pass Emil. What you got from my casual browsing of a new batch of research papers.
+
+Unknown Speaker  21:38  
+I've been putting the pieces together I need to work.
+
+Unknown Speaker  21:43  
+Need to walk the path of the first grade life form advancement. This is interesting because he's talking about, he's probably talking about rank one, but we've already achieved rank one.
+
+Unknown Speaker  21:57  
+So keep everything with a grain of salt. Here. He's talking about just improving your physiology, essentially. So anyway, mitochondria can be isolated, improved, and transplanted back into the body in various locations depending on the target effect, the end result being increase in the ability, inability and the energy production control needed to allow the body to handle extreme metabolic demands that should be to translate to increases in overall organism, overall base longevity, but we can do better, using the increase in energy production to drive abilities usually reserved in sci fi, improved healing, speed endurance, improved endurance performance, increase in pain sensitive, decrease in pain sensitivity, and most importantly, the excess energy can drive new physiological functions such as electric eel, sorry, such as electric he did put eel here, interesting
+
+Unknown Speaker  23:10  
+cellular voltage, so I guess he's saying you can drive
+
+Unknown Speaker  23:18  
+bioelectric pathways with the new energy production interesting. If you combine that with dedicated channels, electric conductive tattoos and distribute the electric eel cells appropriately, you should be able to gain interesting abilities like shocking grass type, type of stun gun, shocking ability to close he's
+
+Unknown Speaker  23:54  
+talking about turning himself to a human stun gun, or, I guess, A human electric Eagle anyway. Oh, he has more mitochondrial experiment hypotheses.
+
+Unknown Speaker  24:06  
+Okay, so this is on a new page,
+
+Unknown Speaker  24:10  
+mitochondria experiments. Oh, these are experiments. Okay, so experiment number one, optimize for the maximum mitochondrial volume after isolation,
+
+Unknown Speaker  24:24  
+mitochondrial experiment number two, 1f, zero ATP synthase rotor Okay, so he's saying, see if the F ATP synthase rotor system is affected by red light, probably is, considering it's on the same wavelength
+
+Unknown Speaker  24:46  
+at the correct scale for red light. But
+
+Unknown Speaker  24:52  
+mitochondrial experiment, number three, mitochondrial senescent cell detection. So using mitochondria to detect senescent cells. Number four, test their transplant ability. Number five, test their autonomy. And number six, super soldiers. So performance enhancement, can you send a signal to the mitochondria to have them rapidly divide?
+
+Unknown Speaker  25:21  
+Number seven insertions of the PGC, one, alpha and PP, AR into yeast mitochondria for purification or insertion into mammals. I'm guessing he's talking about the master control switches that are present in mitochondria humans, and seeing if you can replicate human mitochondria in yeast. That's what he's saying. Mitochondria experiment number eight, decrease the cost of ATP production for use.
+
+Unknown Speaker  25:56  
+Check the molecules that that mitochondria import, pyruvate, acetyl CoA. What do they need nutritionally?
+
+Unknown Speaker  26:05  
+What do they need in your micro growth media? First experiment that needs to take place perform the mitochondrial isolation protocol to maximize the yeast.
+
+Unknown Speaker  26:16  
+Maximize the yeast, to extract it, mitochondria ratio using data collected, including membrane potential viability, verification of o2 consumption
+
+Unknown Speaker  26:32  
+and mitochondrial presence, ATP to ADP production, and also measure their efficiency using a spectrophotometer, time required, cost per extraction, the purity and health. Once a baseline has been established, we need to improve the protocol, because it will perform. It will form the basis of all future experimental work anticipated problems. Centrifugation is cumbersome and high reagent use non automated and low volume. So I can actually talk from experience here. The
+
+Unknown Speaker  27:08  
+past Miguel in 2024
+
+Unknown Speaker  27:13  
+actually able to extract mitochondria. I have his lab notebook. I have the lab notebook right here as his mitochondrial purification protocols,
+
+Unknown Speaker  27:27  
+a detailed day by day
+
+Unknown Speaker  27:31  
+call. He also has an experimental design using tadaguchi orthogonal arrays
+
+Unknown Speaker  27:42  
+to optimize the mitochondrial attraction process.
+
+Unknown Speaker  27:48  
+But these are paper references, so this might be a little difficult to get, get into our system, since they're paper and I don't know where the PDFs are, and then he had a lab notebook detailing exactly what happened every single day he tried to do a mitochondrial extraction with at the end, I believe he has a success note of being able to Properly extract mitochondria using these protocols. So that's good.
+
+Unknown Speaker  28:25  
+Let's see. Let's keep reading.
+
+Unknown Speaker  28:31  
+Oh, I think this is the last bit here. So to test mitochondrial viability, I think this is when Dr Nash. Justin Nash was asking, how can we use extra funding? He was going to do another grant. He
+
+Unknown Speaker  28:55  
+was going to do another he was going to do a grant because I had bought literally everything for this research project. And he was like, he I guess he felt that, so he was going to write a grant and say, Hey, Miguel, what do you want? What do you want to buy? Right? He actually left before the grant came in, so that that sucks, but,
+
+Unknown Speaker  29:21  
+yeah, so let me keep reading. So to test mitochondrial viability, a pyruvate transported into mitochondria during glycolysis, the end or the end product of glycolysis, pyruvate goes to acetyl CoA, which goes into the Krebs cycle, which goes into NADH and F, A, D, H, h2, and then goes through electron transport chain and produces ATV. So then we have malate. Since mitochondrias are impermeable to NADH, the malate aspartate shuttle mechanism acts as a workaround, okay? And so you can measure ATP production, saying, hexenyl kinase, hexando kinase, okay, so mitochondria produce ATP. Hexano kinase uses ATP to phosphorylate glucose to DGP, glucose, six phosphate and ggph oxidase oxidizes GGP and converts 80 NADP plus to NAD pH, which can be detected with a phospho photo meter at 340 nanometers. Okay, this was an alternative method to do this, because I actually already had a JC one die that shows you membrane potential that was very expensive. So.
+
+Transcribed by https://otter.ai

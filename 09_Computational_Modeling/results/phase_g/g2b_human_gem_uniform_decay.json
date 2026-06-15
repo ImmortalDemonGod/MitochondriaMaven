@@ -1,0 +1,11 @@
+{
+  "model": "Human-GEM",
+  "reactions": 12931,
+  "genes": 2848,
+  "baseline_objective": 71365.41058042289,
+  "analytical_tw": 27.863137138648348,
+  "human_gem_tw": 0.0,
+  "mitomammal_tw": 29.0,
+  "gap_human_gem_vs_analytical": -27.863137138648348,
+  "verdict": "model-specific component"
+}

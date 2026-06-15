@@ -1,0 +1,8 @@
+complex,n_immortal_subunits,transit_window_hours,delta_transit_hours,transit_window_str
+Complex I,84,29.0,0.0,29.0
+Complex II,6,29.0,0.0,29.0
+Complex III,21,29.0,0.0,29.0
+Complex IV,35,29.0,0.0,29.0
+Complex V,33,29.0,0.0,29.0
+ATPtranslocase,5,29.0,0.0,29.0
+All nuclear (control),769,72.0,43.0,>72h

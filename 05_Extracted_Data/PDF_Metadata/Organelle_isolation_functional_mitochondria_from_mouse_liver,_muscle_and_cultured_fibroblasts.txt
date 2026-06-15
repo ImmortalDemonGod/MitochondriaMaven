@@ -1,0 +1,23 @@
+Document infos:
+- CreationDate = D:20070214134309+05'30'
+- Creator = 3B2 Total Publishing System 8.07f/W
+- ModDate = D:20190424011240+05'30'
+- Pages = 9
+- Producer = Acrobat Distiller 11.0.9(Windows)
+- Title = npgrj_nProt_478 287..295
+- dc = {'format': 'application/pdf', 'title': {'x-default': 'npgrj_nProt_478 287..295'}}
+- http://ns.adobe.com/xap/1.0/sType/ResourceEvent# = {'action': 'converted', 'instanceID': 'uuid:314d3930-8133-45df-b446-11cc7ab382e2', 'parameters': 'converted to PDF/A-2b', 'softwareAgent': 'pdfToolbox', 'when': '2019-04-24T01:12:40+05:30'}
+- http://www.aiim.org/pdfa/ns/id/ = {'part': '2', 'conformance': 'B'}
+- http://www.aiim.org/pdfa/ns/property# = {'category': 'internal', 'description': 'Conformance level of PDF/A standard', 'name': 'conformance', 'valueType': 'Text'}
+- http://www.aiim.org/pdfa/ns/schema# = {'namespaceURI': 'http://www.aiim.org/pdfa/ns/id/', 'prefix': 'pdfaid', 'schema': 'PDF/A ID Schema'}
+- pdf = {'Producer': 'Acrobat Distiller 11.0.9(Windows)'}
+- xap = {'CreateDate': '2007-02-14T13:43:09+05:30', 'ModifyDate': '2019-04-24T01:12:40+05:30', 'MetadataDate': '2019-04-24T01:12:40+05:30', 'CreatorTool': '3B2 Total Publishing System 8.07f/W'}
+- xapmm = {'DocumentID': 'uuid:314d3930-8133-45df-b446-11cc7ab382e2', 'InstanceID': 'uuid:a950e6cb-2083-469b-bef8-9cbed92c1884', 'RenditionClass': 'default', 'VersionID': '1'}
+
+References: 3
+- URL: 3
+
+URL References:
+- http://npg.nature.com/
+- 10.1038/nprot.2006.478
+- http://www.natureprotocols.com

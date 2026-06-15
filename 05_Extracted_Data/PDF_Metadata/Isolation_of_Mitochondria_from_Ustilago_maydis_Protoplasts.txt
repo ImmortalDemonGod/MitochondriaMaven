@@ -1,0 +1,22 @@
+Document infos:
+- Author = parco
+- CreationDate = D:20220105103806+08'00'
+- Creator = Acrobat PDFMaker 21 Word 版
+- ModDate = D:20220105103814+08'00'
+- Pages = 11
+- Producer = Adobe PDF Library 21.1.182
+- dc = {'format': 'application/pdf', 'title': {'x-default': None}, 'creator': ['parco']}
+- http://www.aiim.org/pdfa/ns/id/ = {'part': '1', 'conformance': 'A'}
+- http://www.aiim.org/pdfa/ns/property# = {'category': 'internal', 'description': 'Conformance level of PDF/A standard', 'name': 'conformance', 'valueType': 'Text'}
+- http://www.aiim.org/pdfa/ns/schema# = {'namespaceURI': 'http://www.aiim.org/pdfa/ns/id/', 'prefix': 'pdfaid', 'schema': 'PDF/A ID Schema'}
+- pdf = {'Producer': 'Adobe PDF Library 21.1.182'}
+- xap = {'ModifyDate': '2022-01-05T10:38:14+08:00', 'CreateDate': '2022-01-05T10:38:06+08:00', 'MetadataDate': '2022-01-05T10:38:14+08:00', 'CreatorTool': 'Acrobat PDFMaker 21 Word 版'}
+- xapmm = {'DocumentID': 'uuid:ba29b64f-33eb-4928-bd42-bec941ffbffd', 'InstanceID': 'uuid:e638e842-bb76-44ea-a6a0-16dff87f95b5'}
+
+References: 3
+- URL: 3
+
+URL References:
+- www.bio-protocol.org/e4277
+- unam.mx
+- 10.21769/BioProtoc.4277

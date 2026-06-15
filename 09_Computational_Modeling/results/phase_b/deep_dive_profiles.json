@@ -1,0 +1,749 @@
+[
+  {
+    "ensembl_id": "ENSMUSG00000038462",
+    "symbol": "Uqcrfs1",
+    "name": "ubiquinol-cytochrome c reductase, Rieske iron-sulfur polypeptide 1",
+    "tier": "very_high",
+    "impact_pct": 97.9215,
+    "complex": "Complex III",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CIII_mitoMap",
+        "reaction": "2.0 PMF_m + 2.0 ficytC_m + q10h2_m <=> 4.0 PMF_c + 2.0 focytC_m + q10_m",
+        "baseline_flux": 39.54126295443687,
+        "gpr": "(ENSMUSG00000064370 and ENSMUSG00000022551 and ENSMUSG00000063694 and ENSMUSG00000038462 and ENSMUSG00000021520 and ENSMUSG00000063882 and ENSMUSG00000030884 and ENSMUSG00000025651 and ENSMUSG00000020",
+        "and_linked_genes": [
+          "ENSMUSG00000030884",
+          "ENSMUSG00000025651",
+          "ENSMUSG00000020163",
+          "ENSMUSG00000059534",
+          "ENSMUSG00000042298",
+          "ENSG00000184076",
+          "ENSG00000172115",
+          "ENSG00000010256",
+          "ENSG00000011295",
+          "ENSG00000156467"
+        ]
+      }
+    ],
+    "ko_atp_flux": 2.102623724453337,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -0.43636632842646705,
+        -114.23504623938175
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        -0.10000497356009669,
+        100.01665667180312
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        0.2926237244533362,
+        99.63302797378967
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        2.102623724453337,
+        98.78968014770268
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        2.102623724453337,
+        98.78968014770268
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -2.102623724453337,
+        -98.78968014770268
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        0.41088112048020464,
+        92.98237927341498
+      ],
+      [
+        "CIII_mitoMap",
+        39.54126295443687,
+        0.0,
+        39.54126295443687
+      ]
+    ],
+    "solo_decay_tw": 31.0,
+    "solo_decay_atp_at_72h": 3.7806042897579064
+  },
+  {
+    "ensembl_id": "ENSMUSG00000020163",
+    "symbol": "Uqcr11",
+    "name": "ubiquinol-cytochrome c reductase, complex III subunit XI",
+    "tier": "very_high",
+    "impact_pct": 97.9215,
+    "complex": "Complex III",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CIII_mitoMap",
+        "reaction": "2.0 PMF_m + 2.0 ficytC_m + q10h2_m <=> 4.0 PMF_c + 2.0 focytC_m + q10_m",
+        "baseline_flux": 39.54126295443687,
+        "gpr": "(ENSMUSG00000064370 and ENSMUSG00000022551 and ENSMUSG00000063694 and ENSMUSG00000038462 and ENSMUSG00000021520 and ENSMUSG00000063882 and ENSMUSG00000030884 and ENSMUSG00000025651 and ENSMUSG00000020",
+        "and_linked_genes": [
+          "ENSMUSG00000030884",
+          "ENSMUSG00000025651",
+          "ENSMUSG00000059534",
+          "ENSMUSG00000042298",
+          "ENSG00000184076",
+          "ENSG00000172115",
+          "ENSG00000010256",
+          "ENSG00000011295",
+          "ENSG00000156467",
+          "ENSG00000179091"
+        ]
+      }
+    ],
+    "ko_atp_flux": 2.1026237244532546,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -0.4363663284265092,
+        -114.2350462393817
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        -0.10000497356018322,
+        100.01665667180322
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        0.2926237244532206,
+        99.63302797378978
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        2.1026237244532546,
+        98.78968014770277
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        2.1026237244532546,
+        98.78968014770277
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -2.1026237244532546,
+        -98.78968014770277
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        0.4108811204802552,
+        92.98237927341492
+      ],
+      [
+        "CIII_mitoMap",
+        39.54126295443687,
+        0.0,
+        39.54126295443687
+      ]
+    ],
+    "solo_decay_tw": 31.0,
+    "solo_decay_atp_at_72h": 3.7806042897579064
+  },
+  {
+    "ensembl_id": "ENSMUSG00000017778",
+    "symbol": "Cox7c",
+    "name": "cytochrome c oxidase subunit 7C",
+    "tier": "very_high",
+    "impact_pct": 97.9215,
+    "complex": "Complex IV",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CIV_mitoMap",
+        "reaction": "8.0 PMF_m + 4.0 focytC_m + o2_m --> 4.0 PMF_c + 4.0 ficytC_m + 2.0 h2o_m",
+        "baseline_flux": 19.770631477218434,
+        "gpr": "(ENSMUSG00000064351 and ENSMUSG00000064354 and ENSMUSG00000064358 and (ENSMUSG00000031818 or ENSMUSG00000009876) and ENSMUSG00000000088 and ENSMUSG00000061518 and (ENSMUSG00000041697 or ENSMUSG0000003",
+        "and_linked_genes": [
+          "ENSMUSG00000064351",
+          "ENSMUSG00000064354",
+          "ENSMUSG00000064358",
+          "ENSMUSG00000031818",
+          "ENSMUSG00000009876",
+          "ENSMUSG00000000088",
+          "ENSMUSG00000061518",
+          "ENSMUSG00000041697",
+          "ENSMUSG00000030785",
+          "ENSMUSG00000036751"
+        ]
+      }
+    ],
+    "ko_atp_flux": 2.102623724453456,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -0.43636632842675754,
+        -114.23504623938146
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        -0.10000497355995373,
+        100.01665667180298
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        0.29262372445345536,
+        99.63302797378955
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        2.102623724453456,
+        98.78968014770257
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        2.102623724453456,
+        98.78968014770257
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -2.102623724453456,
+        -98.78968014770257
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        0.41088112048030556,
+        92.98237927341486
+      ],
+      [
+        "CIII_mitoMap",
+        39.54126295443687,
+        0.0,
+        39.54126295443687
+      ]
+    ],
+    "solo_decay_tw": 31.0,
+    "solo_decay_atp_at_72h": 3.7806042897579064
+  },
+  {
+    "ensembl_id": "ENSMUSG00000031231",
+    "symbol": "Cox7b",
+    "name": "cytochrome c oxidase subunit 7B",
+    "tier": "very_high",
+    "impact_pct": 97.9215,
+    "complex": "Complex IV",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CIV_mitoMap",
+        "reaction": "8.0 PMF_m + 4.0 focytC_m + o2_m --> 4.0 PMF_c + 4.0 ficytC_m + 2.0 h2o_m",
+        "baseline_flux": 19.770631477218434,
+        "gpr": "(ENSMUSG00000064351 and ENSMUSG00000064354 and ENSMUSG00000064358 and (ENSMUSG00000031818 or ENSMUSG00000009876) and ENSMUSG00000000088 and ENSMUSG00000061518 and (ENSMUSG00000041697 or ENSMUSG0000003",
+        "and_linked_genes": [
+          "ENSMUSG00000064351",
+          "ENSMUSG00000064354",
+          "ENSMUSG00000064358",
+          "ENSMUSG00000031818",
+          "ENSMUSG00000009876",
+          "ENSMUSG00000000088",
+          "ENSMUSG00000061518",
+          "ENSMUSG00000041697",
+          "ENSMUSG00000030785",
+          "ENSMUSG00000036751"
+        ]
+      }
+    ],
+    "ko_atp_flux": 2.1026237244531703,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -0.43636632842665013,
+        -114.23504623938157
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        -0.10000497356006569,
+        100.01665667180309
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        0.29262372445316986,
+        99.63302797378984
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        2.1026237244531703,
+        98.78968014770285
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        2.1026237244531703,
+        98.78968014770285
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -2.1026237244531703,
+        -98.78968014770285
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        0.41088112048013753,
+        92.98237927341503
+      ],
+      [
+        "CIII_mitoMap",
+        39.54126295443687,
+        0.0,
+        39.54126295443687
+      ]
+    ],
+    "solo_decay_tw": 31.0,
+    "solo_decay_atp_at_72h": 3.7806042897579064
+  },
+  {
+    "ensembl_id": "ENSMUSG00000034566",
+    "symbol": "Atp5pd",
+    "name": "ATP synthase peripheral stalk subunit d",
+    "tier": "very_high",
+    "impact_pct": 92.5082,
+    "complex": "Complex V",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CV_mitoMap",
+        "reaction": "2.7 PMF_c + adp_m + h_m + pi_m <=> 2.7 PMF_m + atp_m + h2o_m",
+        "baseline_flux": 93.39326039389518,
+        "gpr": "(ENSMUSG00000025428 and ENSMUSG00000025393 and ENSMUSG00000025781 and ENSMUSG00000003072 and ENSMUSG00000016252 and ENSMUSG00000000563 and ENSMUSG00000034566 and ENSMUSG00000050856 and ENSMUSG00000022",
+        "and_linked_genes": [
+          "ENSG00000116459",
+          "ENSG00000135390",
+          "ENSG00000110955",
+          "ENSG00000167283",
+          "ENSG00000159199",
+          "ENSG00000099624",
+          "ENSG00000152234",
+          "ENSG00000198899",
+          "ENSG00000241468",
+          "ENSMUSG00000025428"
+        ]
+      }
+    ],
+    "ko_atp_flux": 7.563630434783035,
+    "top_flux_changes_on_ko": [
+      [
+        "MALtm",
+        -0.10499999999999489,
+        124.41725609175087,
+        -124.52225609175086
+      ],
+      [
+        "FUMm",
+        6.849391304347827,
+        -117.43658217870653,
+        124.28597348305436
+      ],
+      [
+        "Hmt_mitoMap",
+        -1.902262954436874,
+        -124.67875609175098,
+        122.7764931373141
+      ],
+      [
+        "Hct_mitoMap",
+        2.568673913043489,
+        125.27327783088154,
+        -122.70460391783806
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        0.0,
+        93.39326039389518
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        7.563630434783036,
+        93.32867343737298
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        7.563630434783035,
+        93.32867343737298
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -7.563630434783036,
+        -93.32867343737298
+      ]
+    ],
+    "solo_decay_tw": 36.0,
+    "solo_decay_atp_at_72h": 9.090897580511255
+  },
+  {
+    "ensembl_id": "ENSMUSG00000037152",
+    "symbol": "Ndufc1",
+    "name": "NADH:ubiquinone oxidoreductase subunit C1",
+    "tier": "high",
+    "impact_pct": 85.1467,
+    "complex": "Complex I",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CI_mitoMap",
+        "reaction": "3.996 PMF_m + h_m + nadh_m + 0.002 o2_m + 0.999 q10_m <=> 3.996 PMF_c + nad_m + 0.002 o2s_m + 0.999 ",
+        "baseline_flux": 29.368522781566263,
+        "gpr": "(ENSMUSG00000020153 and ENSMUSG00000059734 and ENSMUSG00000024099 and ENSMUSG00000005510 and ENSMUSG00000013593 and ENSMUSG00000037916 and ENSMUSG00000025968 and ENSMUSG00000064341 and ENSMUSG00000064",
+        "and_linked_genes": [
+          "ENSMUSG00000064367",
+          "ENSG00000145494",
+          "ENSMUSG00000064368",
+          "ENSMUSG00000021606",
+          "ENSMUSG00000020022",
+          "ENSMUSG00000021764",
+          "ENSMUSG00000000399",
+          "ENSMUSG00000030869",
+          "ENSMUSG00000014294",
+          "ENSMUSG00000026032"
+        ]
+      }
+    ],
+    "ko_atp_flux": 69.89555499412413,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -83.57418542890683,
+        -31.09722713890139
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        62.34640282021142,
+        31.046857573683752
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        69.89555499412413,
+        30.996748878031894
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        69.89555499412414,
+        30.99674887803188
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -69.89555499412414,
+        -30.99674887803188
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        69.02677238542884,
+        30.889879312814188
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        69.04577238542876,
+        30.87987931281424
+      ],
+      [
+        "CI_mitoMap",
+        29.368522781566263,
+        0.0,
+        29.368522781566263
+      ]
+    ],
+    "solo_decay_tw": 52.0,
+    "solo_decay_atp_at_72h": 16.596835295562652
+  },
+  {
+    "ensembl_id": "ENSMUSG00000013593",
+    "symbol": "Ndufs2",
+    "name": "NADH:ubiquinone oxidoreductase core subunit S2",
+    "tier": "high",
+    "impact_pct": 85.1467,
+    "complex": "Complex I",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CI_mitoMap",
+        "reaction": "3.996 PMF_m + h_m + nadh_m + 0.002 o2_m + 0.999 q10_m <=> 3.996 PMF_c + nad_m + 0.002 o2s_m + 0.999 ",
+        "baseline_flux": 29.368522781566263,
+        "gpr": "(ENSMUSG00000020153 and ENSMUSG00000059734 and ENSMUSG00000024099 and ENSMUSG00000005510 and ENSMUSG00000013593 and ENSMUSG00000037916 and ENSMUSG00000025968 and ENSMUSG00000064341 and ENSMUSG00000064",
+        "and_linked_genes": [
+          "ENSMUSG00000064367",
+          "ENSG00000145494",
+          "ENSMUSG00000064368",
+          "ENSMUSG00000021606",
+          "ENSMUSG00000020022",
+          "ENSMUSG00000021764",
+          "ENSMUSG00000000399",
+          "ENSMUSG00000030869",
+          "ENSMUSG00000014294",
+          "ENSMUSG00000026032"
+        ]
+      }
+    ],
+    "ko_atp_flux": 69.8955549941245,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -76.28781586368744,
+        -38.38359670412078
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        62.3464028202095,
+        31.046857573685678
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        69.8955549941245,
+        30.996748878031525
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        69.8955549941245,
+        30.996748878031525
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -69.8955549941245,
+        -30.996748878031525
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        69.02677238543848,
+        30.889879312804553
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        69.04577238542973,
+        30.879879312813273
+      ],
+      [
+        "CI_mitoMap",
+        29.368522781566263,
+        0.0,
+        29.368522781566263
+      ]
+    ],
+    "solo_decay_tw": 52.0,
+    "solo_decay_atp_at_72h": 16.59683529556265
+  },
+  {
+    "ensembl_id": "ENSMUSG00000024038",
+    "symbol": "Ndufv3",
+    "name": "NADH:ubiquinone oxidoreductase core subunit V3",
+    "tier": "high",
+    "impact_pct": 85.1467,
+    "complex": "Complex I",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "CI_mitoMap",
+        "reaction": "3.996 PMF_m + h_m + nadh_m + 0.002 o2_m + 0.999 q10_m <=> 3.996 PMF_c + nad_m + 0.002 o2s_m + 0.999 ",
+        "baseline_flux": 29.368522781566263,
+        "gpr": "(ENSMUSG00000020153 and ENSMUSG00000059734 and ENSMUSG00000024099 and ENSMUSG00000005510 and ENSMUSG00000013593 and ENSMUSG00000037916 and ENSMUSG00000025968 and ENSMUSG00000064341 and ENSMUSG00000064",
+        "and_linked_genes": [
+          "ENSMUSG00000064367",
+          "ENSG00000145494",
+          "ENSMUSG00000064368",
+          "ENSMUSG00000021606",
+          "ENSMUSG00000020022",
+          "ENSMUSG00000021764",
+          "ENSMUSG00000000399",
+          "ENSMUSG00000030869",
+          "ENSMUSG00000014294",
+          "ENSMUSG00000026032"
+        ]
+      }
+    ],
+    "ko_atp_flux": 69.89555499412418,
+    "top_flux_changes_on_ko": [
+      [
+        "H2Otm",
+        -114.67141256780822,
+        -76.28781586368943,
+        -38.38359670411879
+      ],
+      [
+        "CV_mitoMap",
+        93.39326039389518,
+        62.34640282021178,
+        31.046857573683397
+      ],
+      [
+        "EX_biomass_e",
+        100.89230387215602,
+        69.89555499412418,
+        30.996748878031838
+      ],
+      [
+        "OF_ATP_mitoMap",
+        100.89230387215602,
+        69.89555499412418,
+        30.996748878031838
+      ],
+      [
+        "Biomass_mitoMap",
+        -100.89230387215602,
+        -69.89555499412418,
+        -30.996748878031838
+      ],
+      [
+        "PIt2mB_mitoMap",
+        99.91665169824303,
+        69.02677238542898,
+        30.889879312814045
+      ],
+      [
+        "ATPtmB_mitoMap",
+        99.925651698243,
+        69.04577238542912,
+        30.879879312813884
+      ],
+      [
+        "CI_mitoMap",
+        29.368522781566263,
+        0.0,
+        29.368522781566263
+      ]
+    ],
+    "solo_decay_tw": 52.0,
+    "solo_decay_atp_at_72h": 16.59683529556264
+  },
+  {
+    "ensembl_id": "ENSMUSG00000021794",
+    "symbol": "Glud1",
+    "name": "glutamate dehydrogenase 1",
+    "tier": "trace",
+    "impact_pct": 0.1916,
+    "complex": "Other",
+    "n_reactions": 4,
+    "reactions": [
+      {
+        "id": "GLUDxi",
+        "reaction": "glu_L_c + h2o_c + nad_c --> akg_c + h_c + nadh_c + nh4_c",
+        "baseline_flux": 0.0,
+        "gpr": "ENSMUSG00000021794 or ENSG00000148672",
+        "and_linked_genes": [
+          "ENSG00000148672"
+        ]
+      },
+      {
+        "id": "GLUDxm",
+        "reaction": "glu_L_m + h2o_m + nad_m --> akg_m + h_m + nadh_m + nh4_m",
+        "baseline_flux": 0.23463147721843375,
+        "gpr": "ENSMUSG00000021794 or ENSG00000148672 or ENSG00000182890",
+        "and_linked_genes": [
+          "ENSG00000148672",
+          "ENSG00000182890"
+        ]
+      },
+      {
+        "id": "GLUDym",
+        "reaction": "glu_L_m + h2o_m + nadp_m --> akg_m + h_m + nadph_m + nh4_m",
+        "baseline_flux": 0.05936852278156629,
+        "gpr": "ENSMUSG00000021794 or ENSG00000148672 or ENSG00000182890",
+        "and_linked_genes": [
+          "ENSG00000148672",
+          "ENSG00000182890"
+        ]
+      },
+      {
+        "id": "GLUDy",
+        "reaction": "glu_L_c + h2o_c + nadp_c --> akg_c + h_c + nadph_c + nh4_c",
+        "baseline_flux": 0.0,
+        "gpr": "ENSMUSG00000021794 or ENSG00000148672",
+        "and_linked_genes": [
+          "ENSG00000148672"
+        ]
+      }
+    ],
+    "ko_atp_flux": 100.51364886981402,
+    "top_flux_changes_on_ko": [
+      [
+        "PYK",
+        1.9059999999999946,
+        0.0,
+        1.9059999999999946
+      ]
+    ],
+    "solo_decay_tw": ">72h",
+    "solo_decay_atp_at_72h": 100.70572740840093
+  },
+  {
+    "ensembl_id": "ENSMUSG00000004902",
+    "symbol": "Slc25a18",
+    "name": "solute carrier family 25 (mitochondrial carrier), member 18",
+    "tier": "trace",
+    "impact_pct": 0.0759,
+    "complex": "Other",
+    "n_reactions": 1,
+    "reactions": [
+      {
+        "id": "GLUt2mB_mitoMap",
+        "reaction": "0.18 PMF_c + glu_L_c + h_c --> 0.18 PMF_m + glu_L_m + h_m",
+        "baseline_flux": 0.18300000000000033,
+        "gpr": "ENSMUSG00000004902 or ENSG00000182902",
+        "and_linked_genes": [
+          "ENSG00000182902"
+        ]
+      }
+    ],
+    "ko_atp_flux": 100.81549291824496,
+    "top_flux_changes_on_ko": [
+      [
+        "PYK",
+        1.9059999999999946,
+        0.0,
+        1.9059999999999946
+      ]
+    ],
+    "solo_decay_tw": ">72h",
+    "solo_decay_atp_at_72h": 100.81717407111691
+  }
+]

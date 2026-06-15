@@ -1,0 +1,29 @@
+{
+  "run_date": "2026-04-23T01:30:57.783416",
+  "subunits_analyzed": [
+    "NDUFS1",
+    "NDUFS2",
+    "NDUFA9",
+    "NDUFB10"
+  ],
+  "subunits_missing_data": [
+    "NDUFA12"
+  ],
+  "heart_t_half_hours": {
+    "NDUFS1": 138.0,
+    "NDUFS2": 427.20000000000005,
+    "NDUFA9": 144.0,
+    "NDUFB10": 120.0
+  },
+  "heart_median_hours": 141.0,
+  "heart_min_hours": 120.0,
+  "heart_max_hours": 427.20000000000005,
+  "within_ci_variance_fraction": 0.6,
+  "permutation_test_p_value": 0.56,
+  "permutation_test_interpretation": "cannot reject independence with NDUFS2 outlier present, but mechanistic evidence supports correlation",
+  "predicted_tw_independent_hours": 295.84633203622593,
+  "predicted_tw_holoenzyme_hours": 278.63137138648347,
+  "predicted_tw_assembly_limited_hours": 390.08391994107683,
+  "verdict": "holoenzyme model best-supported by Karunadharma 2015 + m-AAA co-degradation; in-vivo half-lives too long for post-extraction prediction",
+  "caveat_in_vivo_vs_post_extraction": "In-vivo half-lives (5-18 days) are NOT applicable to extracted mitochondria where ROS, lost proteostasis, and Lon protease activity accelerate degradation 10-100x. The 5-15h empirical viability window represents post-extraction kinetics not captured by in-vivo proteomics."
+}

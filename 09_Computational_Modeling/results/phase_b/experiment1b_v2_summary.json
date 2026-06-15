@@ -1,0 +1,12 @@
+{
+  "method_v2": "GPR-aware (E-Flux), human ENSG stripped, threshold=0.01%",
+  "mouse_nuclear_total": 374,
+  "mouse_essential": 145,
+  "mouse_dispensable": 229,
+  "dispensable_fraction": 0.6123,
+  "tier_very_high_90pct": 29,
+  "tier_high_50_90pct": 60,
+  "tier_medium_10_50pct": 13,
+  "tier_low_1_10pct": 8,
+  "tier_trace_lt1pct": 35
+}

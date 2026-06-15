@@ -1,0 +1,62 @@
+name,value,unit,source,uncertainty,temperature,species_tissue,category,notes
+R,8.314,J/(mol*K),physical constant,0,any,any,biophysical,universal gas constant
+T,310.15,K,physiological,0,37C,mammalian,biophysical,body temperature; composite simulations assume 37C unless Q10-scaled
+F,96485,C/mol,physical constant,0,any,any,biophysical,Faraday constant
+C_m,3.1e-3,mol/(V*L_mito),Beard 2005 paper,unstated,37C,cardiac,membrane,mitochondrial membrane capacitance per unit volume
+V_c,1.0,L_buffer/L_cuvette,in-vitro setup,0,any,isolated mito assay,compartment,buffer volume fraction (in vitro preparation)
+V_m,0.0005,L_mito/L_cuvette,in-vitro setup,assay-dependent,any,isolated mito assay,compartment,mitochondrial volume fraction typical of isolated-mito assay
+W_c,1.0,L_buffer_water/L_buffer,derived,0,any,any,compartment,buffer water space
+W_m,0.7238,L_mito_water/L_mito,Beard 2005 / standard mito,~5%,37C,cardiac,compartment,mitochondrial water space
+W_x,0.65142,L_matrix_water/L_mito,derived (0.9*W_m),~5%,37C,cardiac,compartment,matrix water space (0.9 * W_m)
+W_i,0.07238,L_IM_water/L_mito,derived (0.1*W_m),~5%,37C,cardiac,compartment,intermembrane water space (0.1 * W_m)
+NAD_tot,2.97e-3,mol/L_matrix_water,Wu et al. 2007 / Beard,~15%,37C,cardiac,pool,total NAD+ + NADH pool in matrix
+Q_tot,1.35e-3,mol/L_matrix_water,Beard 2005,~20%,37C,cardiac,pool,total Q + QH2 pool
+c_tot,2.7e-3,mol/L_IM_water,Beard 2005,~20%,37C,cardiac,pool,total cyt c pool (reduced + oxidized)
+pH_x,7.40,pH,physiological,0.05,37C,cardiac,setpoint,matrix pH (fixed in in-vitro version)
+pH_c,7.20,pH,physiological,0.05,37C,cardiac,setpoint,cytosol/cuvette pH (fixed in in-vitro)
+K_x,100e-3,mol/L_matrix_water,physiological,~10%,37C,cardiac,ion,matrix K+ concentration
+K_c,140e-3,mol/L_cyto_water,physiological,~10%,37C,cardiac,ion,cytosol K+ concentration
+Mg_x,1.0e-3,mol/L_matrix_water,physiological,~20%,37C,cardiac,ion,matrix free Mg2+
+Mg_c,1.0e-3,mol/L_cyto_water,physiological,~20%,37C,cardiac,ion,cytosol free Mg2+
+PO2,25,mmHg,in-vitro setup,assay-dependent,37C,isolated mito assay,substrate,oxygen partial pressure in standard respirometry
+a_3,1.74e-6,mol/(L_matrix_water*mmHg),Beard 2005,~10%,37C,cardiac,substrate,oxygen solubility coefficient
+X_DH,0.1732,mol/(s*L_mito),fit to data,unstated,37C,cardiac,activity,NADH dehydrogenase activity (fitted — LOAD-BEARING)
+X_C1,1.0e4,mol/(s*L_mito),fit to data,unstated,37C,cardiac,activity,Complex I activity (fitted — LOAD-BEARING; deep-dive N=3)
+X_C3,1.0e6,mol/(s*L_mito),fit to data,unstated,37C,cardiac,activity,Complex III activity (fitted)
+X_C4,0.0125,mol/(s*L_mito),fit to data,unstated,37C,cardiac,activity,Complex IV activity (fitted)
+X_F,1.0e3,mol/(s*L_mito),fit to data,unstated,37C,cardiac,activity,F1F0 ATP synthase activity (fitted — LOAD-BEARING; deep-dive N=3)
+E_ANT,0.325,mol/L_mito,fit to data,unstated,37C,cardiac,activity,ANT expression level (fitted — LOAD-BEARING; deep-dive N=3)
+E_PiC,5.0e6,(s*L_mito)^-1,fit to data,unstated,37C,cardiac,activity,phosphate carrier activity (fitted; scales PIt2mB_mitoMap coupling)
+X_H,1.0e3,mol/(s*L_mito),fit to data,unstated,37C,cardiac,activity,proton leak activity (fitted)
+X_AtC,3e-6,mol/(s*L_cyto),adjustable,varied 0–6e-6,37C,cardiac,activity,cytosolic ATP hydrolysis rate — QAMAS sweeps this for PO-curve
+n_F,2.6666667,dimensionless,Beard 2005,0,any,cardiac,stoich,F1F0 H+ stoichiometry (8/3 per ATP)
+n_C1,4,dimensionless,Beard 2005,0,any,cardiac,stoich,Complex I H+ stoichiometry
+n_C3,2,dimensionless,Beard 2005,0,any,cardiac,stoich,Complex III H+ stoichiometry
+n_C4,4,dimensionless,Beard 2005,0,any,cardiac,stoich,Complex IV H+ stoichiometry
+DrGo_C1,-109680,J/mol,Beard 2005,~5%,standard,-,thermo,standard free energy Complex I
+DrGo_C3,46690,J/mol,Beard 2005,~5%,standard,-,thermo,standard free energy Complex III
+DrGo_C4,-202160,J/mol,Beard 2005,~5%,standard,-,thermo,standard free energy Complex IV
+DrGo_F,4990,J/mol,Beard 2005,~5%,standard,-,thermo,standard free energy F1F0 (ATP hydrolysis Gibbs)
+r_C1,6.8385,dimensionless,Beard 2005,unstated,37C,cardiac,kinetic,Complex I rate parameter (DH kinetics)
+k_Pi1,4.659e-4,mol/L_matrix_water,Beard 2005,unstated,37C,cardiac,kinetic,Pi stimulation 1 for NADH dehydrogenase
+k_Pi2,6.578e-4,mol/L_matrix_water,Beard 2005,unstated,37C,cardiac,kinetic,Pi stimulation 2 for NADH dehydrogenase
+k_O2,1.2e-4,mol/L_matrix_water,Beard 2005,~15%,37C,cardiac,kinetic,Complex IV Km for O2
+del_D,0.0167,dimensionless,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT charge translocation parameter for ADP
+del_T,0.0699,dimensionless,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT charge translocation parameter for ATP
+k2o_ANT,0.159,1/s,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT k2 base rate (9.54/60 — LOAD-BEARING; deep-dive N=3)
+k3o_ANT,0.50083,1/s,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT k3 base rate (30.05/60 — LOAD-BEARING; deep-dive N=3)
+K0o_D,38.89e-6,mol/L_cuvette_water,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT ADP dissociation constant at 0 mV
+K0o_T,56.05e-6,mol/L_cuvette_water,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT ATP dissociation constant at 0 mV
+A_ANT,0.2829,dimensionless,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT voltage coefficient A
+B_ANT,-0.2086,dimensionless,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT voltage coefficient B
+C_ANT,0.2372,dimensionless,Metelkin/Beard,unstated,37C,cardiac,ANT_kinetic,ANT voltage coefficient C
+k_PiC,1.61e-3,mol/L_cuvette,Beard 2005,unstated,37C,cardiac,kinetic,H+-Pi cotransporter Km
+K_MgATP,1.31826e-4,mol/L,literature,small,37C,any,dissociation,MgATP dissociation (10^-3.88)
+K_MgADP,1.0e-3,mol/L,literature,small,37C,any,dissociation,MgADP dissociation (10^-3.00)
+K_MgPi,2.1878e-2,mol/L,literature,small,37C,any,dissociation,MgPi dissociation (10^-1.66)
+K_HATP,4.6774e-7,mol/L,literature,small,37C,any,dissociation,HATP dissociation (10^-6.33)
+K_HADP,5.4954e-7,mol/L,literature,small,37C,any,dissociation,HADP dissociation (10^-6.26)
+K_HPi,2.3988e-7,mol/L,literature,small,37C,any,dissociation,HPi dissociation (10^-6.62)
+K_KATP,0.09550,mol/L,literature,small,37C,any,dissociation,KATP dissociation (10^-1.02)
+K_KADP,0.12882,mol/L,literature,small,37C,any,dissociation,KADP dissociation (10^-0.89)
+K_KPi,0.38019,mol/L,literature,small,37C,any,dissociation,KPi dissociation (10^-0.42)

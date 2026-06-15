@@ -1,0 +1,24 @@
+{
+  "run_date": "2026-04-22T23:04:38.213948",
+  "full_decay_tw": 29.0,
+  "functional_cluster_counts": {
+    "Other mitochondrial": 43,
+    "CI structural": 28,
+    "Other / non-mitochondrial": 15,
+    "CV structural": 12,
+    "TCA cycle": 11,
+    "Fatty acid oxidation": 9,
+    "CIII structural": 8,
+    "CI assembly factor": 7,
+    "CIV structural": 5,
+    "SLC25 transporter": 4,
+    "CII structural/assembly": 3
+  },
+  "leverage_tier_distribution": {
+    "zero_effect": 145,
+    "minor_0_1h": 0,
+    "moderate_1_5h": 0,
+    "significant_5_10h": 0,
+    "bottleneck_gt_10h": 0
+  }
+}

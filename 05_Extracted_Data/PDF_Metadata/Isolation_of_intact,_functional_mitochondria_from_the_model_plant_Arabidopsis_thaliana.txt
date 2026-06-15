@@ -1,0 +1,12 @@
+Document infos:
+- CreationDate = D:20051001165704+05'30'
+- Creator = PageMaker 6.5
+- ModDate = D:20071006163727+05'30'
+- Pages = 12
+- Producer = Acrobat Distiller 6.0 (Windows)
+- dc = {'format': 'application/pdf'}
+- pdf = {'Producer': 'Acrobat Distiller 6.0 (Windows)'}
+- xap = {'ModifyDate': '2007-10-06T16:12:57+05:30', 'CreateDate': '2005-10-01T16:57:04+05:30', 'CreatorTool': 'PageMaker 6.5', 'MetadataDate': '2007-10-06T16:12:57+05:30'}
+- xapmm = {'DocumentID': 'uuid:858a6064-d9f3-4158-ba4c-6b199e13fd71', 'InstanceID': 'uuid:a8f9454f-3110-4d51-a9e2-4bdaadd9f70f'}
+
+References: 0

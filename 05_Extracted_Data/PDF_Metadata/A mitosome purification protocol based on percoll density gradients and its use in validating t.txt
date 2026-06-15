@@ -1,0 +1,13 @@
+Document infos:
+- CreationDate = D:20070503033139Z
+- Creator = LaTeX with hyperref package
+- ModDate = D:20070503233233+05'30'
+- Pages = 11
+- Producer = Acrobat Distiller 7.0.5 (Windows)
+- dc = {'format': 'application/pdf', 'title': {'x-default': None}}
+- pdf = {'Producer': 'Acrobat Distiller 7.0.5 (Windows)', 'Keywords': None}
+- rdf = {'li': None}
+- xap = {'CreatorTool': 'LaTeX with hyperref package', 'ModifyDate': '2007-05-03T23:32:33+05:30', 'CreateDate': '2007-05-03T03:31:39Z', 'MetadataDate': '2007-05-03T23:32:33+05:30'}
+- xapmm = {'DocumentID': 'uuid:6642597d-ff1b-4e15-a0c4-e93103c2066d', 'InstanceID': 'uuid:b2bfe14f-7601-4748-b325-6aaa7323a00b'}
+
+References: 0

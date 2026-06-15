@@ -1,0 +1,132 @@
+{
+  "run_date": "2026-04-23T02:06:02.964445",
+  "parameters": {
+    "Q10": 2.5,
+    "cold_scalar": 20.568471942722457,
+    "mitoq_extension_factor": 1.35,
+    "post_extraction_acceleration": 30.0,
+    "bootstrap_n": 50
+  },
+  "results": [
+    {
+      "intervention": "cold_chain",
+      "scenario": "A",
+      "baseline_tw": 5.0,
+      "intervention_tw": 72.0,
+      "delta_tw": 67.0,
+      "fold_extension": 14.4,
+      "ci_low": 72.0,
+      "ci_high": 72.0
+    },
+    {
+      "intervention": "mitoq_selective",
+      "scenario": "A",
+      "baseline_tw": 5.0,
+      "intervention_tw": 5.14,
+      "delta_tw": 0.13999999999999968,
+      "fold_extension": 1.028,
+      "ci_low": 4.0,
+      "ci_high": 6.0
+    },
+    {
+      "intervention": "mitoq_uniform",
+      "scenario": "A",
+      "baseline_tw": 5.0,
+      "intervention_tw": 6.58,
+      "delta_tw": 1.58,
+      "fold_extension": 1.316,
+      "ci_low": 5.225,
+      "ci_high": 8.0
+    },
+    {
+      "intervention": "substrate_supp",
+      "scenario": "A",
+      "baseline_tw": 5.0,
+      "intervention_tw": 5.68,
+      "delta_tw": 0.6799999999999997,
+      "fold_extension": 1.136,
+      "ci_low": 5.0,
+      "ci_high": 7.0
+    },
+    {
+      "intervention": "cold_chain",
+      "scenario": "B",
+      "baseline_tw": 5.68,
+      "intervention_tw": 72.0,
+      "delta_tw": 66.32,
+      "fold_extension": 12.67605633802817,
+      "ci_low": 72.0,
+      "ci_high": 72.0
+    },
+    {
+      "intervention": "mitoq_selective",
+      "scenario": "B",
+      "baseline_tw": 5.68,
+      "intervention_tw": 6.26,
+      "delta_tw": 0.5800000000000001,
+      "fold_extension": 1.102112676056338,
+      "ci_low": 5.0,
+      "ci_high": 8.0
+    },
+    {
+      "intervention": "mitoq_uniform",
+      "scenario": "B",
+      "baseline_tw": 5.68,
+      "intervention_tw": 7.58,
+      "delta_tw": 1.9000000000000004,
+      "fold_extension": 1.3345070422535212,
+      "ci_low": 6.0,
+      "ci_high": 10.0
+    },
+    {
+      "intervention": "substrate_supp",
+      "scenario": "B",
+      "baseline_tw": 5.68,
+      "intervention_tw": 5.68,
+      "delta_tw": 0.0,
+      "fold_extension": 1.0,
+      "ci_low": 5.0,
+      "ci_high": 7.0
+    },
+    {
+      "intervention": "cold_chain",
+      "scenario": "C",
+      "baseline_tw": 5.74,
+      "intervention_tw": 72.0,
+      "delta_tw": 66.26,
+      "fold_extension": 12.543554006968641,
+      "ci_low": 72.0,
+      "ci_high": 72.0
+    },
+    {
+      "intervention": "mitoq_selective",
+      "scenario": "C",
+      "baseline_tw": 5.74,
+      "intervention_tw": 5.82,
+      "delta_tw": 0.08000000000000007,
+      "fold_extension": 1.0139372822299653,
+      "ci_low": 4.0,
+      "ci_high": 8.0
+    },
+    {
+      "intervention": "mitoq_uniform",
+      "scenario": "C",
+      "baseline_tw": 5.74,
+      "intervention_tw": 7.68,
+      "delta_tw": 1.9399999999999995,
+      "fold_extension": 1.337979094076655,
+      "ci_low": 6.0,
+      "ci_high": 10.774999999999999
+    },
+    {
+      "intervention": "substrate_supp",
+      "scenario": "C",
+      "baseline_tw": 5.74,
+      "intervention_tw": 5.68,
+      "delta_tw": -0.0600000000000005,
+      "fold_extension": 0.989547038327526,
+      "ci_low": 5.0,
+      "ci_high": 7.0
+    }
+  ]
+}

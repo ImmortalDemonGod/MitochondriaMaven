@@ -1,0 +1,150 @@
+{
+  "run_date": "2026-04-22T22:28:26.669572",
+  "fixes_applied": [
+    "#4 GPR-aware",
+    "#5 signed flux",
+    "#2 dual objective"
+  ],
+  "threshold_fraction": 0.2,
+  "theoretical_slope": 2.321928094887362,
+  "sweep": {
+    "atp": [
+      {
+        "t_half_h": 1,
+        "tw_h": 3.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 2,
+        "tw_h": 5.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 4,
+        "tw_h": 10.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 6,
+        "tw_h": 15.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 8,
+        "tw_h": 20.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 12,
+        "tw_h": 29.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 18,
+        "tw_h": 44.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 24,
+        "tw_h": 58.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 36,
+        "tw_h": 72.0,
+        "tw_capped": true
+      },
+      {
+        "t_half_h": 48,
+        "tw_h": 72.0,
+        "tw_capped": true
+      },
+      {
+        "t_half_h": 60,
+        "tw_h": 72.0,
+        "tw_capped": true
+      },
+      {
+        "t_half_h": 72,
+        "tw_h": 72.0,
+        "tw_capped": true
+      }
+    ],
+    "dpsi": [
+      {
+        "t_half_h": 1,
+        "tw_h": 3.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 2,
+        "tw_h": 5.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 4,
+        "tw_h": 10.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 6,
+        "tw_h": 15.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 8,
+        "tw_h": 20.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 12,
+        "tw_h": 29.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 18,
+        "tw_h": 44.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 24,
+        "tw_h": 58.0,
+        "tw_capped": false
+      },
+      {
+        "t_half_h": 36,
+        "tw_h": 72.0,
+        "tw_capped": true
+      },
+      {
+        "t_half_h": 48,
+        "tw_h": 72.0,
+        "tw_capped": true
+      },
+      {
+        "t_half_h": 60,
+        "tw_h": 72.0,
+        "tw_capped": true
+      },
+      {
+        "t_half_h": 72,
+        "tw_h": 72.0,
+        "tw_capped": true
+      }
+    ]
+  },
+  "fits": {
+    "atp": {
+      "slope": 2.4032476319350473,
+      "intercept": 0.46955345060893094,
+      "r_squared": 0.9998519008425423,
+      "n_points_fit": 8
+    },
+    "dpsi": {
+      "slope": 2.4032476319350473,
+      "intercept": 0.46955345060893094,
+      "r_squared": 0.9998519008425423,
+      "n_points_fit": 8
+    }
+  }
+}
