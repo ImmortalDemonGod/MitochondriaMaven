@@ -20,6 +20,8 @@ The active frontier is **computational modeling of the mitochondrial "transit wi
 
 What's robust: a **145-gene essential set** (127/145 = **87.6% MitoCarta 3.0-validated**), Complex I's 39-subunit AND-clause as the decay-governing bottleneck, and a scenario-dependent failure partition. What's provisional: every *temporal* number — parameters are literature-range, not yet anchored to an independent wet-lab time-course. The full, self-audited reasoning trail lives in `09_Computational_Modeling/LAB_NOTEBOOK.md` and `09_Computational_Modeling/docs/investigation/`.
 
+📄 **Read the write-up → [q-bio abstract + full manuscript outline](09_Computational_Modeling/docs/conference_planning/ABSTRACT_DRAFT_2026-04-23.md)**
+
 ---
 
 ## The long-range vision (4 layers)
@@ -94,7 +96,7 @@ To stay lean and avoid redistributing third-party material, the following are in
 
 - ✅ Literature foundation (114 papers) and bench protocol — complete (2024)
 - ✅ Transit-window modeling pipeline + composite FBA↔ODE model — built and self-audited
-- ✅ Conference-style abstract + full manuscript outline — drafted (`09_Computational_Modeling/docs/conference_planning/`)
+- ✅ Conference-style **[abstract + full manuscript outline](09_Computational_Modeling/docs/conference_planning/ABSTRACT_DRAFT_2026-04-23.md)** — drafted
 - ⏳ Independent empirical anchor (a wet-lab decay time-course) — the key open validation gap
 - ⏳ Wet-lab experiments E1–E8 — planned
 
