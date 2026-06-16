@@ -103,29 +103,29 @@ The 8 documented audit passes (pass-1 through pass-8) are a strength, not a weak
 ---
 
 ## Possible paper structure (not set in stone just for ideas)
-Target venue
+### Target venue
 
 PLoS Computational Biology is the natural fit: 6000–8000 words, mechanism-heavy methods papers welcome, accepts "model-generates-hypotheses" framing. Secondary options:
 Biophysical Journal (similar length, more biophysics-focused), Cell Systems (shorter, higher-impact).
 
-Paper structure
+### Paper structure
 
-Title
+**Title**
 
 Multi-Scale Composite of Genome-Scale Metabolism and Biophysical Oxidative Phosphorylation Identifies Scenario-Dependent Failure Modes in Extracted Mammalian Mitochondria
 (current draft)
 
-Abstract
+**Abstract**
 
 350 words, draft 2f — keep as-is. Pass-8 + pass-9 disciplined.
 
-Introduction (~800 words)
+### Introduction (~800 words)
 
-Hook (~150 words): Mitochondrial transplantation is a real clinical therapy (McCully pediatric cardiology, 2017–present). Current point-of-care limitation: ~4h viability
+**Hook (~150 words):** Mitochondrial transplantation is a real clinical therapy (McCully pediatric cardiology, 2017–present). Current point-of-care limitation: ~4h viability
 window from Oroboros MiR05 data and surgical practice. Off-the-shelf organelle banking requires extending to 24–48h. The proteomics contribution to this window has an
 algebraic ceiling (~29h under uniform 12h halflives) but non-proteomic failure dominates empirically — which specific mechanisms and at what rates is unresolved.
 
-Prior work (~300 words): Four strands:
+**Prior work (~300 words):** Four strands:
 1. Clinical / wet lab — McCully, Pacak, Cowan mitochondrial transplantation work; Oroboros MiR05 respirometry as the canonical buffer; clinical point-of-care protocols
 2. Computational mitochondrial models — Beard 2005 biophysical OXPHOS; Cortassa-Aon 2003/2006 energetics + Ca²⁺ + ROS; Bazil-Dash 2010 stochastic MPTP; MitoMAMMAL 2024
 genome-scale FBA (Chapman/Habermann); Phase G.5 ROS coupling previously
@@ -136,11 +136,11 @@ stochastic-deterministic dynamics establishes minimal-system multi-paradigm mode
 complementary problem of organelle-scale transit viability (deterministic throughout, not stochastic — the methodological parallel is "multi-paradigm composition," not
 "stochastic-deterministic hybrid").
 
-Gap statement (~150 words): FBA gives static snapshots; biophysical ODEs give dynamics at a single complex; MPTP models predict opening but don't connect to proteomics;
+**Gap statement (~150 words):** FBA gives static snapshots; biophysical ODEs give dynamics at a single complex; MPTP models predict opening but don't connect to proteomics;
 cardiolipin biology is siloed from ETC kinetics. No published framework composes these paradigms for extracted-organelle transit viability. We present a four-layer
 composite that fills this gap and demonstrates scenario-dependent mechanism partition.
 
-Our contribution (~200 words):
+**Our contribution (~200 words):**
 1. Time-stepped FBA with GPR-aware protein decay on MitoMAMMAL (560 reactions) identifies 145 essential mouse nuclear genes, 87.6% MitoCarta-validated; the remaining 18
 are cytoplasmic substrate-feeding enzymes
 2. Order-statistics framework: Complex I as largest obligate conjunction (N=39 subunits) governs decay rate mathematically — proof that large heteromeric complexes fail
@@ -150,15 +150,15 @@ disproportionately fast under heterogeneous subunit halflives
 5. Syn3A crosswalk positions mitochondria within the programmable-organelle design space (Layer 2–4 research agenda)
 6. Literature-range parameters throughout — scope and caveats made explicit
 
-Results (~3000 words, 6 figures)
+### Results (~3000 words, 6 figures)
 
-Section 1: Essential gene inference and MitoCarta validation (~400 words, Figure 1)
+**Section 1: Essential gene inference and MitoCarta validation (~400 words, Figure 1)**
 - Time-stepped FBA identifies 145 individually essential mouse nuclear genes
 - Three-class partition: 145 / ~207 synthetic / ~22 truly redundant
 - 127/145 = 87.6% MitoCarta 3.0-listed; 18 non-listed enumerated as cytoplasmic feeders (Gapdh, Pgk1, Tpi1, Gpi1, Pfkm, Ak1, Ppa1, Got1, Cycs, Ndufb1, etc.)
 - Figure 1: Gene classification bar chart + MitoCarta overlap Venn + per-complex decomposition of the 145
 
-Section 2: Order-statistics governs decay under heterogeneity (~500 words, Figure 2)
+**Section 2: Order-statistics governs decay under heterogeneity (~500 words, Figure 2)**
 - Under uniform halflives: TW ≈ −t½·log₂(threshold)·buffer = 29h (algebraic)
 - Under heterogeneous halflives: order statistics on largest AND-clause governs
 - CI is largest obligate conjunction with N=39 subunits
@@ -168,7 +168,7 @@ Section 2: Order-statistics governs decay under heterogeneity (~500 words, Figur
 - Independence assumption documented and caveated (N=4 permutation test p=0.56)
 - Figure 2: Order-statistics analytical prediction vs FBA simulation + sensitivity tornado + CI subunit correlation check
 
-Section 3: Multi-scale composite architecture (~300 words, Figure 3)
+**Section 3: Multi-scale composite architecture (~300 words, Figure 3)**
 - Four-paradigm coupling diagram
 - FBA capacity envelope → ODE Vmax scaling mechanism
 - State vector: 14 variables across compartments
@@ -176,7 +176,7 @@ Section 3: Multi-scale composite architecture (~300 words, Figure 3)
 - Honest caveat: 19 tunable parameters; values literature-range not dataset-calibrated (pass-8 framing)
 - Figure 3: Schematic of the four-layer composite with state-variable flow
 
-Section 4: Scenario-dependent failure partition (~600 words, Figure 4)
+**Section 4: Scenario-dependent failure partition (~600 words, Figure 4)**
 - With MPTP enabled: scenarios A (intracellular buffer, low Ca²⁺), B (arterial blood, low Ca²⁺), C (ischemic, Ca²⁺ overload)
 - Scenarios A/B: proteomics-limited ATP-first failure at 13–33h
 - Scenario C: catastrophic ΔΨm collapse via MPTP pore opening at <1h
@@ -184,7 +184,7 @@ Section 4: Scenario-dependent failure partition (~600 words, Figure 4)
 - Mechanism: Hill-cooperative MCU → matrix Ca²⁺ accumulation → MPTP threshold → PMF collapse
 - Figure 4: Panel a: ΔΨm traces per scenario (broken x-axis for scenario C collapse); Panel b: mechanism-of-failure partition across 3 scenarios × MPTP-OFF/ON
 
-Section 5: Mechanistic intervention predictions (~600 words, Figure 5)
+**Section 5: Mechanistic intervention predictions (~600 words, Figure 5)**
 - Three interventions, modeled mechanistically
 - MitoQ (Kagan-cycle H₂O₂ scavenging): ~4% TW extension at 5 μM in isolated mito; consistent with literature observation that MitoQ is more effective in vivo than in
 isolated preparations
@@ -194,21 +194,18 @@ phase transitions (chilling injury), cooling-rate-dependent Ca²⁺ dysregulatio
 - Honest framing: predictions at literature-range parameter values; quantitative claims invite wet-lab testing
 - Figure 5: Intervention composite vs pure-FBA bar chart + MitoQ dose-response + cold chain over-prediction annotated
 
-Section 6: Syn3A crosswalk — positioning within programmable-organelle design space (~400 words, Figure 6 or supplementary)
+**Section 6: Syn3A crosswalk — positioning within programmable-organelle design space (~400 words, Figure 6 or supplementary)**
 - Three-reaction deep dive: phosphate (equivalent), amino acid/glutamate (equivalent), pyruvate (divergent)
 - Category-level Fisher's exact test p=1.00 with Jaccard 45%: mechanism-level conservation (phosphate, amino acid imports) with specialization-driven divergence
 (pyruvate: mito imports, Syn3A synthesizes)
 - Positions mitochondria alongside synthetic minimal cells within the broader programmable-biosystems design space
 - Supports Layer 2–4 research agenda: mitochondria as engineerable organelle with shared architectural features to minimal chassis
 - **Pedreira et al. (2021 SynWiki) citation — Fisher p=1.00 honest contextualization:** the statistical inconclusiveness reflects BOTH genuine mechanism-level convergence AND the ~33% of Syn3A's 452 protein-coding genes lacking functional annotation. Full-network equivalence cannot be assessed from current Syn3A data; mechanism-level conservation of the three deep-dive reactions (phosphate, glutamate, pyruvate) is what we support — not claims beyond.
-- **Fisher p=1.00 honest contextualization (Pedreira et al., 2021 SynWiki citation):** the statistical inconclusiveness reflects both genuine mechanism-level convergence
-AND the ~33% of Syn3A's 452 protein-coding genes that lack functional annotation. Full-network equivalence cannot be assessed from current Syn3A data; mechanism-level
-conservation of the three deep-dive reactions (phosphate, glutamate, pyruvate) is what our analysis supports — not claims beyond.
 - Figure 6 (or supp): Syn3A vs MitoMAMMAL transport architecture Venn + per-reaction mechanism deep-dive table
 
-Discussion (~1500 words)
+### Discussion (~1500 words)
 
-What the composite tells us (~400 words):
+**What the composite tells us (~400 words):**
 - Proteomics-kinetic decay is not the dominant empirical rate-limiter under current preservation protocols — even with aggressive halflife-acceleration, composite doesn't
 reach empirical MiR05 4–18h range without adding non-proteomic mechanisms
 - Scenarios partition failure modes mechanistically: proteomics-limited under low-Ca, MPTP-catastrophic under ischemic loading
@@ -216,19 +213,19 @@ reach empirical MiR05 4–18h range without adding non-proteomic mechanisms
 - Cold-chain over-prediction localizes the missing biology: temperature-dependent membrane physics (most likely lipid phase transitions), cooling-rate-dependent Ca²⁺
 dysregulation, or cumulative oxidative damage at low temperatures
 
-Implications for mitochondrial transplantation (~300 words):
+**Implications for mitochondrial transplantation (~300 words):**
 - Organelle banking requires mechanism-targeted preservation fluids, not just antioxidants
 - Rational design targets: MPTP inhibition (cyclosporin A, SfA) + membrane stabilization (trehalose, cholesterol substitutes) + controlled cooling rates + Ca²⁺ chelation
 - Wet-lab priorities: calibrate k_kagan for cardiac CL peroxidation; measure cardiac MCU/NCLX kinetics at storage temperatures; characterize inner-membrane Tm for
 mammalian cardiac IMM
 
-Positioning within programmable organelles (~200 words):
+**Positioning within programmable organelles (~200 words):**
 - Mitochondria are engineerable organelles with design-space kinship to synthetic minimal cells
 - Layer 2 scope: pre-extraction genetic modifications whose transit-viability effect can be simulated in this framework
 - Layer 3–4 implications: gene-delivery vehicles (Layer 3) and autonomous extracellular operation (Layer 4) both require Layer 1 mechanism resolution
 - **Pelletier et al. (2021) citation for Layer 2–4 positioning:** in minimal biological systems, normal morphology requires a specific gene set (7 of 19 genes added back to syn3.0 to restore division — including ftsZ, sepF, and four membrane-associated proteins of unknown function). Analogous mammalian mitochondrial requirements (cardiolipin biosynthesis, Drp1/MFF/MID49-51 fission machinery, cyt c partitioning) constitute future Layer 2–4 engineering targets. Caveat: Pelletier addresses cell DIVISION gene requirements (producing pleomorphic morphology when missing; cells still live). Do NOT conflate with our cold-chain gap (which concerns DEATH/failure mechanisms in extracted mitochondria). The citation supports the "minimal systems depend on specific membrane/structural gene products" framing, not a specific mechanism for cold-chain over-prediction.
 
-Limitations (~600 words — crucial for pass-8 discipline):
+**Limitations (~600 words — crucial for pass-8 discipline):**
 - Parameter values are literature-range, not dataset-calibrated. 19 tunable parameters across MPTP + ROS + Kagan modules. Specific quantitative predictions (4% MitoQ,
 scenario C 0.24h collapse, cold chain >10× over-prediction) depend on parameter choices. Table S1 lists all parameters with provenance.
 - Independence assumption for CI subunit halflives is unverified. Order-statistics framework requires per-subunit independence; N=4 permutation test on available data is
@@ -244,48 +241,39 @@ redundancy. Framework transfers; specific values don't.
 - Closed-system assumption. No nuclear protein import, no mtDNA translation beyond the 13 mt-encoded genes treated as immortal, no cyt c depletion during peroxidation.
 - Scenario substrate pools are informed-guess values, not calibrated from specific physiological measurements.
 
-Methods (~1500 words, 4 subsections)
+### Methods (~1500 words, 4 subsections)
 
-M1. MitoMAMMAL time-stepped FBA with GPR-aware decay — reference Session 1–3 work, decay_utils.py, E-flux-style GPR evaluation (AND=min, OR=sum clipped at 1.0), scenarios
+**M1.** MitoMAMMAL time-stepped FBA with GPR-aware decay — reference Session 1–3 work, decay_utils.py, E-flux-style GPR evaluation (AND=min, OR=sum clipped at 1.0), scenarios
 A/B/C via apply_scenario
 
-M2. Beard 2005 OXPHOS ODE reimplementation — scipy.integrate LSODA, validated against QAMAS reference curves (Ex 5.1 within 10% of published), 14 state variables,
+**M2.** Beard 2005 OXPHOS ODE reimplementation — scipy.integrate LSODA, validated against QAMAS reference curves (Ex 5.1 within 10% of published), 14 state variables,
 parameter provenance in Table S1
 
-M3. Composite coupling via capacity envelope — composite_utils.py, extract_capacity_envelope and build_capacity_envelope_fn functions; per-reaction GPR capacity fraction
+**M3.** Composite coupling via capacity envelope — composite_utils.py, extract_capacity_envelope and build_capacity_envelope_fn functions; per-reaction GPR capacity fraction
 scales corresponding ODE Vmax
 
-M4. Mechanism modules — Bazil-Dash-style MPTP (Ca_x state, MCU/NCLX kinetics, Hill-function pore opening), Kagan cycle (cyt c + H₂O₂ → cardiolipin peroxidation → proton
+**M4.** Mechanism modules — Bazil-Dash-style MPTP (Ca_x state, MCU/NCLX kinetics, Hill-function pore opening), Kagan cycle (cyt c + H₂O₂ → cardiolipin peroxidation → proton
 leak amplification), Latin hypercube sensitivity (N=60 across 8 parameters with log-normal uncertainty)
 
-Data availability
+### Data availability
 
 - Code: github.com/[user]/mitomaven (or DOI-minted deposit)
 - MitoCarta cross-reference: results/phase_b/essential_genes_mitocarta_crossref.csv
 - All experiment CSVs in results/composite/
 - Audit trail (9 passes): docs/investigation/AUDIT_2026-04-23.md + COMPOSITE_AUDIT_2026-04-24.md
 
-Figures (6 in main text, plus supplementary)
+### Figures (6 in main text, plus supplementary)
 
-```text
-┌─────┬─────────────────────────────────────────────────────────┬───────────────────────────────────────────────────────────────────┐
-│  #  │                         Content                         │                              Source                               │
-├─────┼─────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ 1   │ Gene classification + MitoCarta validation              │ essential_genes_mitocarta_crossref.csv + new bar/Venn             │
-├─────┼─────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ 2   │ Order statistics + sensitivity tornado                  │ ex5_6_sensitivity_tornado.png refined                             │
-├─────┼─────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ 3   │ Composite architecture schematic                        │ new — conceptual diagram                                          │
-├─────┼─────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ 4   │ Scenario-dependent failure partition                    │ ex10_mptp_traces.png — refined version                            │
-├─────┼─────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ 5   │ Intervention predictions (MitoQ, cold chain, substrate) │ final_abstract_figure_composite.png panel (b) + cold chain detail │
-├─────┼─────────────────────────────────────────────────────────┼───────────────────────────────────────────────────────────────────┤
-│ 6   │ Syn3A crosswalk (or supp)                               │ from Phase P3 + new visualization                                 │
-└─────┴─────────────────────────────────────────────────────────┴───────────────────────────────────────────────────────────────────┘
-```
+| # | Content | Source |
+|---|---|---|
+| 1 | Gene classification + MitoCarta validation | `essential_genes_mitocarta_crossref.csv` + new bar/Venn |
+| 2 | Order statistics + sensitivity tornado | `ex5_6_sensitivity_tornado.png` refined |
+| 3 | Composite architecture schematic | new — conceptual diagram |
+| 4 | Scenario-dependent failure partition | `ex10_mptp_traces.png` — refined version |
+| 5 | Intervention predictions (MitoQ, cold chain, substrate) | `final_abstract_figure_composite.png` panel (b) + cold chain detail |
+| 6 | Syn3A crosswalk (or supp) | from Phase P3 + new visualization |
 
-Supplementary material
+### Supplementary material
 
 - S1: All 19+ Session-9 parameter values with provenance and uncertainty ranges (from beards_lab/beard_2005_params.csv + MPTP/ROS/Kagan parameter documentation)
 - S2: Complete TRUST_LEDGER with C1–C6 scoring for 18 claims
@@ -295,7 +283,7 @@ Supplementary material
 - S6: Source code + reproduction instructions
 - S7: Intervention dose-response extended data
 
-Honest positioning in cover letter
+### Honest positioning in cover letter
 
 "This is a mechanism-structured multi-scale composite model with literature-range parameters and explicit caveats. We believe the framework contribution (four-paradigm
 coupling, scenario-dependent failure partition, MitoCarta-validated essential set) is novel. Specific quantitative predictions invite wet-lab testing; we do not claim
@@ -303,7 +291,7 @@ dataset-calibrated quantitative accuracy. The pass-8 parameter-fitting transpare
 
 ---
 
-What the paper wouldn't do
+### What the paper wouldn't do
 
 - Claim "solved" mitochondrial transplantation
 - Claim first-principles calibration of specific TW numbers
@@ -311,12 +299,12 @@ What the paper wouldn't do
 - Claim clinical relevance beyond "identifies engineering-gap targets for wet-lab"
 - Hide the parameter-fitting transparency behind mechanism language (pass-7 retraction taught us this)
 
-Submission timing
+### Submission timing
 
 The q-bio Chicago abstract (May 31) is the abstract in this paper — a natural conference-abstract subset of the full paper. Full paper can be drafted across May–June and
 submitted to PLoS Comp Bio in June–July after we've received q-bio Chicago feedback.
 
-What's still needed to finish the full paper
+### What's still needed to finish the full paper
 
 - Regenerated Figure 4 (scenario partition with cleaner visualization)
 - New Figure 1 (gene classification + MitoCarta Venn)
@@ -326,7 +314,7 @@ What's still needed to finish the full paper
 - Walker et al 2025 verification for Introduction citations
 - Optional: wet-lab collaboration section if an empirical partner emerges
 
-The honest cover-letter arc
+### The honest cover-letter arc
 
 1. Novelty: multi-scale composite framework applied to extracted-organelle transit viability; scenario-dependent failure partition; 87.6% MitoCarta-validated essential
 set
