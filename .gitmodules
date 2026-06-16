@@ -1,0 +1,6 @@
+[submodule "09_Computational_Modeling/Whole_Cell_Modeling/mitomammal"]
+	path = 09_Computational_Modeling/Whole_Cell_Modeling/mitomammal
+	url = https://gitlab.com/habermann_lab/mitomammal.git
+[submodule "09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM"]
+	path = 09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM
+	url = https://github.com/SysBioChalmers/Human-GEM.git

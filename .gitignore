@@ -12,31 +12,26 @@ __pycache__/
 # ─── Oversized archive (exceeds GitHub's 100 MB hard limit) ───
 03_Study_Registry/source_archive.zip
 
-# ─── Embedded external repos — re-clone via 09_Computational_Modeling/setup_environment.sh ───
-09_Computational_Modeling/Whole_Cell_Modeling/mitomammal/
-09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/
-
-# ─── Large external reference data ───
+# ─── External whole-cell models ───
+# mitomammal + Human-GEM are now git SUBMODULES (see .gitmodules) — intentionally NOT ignored.
+# mitocarta is a single downloaded Broad MitoCarta 3.0 .xls (not a repo) → kept local:
 09_Computational_Modeling/Whole_Cell_Modeling/mitocarta/
 *.mat
 *.xls
 *.xlsx
 
-# ─── Copyright: published-paper PDFs (kept local only) ───
+# ─── Copyright: third-party published-paper PDFs (kept local) — but allow the OWN lab manual ───
 *.pdf
+!07_Lab_Manual/*.pdf
 
-# ─── Copyright (verified by inspecting actual file content) ───
-# Structured_JSON 'article' field = verbatim published-paper text → excluded
-05_Extracted_Data/Structured_JSON/
-# Consolidated_Protocols.txt reproduces verbatim bibliographic front-matter → excluded (borderline)
-06_Synthesis/Consolidated_Protocols.txt
-# NOTE: 05_Extracted_Data/Protocol_Summaries/ are AI-generated summaries (transformative) → INCLUDED
-
-# ─── Unpublished manuscript — held back per repo-visibility decision ───
-09_Computational_Modeling/docs/conference_planning/ABSTRACT_DRAFT_2026-04-23.md
+# Owner decision 2026-06-15 — the following ARE now tracked (previously excluded):
+#   05_Extracted_Data/Structured_JSON/      (verbatim paper text — owner opted to include)
+#   06_Synthesis/Consolidated_Protocols.txt (verbatim front-matter — owner opted to include)
+#   09_.../conference_planning/ABSTRACT_DRAFT_2026-04-23.md  (unpublished manuscript — owner opted to include)
+#   05_Extracted_Data/Protocol_Summaries/   (AI-generated summaries — included)
 
 # ─── Personal meta-artifact (recovered raw prompt log) ───
 09_Computational_Modeling/docs/RECOVERED_history_Mitochondria-Maven_sessions.md
 
-# ─── Bulky raw evidence dump (~25MB of LLM research JSON); synthesized findings kept as DOCINSIGHT_*.md ───
+# ─── Bulky raw evidence dump (~25MB LLM research JSON); synthesized findings kept as DOCINSIGHT_*.md ───
 09_Computational_Modeling/docs/conference_planning/docinsight_raw_results/
