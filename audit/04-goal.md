@@ -1,0 +1,805 @@
+# 04 — Long-Term Goal + External Research
+
+_Generated 2026-06-17T15:18:30.538Z · branch `claude/upbeat-keller-4c0z1s` · forensic-audit-pipeline_
+
+## Candidate goals (kept plural; each grounded in Stages 1–3)
+
+### ✅ Produce a quantitatively predictive computational model of the mitochondrial 'transit window' — how long an extracted mitochondrion keeps producing ATP / holds ΔΨm before reuptake viability is lost — via time-stepped, GPR-aware FBA on the MitoMAMMAL genome-scale model coupled to a Beard-2005 OXPHOS ODE.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| The FBA transit-window pipeline runs end-to-end and emits a concrete transit-window number (~29 h ceiling under uniform 12 h half-life decay) for scenarios A/B/C. | audit/03-execution.md:21,66 — experiment1_v2_transit_window.py ran to completion, 'Scenarios A/B/C all yield TW=29h for ATP and Delta-Psi objectives'; core FBA sweep TW=30h with first-binding reaction PIt2mB_mitoMap (line 65). |
+| The composite FBA→ODE coupling integrates ΔΨm/ATP/NADH trajectories and derives a transit window from the bridged capacity envelope. | audit/01-understanding.md:29 (composite_utils.py maps decay fractions to ODE Vmax multipliers); audit/03-execution.md:42 — experiment5_fba_ode.py ran: uniform_12h TW_ATP=33.6h, accel_30x TW_ΔΨm=66.6h/TW_ATP=13.7h. |
+| The ODE layer reproduces the Beard-2005 reference well enough to gate the implementation (PO-curve / ΔΨm validation passes). | audit/03-execution.md:41 — validate_against_beard.py 'Gate G2 PASS; low-Pi ΔΨm=186.3 mV (in 165-200 range); Pi stimulation confirmed.' |
+
+### ✅ Operate as a self-auditing 'mechanism scaffold / hypothesis generator' that quantifies the gap between the protein-decay-only ceiling (~29 h) and empirical reality (4–18 h), attributing the gap to non-proteomic failure modes (membrane/cardiolipin peroxidation, MPTP, Ca²⁺ overload, ROS) that FBA structurally cannot see.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| ROS-coupled protein-damage acceleration can close the 29 h→empirical gap: increasing damage coupling drives TW down into the empirical 4–18 h band. | audit/03-execution.md:37 — phase_g5_ros_coupling.py: k_damage=0 → TW=29h; k_damage=1 → TW=15h; k_damage=3 → TW=8h 'matching empirical 4-18h range.' |
+| MPTP / Ca²⁺ overload converts the failure mode from ATP-first to a co-limited collapse on sub-hour timescales for the ischemic scenario, demonstrating a non-proteomic failure partition. | audit/03-execution.md:49 — experiment10_mptp_composite.py: 'MPTP-ON changes Scenario C failure from ATP-first to co_limited at 0.24h; Scenarios A/B unaffected.' |
+| The repository explicitly frames model output as a non-calibrated scaffold (29 h ceiling vs 4–18 h empirical), not a validated predictor. | README.md:15-21 ('Honest headline — the model is a mechanism scaffold and hypothesis generator, not a calibrated predictor'; '~29 h' ceiling vs '4–18 h' empirical, 'the gap between them is the engineering target'). |
+
+### ✅ Characterize the proteomic-decay structure that governs the transit-window ceiling — the essential nuclear-encoded gene set and the rate-limiting bottleneck complex.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| A reproducible essential-gene set is computed via GPR-aware knockout scoring (mouse nuclear genes scoring 100% essential). | audit/03-execution.md:22 — experiment1b_v2_gpr_knockout.py: '769 nuclear genes scored; 374 mouse genes all essential (100%); top essentials are Complex III'; README.md:21 cites a '145-gene essential set (127/145 = 87.6% MitoCarta 3.0-validated).' |
+| Complex I / ETC complexes are identified as the capacity bottleneck binding at the threshold-crossing time. | audit/03-execution.md:31,72 — phase_c_forensic_29h.py: 'CI/CIII/CIV/CV all binding at t=29h'; README.md:21 'Complex I's 39-subunit AND-clause as the decay-governing bottleneck.' |
+| Per-subunit vs per-complex (independence vs holoenzyme) half-life regimes are tested against the uniform-decay model. | audit/03-execution.md:38 — phase_h_ci_subunit_analysis.py ran: 'TW predictions: independent=296h, holoenzyme=279h, assembly=390h; all much longer than 29h uniform-decay model' (note: F04/F05 flag this comparison as statistically degraded). |
+
+### ✅ Deliver a q-bio Chicago 2026 conference abstract (plus manuscript outline) as the near-term packaged output of the Layer-1 transit-window work.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| A conference-ready 2-panel abstract figure is generated from the MPTP scenario partition and MitoQ dose-response data. | audit/03-execution.md:47 — experiment8_abstract_figure.py ran: 'Panel (a) MPTP partition ... Panel (b) MitoQ dose-response (0→5μM extends TW 28.9→30.2h); figure saved to results/composite/final_abstract_figure_composite.png'; audit/01-understanding.md:53. |
+| The abstract + manuscript outline exists as a drafted deliverable in the repository. | README.md:99 ('✅ Conference-style abstract + full manuscript outline — drafted', linking ABSTRACT_DRAFT_2026-04-23.md); audit/01-understanding.md:141 (qbio_conference_analysis_2026-04-21.md). |
+| A submission/acceptance record for the May 31, 2026 deadline is present (currently UNMET — no submission record exists and the deadline has passed). | audit/02-static-audit.md:144-148 (F28): deadline May 31 2026 passed (today 2026-06-17), README.md:99 marks status '✅ ... drafted' with 'No file in the repository documents submission, acceptance, rejection, or a decision to withdraw.' |
+
+### ✅ Anchor the model's temporal predictions to an independent empirical wet-lab decay time-course (the stated key open validation gap), closing the loop from model output to measured viability.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| A wet-lab validation script overlays model-predicted decay curves against digitized 2024 yeast JC-1 data. | audit/01-understanding.md:79 — phase_k_wet_lab_validation.py 'Overlays model-predicted decay curves against user-digitized 2024 yeast JC-1 data.' |
+| The empirical anchor is actually supplied (currently UNMET — the wet-lab data file is absent and the script halts on a placeholder). | audit/03-execution.md:40 — phase_k_wet_lab_validation.py 'env-gated ... halted on missing wet-lab data file (jc1_timeline.csv not digitized); placeholder curve written'; README.md:100 ('⏳ Independent empirical anchor (a wet-lab decay time-course) — the key open validation gap'). |
+
+### ✅ Maintain a curated literature/knowledge base (114-paper study registry, tiered AI extractions, synthesis, and a bench-ready isolation manual) as the foundation feeding the computational program.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| A 114-paper screened study registry with inclusion scoring exists as the corpus denominator. | audit/01-understanding.md:21,99 — 03_Study_Registry/studies.csv '114 screened papers (1955-2024) with inclusion probabilities.' |
+| Three tiers of AI-extracted per-paper data (Structured_JSON, PDF_Metadata, Protocol_Summaries) feed cross-paper synthesis and a bench isolation manual. | audit/01-understanding.md:22-24 (05_Extracted_Data tiers, 06_Synthesis, 07_Lab_Manual); inventory shows ~140 data files (audit/01-understanding.md:38) and 07_Lab_Manual/Mitochondrial_Isolation_Report.pdf '32-page bench-ready isolation manual' (line 135). |
+
+### ✅ Achieve a clean, cross-platform reproducible computational pipeline (single source of truth for paths, pinned deps, runnable scripts) so the modeling results can be independently regenerated.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| A fresh environment built only from the declared dependency manifest can run the pipeline (currently UNMET — scipy and tellurium/roadrunner are missing from requirements.txt). | audit/02-static-audit.md:36-40 (F08 scipy absent), :48-52 (F22 tellurium/roadrunner absent); audit/03-execution.md:98 confirms 'requirements.txt contains no scipy entry.' |
+| Environment bootstrap works on the target platform (currently UNMET — setup_environment.sh hardcodes Apple-Silicon macOS paths and fails on Linux). | audit/02-static-audit.md:24-28 (F03); audit/03-execution.md:55 — venv workaround used because setup_environment.sh hardcodes /opt/homebrew paths. |
+| All experiment scripts resolve their inputs through the central paths.py and run without path/submodule errors (currently UNMET — F07/F43 wrong result paths, F31 uninitialized submodule, F13 hardcoded Dropbox paths). | audit/03-execution.md:29 (phase_b_cluster_and_sweep FileNotFoundError, F07), :24 (experiment1d F43), :51-53 (archive_v1 OSError on /Users/tomriddle1/ paths, F13); audit/02-static-audit.md:54-58 (F31 uninitialized mitomammal submodule). |
+
+### ⚠️ (needs human confirmation) Advance the long-range program of engineering programmable / autonomous extracellular mitochondria (Vision Layers 2–4: pre-modification surviving transit, mitochondria as gene-delivery vehicle, cell-free autonomous operation), with the Layer-1 transit-window model as the foundational first step.
+
+| Falsifiable success signal | Grounding |
+|---|---|
+| The 4-layer programmable/autonomous-mitochondria vision is documented as the explicit long-range goal, with Layer 1 (transit viability) named as the tractable near-term step. | 01_Vision_and_Strategy/Programmable_Mitochondria_Vision_2026-04-21.md:21-97 (four-layer architecture, sequencing Layer1→4); README.md:27-36 (4-layer table, Layers 2-4 marked Design/Concept/Long-range). |
+| Concrete progress toward Layers 2–4 (pre-modification methods, gene-delivery payload, cell-free operation) — NO executable or data artifact in Stages 1–3 supports any Layer 2–4 progress; only Layer-1 modeling code exists, so this remains a documented aspiration requiring human confirmation of intent/scope. | audit/01-understanding.md:13,25 — the only live executable system is 09_Computational_Modeling (Layer-1 transit-window FBA+ODE); vision doc itself marks Layers 2-4 'Theoretical'/'Decade-horizon' (Programmable_Mitochondria_Vision_2026-04-21.md:62,75,130). |
+
+## External research (cross-checked; uncorroborated = recorded as such)
+
+### Ideas that materially advance the goal
+
+| Idea | Serves goal | Sources |
+|---|---|---|
+| Keep MitoMAMMAL (560-reaction mammalian mitochondrial GEM, human/mouse GPR rules) as the stoichiometric constraint layer of the transit-window pipeline, and treat E-Flux2 proteomics contextualization as the supported route to tissue-specific (cardiac/BAT) flux bounds. | Goal 1 (quantitatively predictive transit-window model) explicitly runs time-stepped GPR-aware FBA on MitoMAMMAL; using a peer-reviewed, validated mammalian mitochondrial GEM with native human/mouse GPR rules is the only well-supported scaffold for that and avoids building a network from scratch. E-Flux2 is the same method MitoMAMMAL was validated with. | 3 |
+| Keep Beard-2005 as the core OXPHOS ODE engine and continue gating the implementation against its P/O and DeltaPsi reference behavior (the existing Gate G2 / low-Pi ~186 mV validation), reusing QAMAS open-source code where possible. | Goal 1's success signals require the ODE layer to reproduce Beard-2005 well enough to gate the build; a thermodynamically consistent, mass-and-charge-balanced, experimentally fitted model independently re-reviewed (Tseng 2022) is the best-supported mechanistic foundation, and QAMAS gives reusable Python/Tellurium implementations aligned with the repository's roadrunner layer. | 4 |
+| Formalize the composite FBA->ODE coupling as static-optimization dynamic FBA (dFBA): per time-step mini-FBA boundary fluxes drive ODE state updates (DeltaPsi/ATP/NADH), with decay fractions mapped to ODE Vmax multipliers. | Goal 1's composite-coupling success signal (experiment5_fba_ode bridging the capacity envelope) is exactly static-optimization dFBA; the Shewanella and iFBA papers independently establish this as a validated, workable FBA<->ODE architecture, grounding the repository's existing approach rather than ad hoc coupling. | 2 |
+| Add a site-specific ROS-production module (Bazil ETS-ROS: superoxide/H2O2 at complexes I/II/III as a function of DeltaPsi and NADH/Q redox) that drives a ROS-coupled protein-damage acceleration term in the decay model. | Goal 2 (closing the ~29 h proteomic ceiling vs 4-18 h empirical gap) is directly realized by the repository's ROS-coupling experiment where k_damage moves TW from 29h to 8-15h; a mechanistic, thermodynamically consistent ROS source gives the damage term physical grounding rather than a free parameter. | 2 |
+| Couple stochastic (Monte Carlo, ROS-driven) and deterministic (Ca2+/voltage bistable) mPTP models downstream of the ROS module, so the system can transition metabolic state -> ROS accumulation -> mPTP opening -> co-limited energy collapse on sub-hour timescales for ischemic scenarios. | Goal 2's success signal is exactly the MPTP composite experiment converting Scenario C failure from ATP-first to co-limited at ~0.24h; two independent mPTP models (stochastic + bistable ODE) corroborate that pore dynamics are a tractable, non-proteomic failure mode FBA cannot see. | 2 |
+| Add a cardiolipin-peroxidation sub-module (superoxide -> perhydroxyl radical at low matrix pH -> CL peroxidation -> cytochrome c peroxidase amplification -> DeltaPsi collapse/apoptosis) as a second non-proteomic failure pathway linking ROS state to membrane failure. | Goal 2 attributes the 29h-vs-empirical gap to membrane/cardiolipin peroxidation among other FBA-invisible modes; two independent mechanistic studies provide rate-law structure to encode this cascade, extending the gap-attribution partition beyond mPTP. | 2 |
+| Keep GPR-aware knockout scoring on MitoMAMMAL (Boolean AND-for-subunits / OR-for-isozymes) to compute the essential nuclear-encoded gene set and identify the rate-limiting ETC complex; use GPRuler only to fill any reactions lacking GPR rules. | Goal 3 (proteomic-decay structure governing the ceiling) requires reproducible GPR-aware essential-gene scoring (mouse nuclear genes 100% essential; Complex I 39-subunit AND-clause as bottleneck); COBRApy/COBRA Toolbox GPR semantics are the established basis, and GPRuler covers gap-filling. Prior mitochondrial-FBA models confirm ETC-complex essentiality predictions. | 4 |
+| Validate the computed essential-gene set and every reaction's compartment assignment against MitoCarta3.0 (1,136 genes; matrix/IM/IMS/OM localizations; 149 MitoPathways), reporting a coverage fraction as a quantitative model-quality metric. | Goal 3's deliverable already cites a 127/145 = 87.6% MitoCarta-validated essential set; making MitoCarta3.0 cross-referencing a formal pipeline step gives the bottleneck/essentiality claims a gold-standard denominator and surfaces mis-compartmentalized or non-mitochondrial genes. | 3 |
+| Parameterize the protein-decay layer with tissue-specific mitochondrial half-lives from metabolic-labeling datasets (cardiac ~17 d, hepatic ~4 d; range ~4-29 d) instead of a single uniform 12 h assumption, and flag proteins whose half-life is shorter than the transit window as high-degradation-risk. | Goal 1/Goal 3 rest on a decay model; the uniform-12h assumption is the weakest link (drives the 29h ceiling). Multiple independent turnover studies corroborate wide, tissue-dependent half-lives, letting the model produce tissue-specific ceilings. The MitoCoP-specific dataset is single-source, so cite it as a reference layer only. | 4 |
+| Expose a time-and-temperature-parameterized DeltaPsi/ATP viability estimator that emits a transplantation-readiness score, calibrated to the empirical 1-4 h (on-ice) post-isolation viability window and the isolation-time budget (<=30 min). | Goal 1 emits a concrete transit-window number, and Goal 2 contrasts it with the 4-18 h empirical band; an estimator anchored to measured viability windows turns model output into the actionable go/no-go readout that motivates the whole transit-window program. | 4 |
+| Build the wet-lab validation overlay around proper DeltaPsi probe handling: support the existing JC-1 decay time-course anchor but document TMRM as preferred for quantitative graded DeltaPsi and enforce probe-specific equilibration times (TMRM ~15 min, JC-1 red ~90 min). | Goal 5 (anchor temporal predictions to an independent wet-lab decay time-course) currently halts on a missing digitized JC-1 dataset; encoding correct probe semantics ensures the eventual empirical anchor is interpreted correctly and prevents design errors that would invalidate the model-vs-data overlay. | 3 |
+| Add an RCR-based go/no-go viability gate (state3/state4, default threshold ~5) cross-validated against ATP/O, with substrate-specific reference ranges and a warning when the two metrics disagree. | Goal 1/Goal 5 need an experimentally measurable quality criterion to compare model viability predictions against; RCR is the gold-standard isolated-mitochondria quality metric, and the dual-metric cross-check prevents single-metric false passes when validating transit-window predictions. | 2 |
+| Provide a tissue-specific parameter-estimation workflow that fits OXPHOS ODE maximal velocities to user respirometry (OCR under state 3/4, substrates, inhibitors) while fixing intrinsic Km, reusing the Function-2023 heart/kidney methodology. | Goal 1's predictive value depends on tissue-appropriate kinetics; a validated fit-Vmax/fix-Km respirometry workflow lets the transit-window ODE be personalized per tissue rather than using generic cardiac parameters, and the lung-mitochondria model corroborates that the Beard-family engine ports across tissues. | 2 |
+| Develop a reduced (few-state) OXPHOS surrogate ODE calibrated against the full Beard/Heiske model for high-throughput pathological sweeps and in silico inhibitor (toxicology) screening, using Heiske-2017 as the compact reference formulation. | Goal 2's pathological partitioning (complex deficiencies, inhibitor scenarios) and the MitoQ dose-response abstract figure require many scenario runs; a reduced surrogate keeps those sweeps tractable where the 17-state Beard model is prohibitive, with Heiske-2017 and the Frontiers DeltaPsi-inhibitor model establishing the compact-model approach. | 3 |
+| Incorporate a Ca2+-coupled OXPHOS module (simplified Magnus-Keizer / Bertram-2006) to represent Ca2+ overload effects on ATP production feeding into the mPTP trigger. | Goal 2 names Ca2+ overload as one of the non-proteomic failure modes converting Scenario C to co-limited collapse; a parameter-economical Ca2+->OXPHOS->mPTP coupling supplies the calcium arm of that failure partition, complementing the ROS and mPTP modules already supported. | 2 |
+| Use Flux Variability Analysis (and matrix-volume dynamics as an mPTP-swelling readout) to map which mitochondrial reactions are tightly constrained vs flexible at the threshold-crossing time, prioritizing the bottleneck reactions for experimental measurement. | Goal 3 identifies ETC complexes as the capacity bottleneck binding at the threshold time; FVA on the GEM quantifies which reactions are near-fixed vs have alternative routes (strengthening the bottleneck claim), and Bazil-2010 matrix-volume gives an observable swelling output for the mPTP arm. Volume model is single-source, so treat that piece as exploratory. | 3 |
+| Modernize the repository to pyproject.toml packaging with pinned dependencies (including the currently-missing scipy and tellurium/roadrunner) plus a GitHub Actions CI that runs the pipeline, gates on metabolic-task tests, and reports coverage; track pyOpenSci submission criteria. | Goal 7 (clean cross-platform reproducible pipeline) is currently UNMET: scipy/tellurium absent from requirements, macOS-hardcoded bootstrap, broken paths. The Scientific Python packaging/coverage standards and pyOpenSci checklist directly remediate these and make the modeling results independently regenerable and citable. The CI-blog detail is single-source, so adopt the guide-backed parts as canonical. | 4 |
+| Add an optional cryopreservation advisor (10% DMSO +/- trehalose, ~1C/min controlled cooling to -80C, with published post-thaw membrane-integrity outcomes) for extended-storage transit scenarios beyond the fresh on-ice window. | Supports the Vision Layer-2 (surviving extended transit) extension of Goal 1/Goal 8 by offering a literature-grounded preservation pathway with expected post-thaw viability fractions, while honestly noting no method yet replicates fresh-mitochondria efficacy. Lower priority than the core transit-window/gap work. | 3 |
+
+### Sources
+
+| Title | Corroboration | Claim | URL |
+|---|---|---|---|
+| MitoMAMMAL: a genome scale model of mammalian mitochondria predicts cardiac and BAT metabolism (Bioinformatics Advances 2024) | corroborated | Peer-reviewed genome-scale FBA model of mammalian mitochondria (560 reactions) with human and mouse gene-product-reaction rules; integrates proteomics via E-Flux2 and predicts OXPHOS-coupled energy metabolism in cardiomyocytes and brown adipocytes. This is the stoichiometric scaffold the repository's transit-window FBA is built on. | https://academic.oup.com/bioinformaticsadvances/article/5/1/vbae172/7876298 |
+| MitoMAMMAL (PMC / NCBI archived published version) | corroborated | Same published MitoMAMMAL work; can be contextualized with human and mouse -omics data and used in constraint-based FBA. Independent archive of the journal article corroborates the model's content and reaction count. | https://pmc.ncbi.nlm.nih.gov/articles/PMC11696703/ |
+| MitoMAMMAL bioRxiv preprint (July 2024) | single-source | Preprint of the same MitoMAMMAL study (560-reaction model). Same research group/work as the journal article, so it is the preprint of the primary source rather than independent corroboration. | https://www.biorxiv.org/content/10.1101/2024.07.26.605281v1 |
+| A Biophysical Model of the Mitochondrial Respiratory System and Oxidative Phosphorylation (Beard 2005, PLoS Comput Biol) | corroborated | Thermodynamically consistent, mass-and-charge balanced ODE model (~17 states) of complexes I/III/IV, ATP synthase, ANT, and Pi transporter, parameter-fitted to isolated cardiac mitochondria. This is the OXPHOS ODE engine the repository validates against (Gate G2; low-Pi DeltaPsi ~186 mV). | https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.0010036 |
+| Correction: A Biophysical Model of the Mitochondrial Respiratory System (PMC archive of Beard 2005) | corroborated | PMC-archived correction notice for Beard 2005 confirming publication and 16-parameter estimation over 9 independent data curves. Independent archive of the primary source. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1356095/ |
+| Kinetic Mathematical Modeling of Oxidative Phosphorylation in Cardiomyocyte Mitochondria (Tseng & Wei 2022, Cells) | corroborated | Independent comparative review of OXPHOS kinetic ODE models (Beard 2005, Magnus-Keizer, Heiske 2017), examining derivations, parameter identifiability, and validation. Independently corroborates Beard 2005 as a reference model and the complexity/identifiability trade-off motivating reduced models. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9777548/ |
+| QAMAS: Quantitative Analysis of Mitochondrial ATP Synthesis — Jupyter Book (Beard Lab) | corroborated | Open-source Python/MATLAB/Tellurium implementation of mitochondrial ATP-synthesis ODEs (ETC, ATP synthase, ANT, Pi transporter) with in vitro respirometry and in vivo respiratory-control simulation. Provides reusable code aligned with the repository's Tellurium/roadrunner ODE layer. | https://beards-lab.github.io/QAMAS_book/ |
+| Quantitative analysis of mitochondrial ATP synthesis (QAMAS companion paper, ScienceDirect) | corroborated | Peer-reviewed companion to the QAMAS Jupyter Book describing the thermodynamic/kinetic ATP-synthesis framework. Corroborates the QAMAS code's underlying model. | https://www.sciencedirect.com/science/article/abs/pii/S0025556421000833 |
+| Comprehensive mathematical model of oxidative phosphorylation valid for physiological and pathological conditions (Heiske, Letellier, Klipp 2017, FEBS J) | corroborated | Compact OXPHOS ODE reproducing correct P/O ratios and flux-force relations under state 3/4, uncoupling, and substrate shortage; rate constants depend on membrane potential, pH, and substrate concentration; explicitly valid for pathological conditions. A computationally cheaper engine for high-throughput pathological sweeps. | https://febs.onlinelibrary.wiley.com/doi/full/10.1111/febs.14151 |
+| Dynamic Modeling of Mitochondrial Membrane Potential Upon Exposure to Mitochondrial Inhibitors (Frontiers in Pharmacology 2021) | single-source | ODE model of DeltaPsi dynamics under complex I/III/V inhibitors for in silico toxicology screening; argues full Beard-2005 complexity precludes high-throughput use. Supports building a reduced ODE surrogate. Single primary report for this specific reduced-model claim. | https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.679407/full |
+| A simplified model for mitochondrial ATP production (Bertram, Pedersen, Luciani, Sherman 2006) | corroborated | Simplified Magnus-Keizer ODE capturing Ca2+ to OXPHOS coupling (MCU/mNCX) with fewer parameters; explains opposite Ca2+ effects on ATP at low vs high load. Relevant to the Ca2+-overload non-proteomic failure mode. | https://www.sciencedirect.com/science/article/abs/pii/S0022519306003225 |
+| Bertram 2006 — Physiome Model Repository (CellML) | corroborated | Independent CellML encoding of Bertram 2006 in the Physiome repository, confirming reuse/interoperability and corroborating the model's existence. | https://models.physiomeproject.org/exposure/a7f8b4574fe4802f1e06f247006962ac/bertram_2006.cellml/view |
+| Identifying Site-Specific Superoxide and H2O2 Production From the Mitochondrial ETS Using a Computational Strategy (Bazil et al., Function 2021) | corroborated | Thermodynamically consistent ETS-ROS ODE computing site-specific superoxide/H2O2 at complexes I, II, III as a function of membrane potential and NADH/Q redox. Mechanistic basis for the repository's ROS-coupled protein-damage term that closes the 29h to 4-18h gap. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8788716/ |
+| Computational modeling of mitochondrial superoxide production under varying substrate conditions (PMC, Bazil-related) | corroborated | Earlier computational ODE analysis of site-specific superoxide production under varying substrate/inhibitor conditions. Independently corroborates the ETS-ROS modeling approach. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4426091/ |
+| Understanding mPTP Transient and Permanent Opening with a Novel Stochastic Model (PMC 2022) | corroborated | Stochastic Monte Carlo + Hill model of mPTP opening/closing as a function of ROS in cardiomyocytes; distinguishes transient flickering from permanent opening. Supports the repository's mPTP composite scenario partition. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9146742/ |
+| Dual dynamics of mitochondrial permeability transition pore opening (Nature Scientific Reports 2020) | corroborated | Deterministic ODE model of mPTP under voltage and Ca2+ with a positive-feedback bistability. Independent corroboration of mPTP ODE modeling; complements the stochastic model. | https://www.nature.com/articles/s41598-020-60177-1 |
+| Modeling Mitochondrial Bioenergetics with Integrated Volume Dynamics (Bazil, Buzzard, Rundell 2010, PLoS Comput Biol) | single-source | ODE model adding matrix osmotic volume as a dynamic state that affects enzyme kinetics and serves as an mPTP-swelling readout. Single primary source for the integrated-volume extension. | https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1000632 |
+| Impact of Antioxidants on Cardiolipin Oxidation in Liposomes (Lokhmatikov et al. 2016, Oxid Med Cell Longev) | corroborated | Kinetic study showing cytochrome c becomes a peroxidase that amplifies cardiolipin peroxidation under oxidative stress, triggering apoptosis. Provides rate-law basis for a CL-peroxidation sub-module (a non-proteomic, FBA-invisible failure mode). | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4899610/ |
+| Cardiolipin, Perhydroxyl Radicals, and Lipid Peroxidation in Mitochondrial Dysfunction and Aging (Panov 2020, PMC) | corroborated | Mechanistic analysis: low matrix pH converts superoxide to perhydroxyl radical, initiating the CL peroxidation chain and linking it to membrane-potential collapse. Independently corroborates the CL-peroxidation cascade. | https://pmc.ncbi.nlm.nih.gov/articles/PMC7499269/ |
+| Integrating FBA into Kinetic Models to Decipher Dynamic Metabolism of Shewanella oneidensis MR-1 (PLoS Comput Biol) | corroborated | Static-optimization dFBA: time is divided into small intervals, each solved with a mini-FBA whose boundary fluxes feed an ODE update. A workable, validated FBA<->ODE coupling architecture matching the repository's composite FBA->ODE pipeline. | https://pmc.ncbi.nlm.nih.gov/articles/PMC3271021/ |
+| Dynamic Analysis of Integrated Signaling, Metabolic, and Regulatory Networks / iFBA (Covert et al. 2008, PMC) | corroborated | iFBA integrates FBA with ODEs and Boolean regulation in one framework. Independently corroborates multi-formalism FBA<->ODE coupling as an established method. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2377155/ |
+| Dynamic Flux Balance Analysis Models in SBML (bioRxiv) | single-source | Encodes dFBA (LP-based FBA + ODE kinetics) in SBML L3, addressing non-unique LP solutions and infeasibilities, enabling interoperable model exchange. Single preprint source. | https://www.biorxiv.org/content/10.1101/245076v2.full |
+| Gene-Protein-Reaction (GPR) Rules — opencobra/cobrapy (DeepWiki) | corroborated | GPR rules are Boolean expressions (AND for complex subunits, OR for isozymes) that map genes to reactions, enabling knockout simulation and omics integration in COBRApy. Underpins the repository's GPR-aware knockout essential-gene scoring. | https://deepwiki.com/opencobra/cobrapy/2.6-gene-protein-reaction-(gpr)-rules |
+| Managing Gene-Protein-Reaction Associations — opencobra/cobratoolbox (DeepWiki) | corroborated | generateRules converts human-readable grRules into machine-readable GPR rules for systematic constraint application. Independently corroborates GPR tooling for knockout/expression workflows. | https://deepwiki.com/opencobra/cobratoolbox/3.2-managing-gene-protein-reaction-associations |
+| GPRuler: Metabolic gene-protein-reaction rules automatic reconstruction (PLOS Comput Biol) | single-source | Open-source Python framework mining biological databases to auto-reconstruct GPR rules for any organism's model, enabling gene-deletion simulation. One primary paper (also archived at PMC), so the GPRuler tool itself is a single source though the GPR concept is broadly corroborated. | https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1009550 |
+| MitoCarta3.0: updated mitochondrial proteome with sub-organelle localization and pathway annotations (NAR / Oxford Academic) | corroborated | 1,136 human mitochondrial genes with curated matrix/inner-membrane/IMS/outer-membrane localizations and 149 MitoPathways. Gold-standard reference for validating which genes/reactions belong in a mitochondrial model (the repository cites 127/145 = 87.6% MitoCarta-validated essentials). | https://academic.oup.com/nar/article/49/D1/D1541/5974091 |
+| Beyond MitoCarta — network approach to candidate mitochondrial proteins (NAR Genomics and Bioinformatics) | corroborated | MitoCarta3.0 can be extended via network methods to find additional candidate mitochondrial proteins, supporting its use as a validation baseline while noting incompleteness. Corroborates MitoCarta as the reference set. | https://academic.oup.com/nargab/article/5/4/lqad107/7479272 |
+| A Quantitative Approach to Mapping Mitochondrial Specialization and Plasticity (PMC) | corroborated | The 149 MitoPathway scores quantify mitochondrial diversity/plasticity from -omics data, providing a validation framework for model predictions. Independently corroborates MitoPathway-based validation. | https://pmc.ncbi.nlm.nih.gov/articles/PMC11844627/ |
+| E-Flux2 and SPOT: Validated Methods for Inferring Intracellular Flux from Transcriptomic Data (PMC) | corroborated | E-Flux2 constrains reaction bounds proportional to gene expression with L2-norm minimization to predict intracellular flux distributions. The omics-integration method MitoMAMMAL itself uses for tissue contextualization. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4915706/ |
+| Quantitative high-confidence human mitochondrial proteome and dynamics: MitoCoP (Cell Metabolism 2021) | single-source | Defines 1,134 high-confidence human mitochondrial proteins with half-lives spanning hours to months and abundances over six orders of magnitude. The specific MitoCoP dataset is a single primary source, though the wide half-life span is corroborated by the turnover studies below. | https://www.cell.com/cell-metabolism/fulltext/S1550-4131(21)00529-5 |
+| Metabolic Labeling Reveals Proteome Dynamics of Mouse Mitochondria (Mol Cell Proteomics 2020) | corroborated | Cardiac mitochondrial proteins median half-life 17.2 d (0.0402/d); hepatic 4.26 d (0.163/d); 458 proteins by stable-isotope labeling. Provides tissue-specific decay rates for parameterizing the protein-decay transit-window model. | https://www.mcponline.org/article/S1535-9476(20)33455-1/fulltext |
+| Tissue-specific mitochondrial proteome turnover rates (Scientific Reports 2023) | corroborated | Tissue-specific median mitochondrial protein half-lives range ~4.03 d (liver) to 28.6 d (striatal synaptic). Independently corroborates wide, tissue-dependent turnover used to set decay half-lives. | https://www.nature.com/articles/s41598-023-38484-0 |
+| Systematic analysis of protein turnover in primary cells (Nature Communications 2018) | corroborated | Mitochondrial proteins generally turn over more slowly than other compartments; SILAC+MS validated (dataset PXD008511). Independently corroborates compartment-level turnover behavior. | https://www.nature.com/articles/s41467-018-03106-1 |
+| Functional assessment of isolated mitochondria in vitro (Kuznetsov et al., Methods 2008) | corroborated | Isolated mitochondria should be used within ~4 h on ice for optimal function; protocol covers OCR, DeltaPsi, ROS, ATP, and swelling. Empirical anchor for the lower end of the transit-window viability range. | https://pubmed.ncbi.nlm.nih.gov/19426878/ |
+| Periprocedural therapeutics do not impair extracellular mitochondrial viability in transplantation (PMC 2025) | corroborated | Isolated mitochondria remain viable on ice ~1-2 h post-isolation; viability assessed by DeltaPsi, OCR, and ATP. Empirical anchor for the transit-window upper bound and viability readouts. | https://pmc.ncbi.nlm.nih.gov/articles/PMC12078252/ |
+| Mitochondrial transplantation: advance to therapeutic application and molecular modulation (Front Cardiovasc Med 2023) | corroborated | Short post-isolation viability window limits transplantation; no cryopreservation fully replicates fresh efficacy; viability metrics are DeltaPsi, OCR, ATP. Corroborates the transit-window constraint and motivates preservation work. | https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2023.1268814/full |
+| Isolation of mitochondria from mouse tissues for functional analysis (PMC 2024) | corroborated | All steps must stay ice-cold to preserve coupling; viability confirmed with TMRE/MitoTracker Green; rapid isolation is essential. Corroborates handling constraints feeding the transit-window estimator. | https://pmc.ncbi.nlm.nih.gov/articles/PMC11105805/ |
+| Mitochondrial transplantation for therapeutic use (McCully, Clin Transl Med 2016) | corroborated | Autogenous mitochondria isolated in ~30 min within the surgical window; intact viable mitochondria required for uptake/efficacy. Anchors the isolation-time budget of a transplantation timeline tracker. | https://onlinelibrary.wiley.com/doi/10.1186/s40169-016-0095-4 |
+| Measuring mitochondrial membrane potential (EMBO Journal 2025) | corroborated | TMRM equilibrates in ~15 min and is preferred for quantitative graded DeltaPsi; JC-1 red aggregate needs ~90 min. Informs probe-selection and equilibration enforcement for DeltaPsi time-courses (the wet-lab anchor uses JC-1). | https://link.springer.com/article/10.1038/s44318-025-00632-9 |
+| Mitochondrial Membrane Potential Using JC-1 Dye (PMC 2019) | corroborated | JC-1 forms red aggregates at high DeltaPsi and green monomers at low DeltaPsi; ratiometric readout gives semi-quantitative DeltaPsi. Corroborates interpretation of the JC-1 decay time-course used for wet-lab validation. | https://pmc.ncbi.nlm.nih.gov/articles/PMC6343665/ |
+| Mitochondrial membrane potential probes and the proton gradient: practical usage guide (PMC 2011) | corroborated | TMRM and JC-1 accumulate proportional to DeltaPsi; TMRM recommended for quantitation; calibration via step-depolarization. Independently corroborates probe behavior and calibration needs. | https://pmc.ncbi.nlm.nih.gov/articles/PMC3115691/ |
+| Assessing mitochondrial dysfunction in cells (PMC 2011) | corroborated | Respiratory Control Ratio (state3/state4) is the gold-standard isolated-mitochondria quality metric; healthy values 3-10 by substrate; RCR falls with injury. Basis for an RCR go/no-go viability gate. | https://pmc.ncbi.nlm.nih.gov/articles/PMC3076726/ |
+| RCR and ATP/O Indices Can Give Contradictory Messages about Mitochondrial Efficiency (Integr Comp Biol 2018) | corroborated | RCR and ATP/O can disagree depending on substrate; both should be measured together. Independently corroborates dual-metric quality assessment to avoid single-metric false passes. | https://academic.oup.com/icb/article/58/3/486/5049469 |
+| Methods for Detection of Mitochondrial and Cellular ROS (PMC 2014) | corroborated | MitoSOX is the standard probe for mitochondrial superoxide in live cells/isolated organelles but requires calibration for quantitation. Relevant to interpreting ROS measurements that feed the ROS-damage coupling. | https://pmc.ncbi.nlm.nih.gov/articles/PMC3887411/ |
+| Pitfalls of ROS Measurements and Mitochondrial Superoxide Determination Using MitoSOX (Springer MMB 2020) | corroborated | Bulk MitoSOX fluorescence has specificity limits; HPLC detection of 2-OH-Mito-E+ is more specific. Independently corroborates MitoSOX caveats, preventing over-interpretation of plate-reader ROS data. | https://link.springer.com/chapter/10.1007/978-3-030-47318-1_2 |
+| Computational Modeling of Substrate-Dependent Mitochondrial Respiration in Heart and Kidney (Function 2023) | corroborated | Per-tissue ODE model fitted to respirometry (OCR under state 3/4, substrates, inhibitors), estimating tissue-specific Vmax while fixing intrinsic Km; predicts redox states, fluxes, DeltaPsi, RCI. A concrete Bayesian-style parameter-estimation workflow for tissue-specific OXPHOS ODE calibration. | https://academic.oup.com/function/article/4/5/zqad038/7231080 |
+| Integrated computational model of isolated lung mitochondria bioenergetics (PLoS One 2018) | corroborated | Integrated ODE model of lung mitochondria, demonstrating portability of the Beard-family OXPHOS framework across tissues. Corroborates tissue-portability of the kinetic engine. | https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0197921 |
+| COBRApy: COnstraints-Based Reconstruction and Analysis for Python (PMC) | corroborated | Standard Python package for constraint-based modeling: FBA, FVA, gene knockouts, flux sampling, SBML/JSON I/O. The software layer for the repository's FBA and FVA analyses. | https://pmc.ncbi.nlm.nih.gov/articles/PMC3751080/ |
+| Current status and applications of genome-scale metabolic models (Genome Biology / PMC) | corroborated | Multi-compartment GEMs (including mitochondria) are standard; context-specific models give more accurate predictions than non-compartmentalized ones. Corroborates the value of FVA/context-specific analysis on the mitochondrial GEM. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6567666/ |
+| A metabolic model of the mitochondrion and modelling TCA-cycle diseases (BMC Systems Biology, iAS253) | corroborated | FBA of a mitochondrial model (253 reactions) reproduced TCA-cycle disorders (fumarase, SDH, alpha-KGDH deficiency) matching phenotypes. Precedent that mitochondrial-FBA knockouts recapitulate disease phenotypes. | https://bmcsystbiol.biomedcentral.com/articles/10.1186/1752-0509-5-102 |
+| Metabolic flexibility of mitochondrial respiratory chain disorders predicted by computer modelling (PMC) | corroborated | Cardiomyocyte mitochondrial models (>300 reactions) predict complex I deficiency is compensable while complex III/IV deficiencies most reduce ATP. Corroborates ETC-complex bottleneck/essentiality predictions via FBA knockouts. | https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5115619/ |
+| Cryopreservation of brain mitochondria: a methodology for functional studies (J Neurosci Methods 2005) | corroborated | Cortical mitochondria cryopreserved with 10% DMSO at ~1C/min to -80C; partial post-thaw recovery of transport/synthesis. Basis for a cryopreservation advisor for extended-storage transit scenarios. | https://www.sciencedirect.com/science/article/abs/pii/S0165027005003079 |
+| Trehalose in cryopreservation: applications, mechanisms, delivery (PMC 2024) | corroborated | Trehalose plus DMSO improves post-thaw viability and stabilizes membrane phase transitions; outer-membrane integrity confirmed post freeze-thaw. Independently corroborates cryoprotectant strategy for banked mitochondria. | https://pmc.ncbi.nlm.nih.gov/articles/PMC11411628/ |
+| Code coverage — Scientific Python Development Guide (2024) | corroborated | Community guidance: pytest-cov configured via pyproject.toml, GitHub Actions coverage upload, sysmon backend on 3.12+. Standard for making the pipeline reproducible and test-gated (addresses the repository's reproducibility gaps). | https://learn.scientific-python.org/development/guides/coverage/ |
+| Simple packaging — Scientific Python Development Guide (2024) | corroborated | pyproject.toml [build-system]/[project] is the modern packaging standard; recommended backends Hatchling/Flit-core/PDM/setuptools; semantic versioning expected. Directly addresses the missing-dependency / non-portable-bootstrap reproducibility goal. | https://learn.scientific-python.org/development/guides/packaging-simple/ |
+| pyOpenSci Software Peer Review Guide (2024) | corroborated | Open peer-review process evaluating test coverage, CI, documentation, license, and citation metadata, with a JOSS publication pathway. Supports a repo-health checklist that strengthens scientific credibility/citability. | https://www.pyopensci.org/software-peer-review/about/intro.html |
+| Modern Python CI with Coverage in 2025 (Daniel Nouri blog) | single-source | py-cov-action posts PR coverage comments/badges without external services; pytest-xdist parallelizes; hard-coding --cov-config avoids misconfiguration. Single-author blog; practical detail, not independently corroborated. | https://danielnouri.org/notes/2025/11/03/modern-python-ci-with-coverage-in-2025/ |
+
+
+## Machine-checkable data
+
+```json
+{
+  "goal": {
+    "candidates": [
+      {
+        "goal": "Produce a quantitatively predictive computational model of the mitochondrial 'transit window' — how long an extracted mitochondrion keeps producing ATP / holds ΔΨm before reuptake viability is lost — via time-stepped, GPR-aware FBA on the MitoMAMMAL genome-scale model coupled to a Beard-2005 OXPHOS ODE.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "The FBA transit-window pipeline runs end-to-end and emits a concrete transit-window number (~29 h ceiling under uniform 12 h half-life decay) for scenarios A/B/C.",
+            "grounding": "audit/03-execution.md:21,66 — experiment1_v2_transit_window.py ran to completion, 'Scenarios A/B/C all yield TW=29h for ATP and Delta-Psi objectives'; core FBA sweep TW=30h with first-binding reaction PIt2mB_mitoMap (line 65)."
+          },
+          {
+            "signal": "The composite FBA→ODE coupling integrates ΔΨm/ATP/NADH trajectories and derives a transit window from the bridged capacity envelope.",
+            "grounding": "audit/01-understanding.md:29 (composite_utils.py maps decay fractions to ODE Vmax multipliers); audit/03-execution.md:42 — experiment5_fba_ode.py ran: uniform_12h TW_ATP=33.6h, accel_30x TW_ΔΨm=66.6h/TW_ATP=13.7h."
+          },
+          {
+            "signal": "The ODE layer reproduces the Beard-2005 reference well enough to gate the implementation (PO-curve / ΔΨm validation passes).",
+            "grounding": "audit/03-execution.md:41 — validate_against_beard.py 'Gate G2 PASS; low-Pi ΔΨm=186.3 mV (in 165-200 range); Pi stimulation confirmed.'"
+          }
+        ]
+      },
+      {
+        "goal": "Operate as a self-auditing 'mechanism scaffold / hypothesis generator' that quantifies the gap between the protein-decay-only ceiling (~29 h) and empirical reality (4–18 h), attributing the gap to non-proteomic failure modes (membrane/cardiolipin peroxidation, MPTP, Ca²⁺ overload, ROS) that FBA structurally cannot see.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "ROS-coupled protein-damage acceleration can close the 29 h→empirical gap: increasing damage coupling drives TW down into the empirical 4–18 h band.",
+            "grounding": "audit/03-execution.md:37 — phase_g5_ros_coupling.py: k_damage=0 → TW=29h; k_damage=1 → TW=15h; k_damage=3 → TW=8h 'matching empirical 4-18h range.'"
+          },
+          {
+            "signal": "MPTP / Ca²⁺ overload converts the failure mode from ATP-first to a co-limited collapse on sub-hour timescales for the ischemic scenario, demonstrating a non-proteomic failure partition.",
+            "grounding": "audit/03-execution.md:49 — experiment10_mptp_composite.py: 'MPTP-ON changes Scenario C failure from ATP-first to co_limited at 0.24h; Scenarios A/B unaffected.'"
+          },
+          {
+            "signal": "The repository explicitly frames model output as a non-calibrated scaffold (29 h ceiling vs 4–18 h empirical), not a validated predictor.",
+            "grounding": "README.md:15-21 ('Honest headline — the model is a mechanism scaffold and hypothesis generator, not a calibrated predictor'; '~29 h' ceiling vs '4–18 h' empirical, 'the gap between them is the engineering target')."
+          }
+        ]
+      },
+      {
+        "goal": "Characterize the proteomic-decay structure that governs the transit-window ceiling — the essential nuclear-encoded gene set and the rate-limiting bottleneck complex.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "A reproducible essential-gene set is computed via GPR-aware knockout scoring (mouse nuclear genes scoring 100% essential).",
+            "grounding": "audit/03-execution.md:22 — experiment1b_v2_gpr_knockout.py: '769 nuclear genes scored; 374 mouse genes all essential (100%); top essentials are Complex III'; README.md:21 cites a '145-gene essential set (127/145 = 87.6% MitoCarta 3.0-validated).'"
+          },
+          {
+            "signal": "Complex I / ETC complexes are identified as the capacity bottleneck binding at the threshold-crossing time.",
+            "grounding": "audit/03-execution.md:31,72 — phase_c_forensic_29h.py: 'CI/CIII/CIV/CV all binding at t=29h'; README.md:21 'Complex I's 39-subunit AND-clause as the decay-governing bottleneck.'"
+          },
+          {
+            "signal": "Per-subunit vs per-complex (independence vs holoenzyme) half-life regimes are tested against the uniform-decay model.",
+            "grounding": "audit/03-execution.md:38 — phase_h_ci_subunit_analysis.py ran: 'TW predictions: independent=296h, holoenzyme=279h, assembly=390h; all much longer than 29h uniform-decay model' (note: F04/F05 flag this comparison as statistically degraded)."
+          }
+        ]
+      },
+      {
+        "goal": "Deliver a q-bio Chicago 2026 conference abstract (plus manuscript outline) as the near-term packaged output of the Layer-1 transit-window work.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "A conference-ready 2-panel abstract figure is generated from the MPTP scenario partition and MitoQ dose-response data.",
+            "grounding": "audit/03-execution.md:47 — experiment8_abstract_figure.py ran: 'Panel (a) MPTP partition ... Panel (b) MitoQ dose-response (0→5μM extends TW 28.9→30.2h); figure saved to results/composite/final_abstract_figure_composite.png'; audit/01-understanding.md:53."
+          },
+          {
+            "signal": "The abstract + manuscript outline exists as a drafted deliverable in the repository.",
+            "grounding": "README.md:99 ('✅ Conference-style abstract + full manuscript outline — drafted', linking ABSTRACT_DRAFT_2026-04-23.md); audit/01-understanding.md:141 (qbio_conference_analysis_2026-04-21.md)."
+          },
+          {
+            "signal": "A submission/acceptance record for the May 31, 2026 deadline is present (currently UNMET — no submission record exists and the deadline has passed).",
+            "grounding": "audit/02-static-audit.md:144-148 (F28): deadline May 31 2026 passed (today 2026-06-17), README.md:99 marks status '✅ ... drafted' with 'No file in the repository documents submission, acceptance, rejection, or a decision to withdraw.'"
+          }
+        ]
+      },
+      {
+        "goal": "Anchor the model's temporal predictions to an independent empirical wet-lab decay time-course (the stated key open validation gap), closing the loop from model output to measured viability.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "A wet-lab validation script overlays model-predicted decay curves against digitized 2024 yeast JC-1 data.",
+            "grounding": "audit/01-understanding.md:79 — phase_k_wet_lab_validation.py 'Overlays model-predicted decay curves against user-digitized 2024 yeast JC-1 data.'"
+          },
+          {
+            "signal": "The empirical anchor is actually supplied (currently UNMET — the wet-lab data file is absent and the script halts on a placeholder).",
+            "grounding": "audit/03-execution.md:40 — phase_k_wet_lab_validation.py 'env-gated ... halted on missing wet-lab data file (jc1_timeline.csv not digitized); placeholder curve written'; README.md:100 ('⏳ Independent empirical anchor (a wet-lab decay time-course) — the key open validation gap')."
+          }
+        ]
+      },
+      {
+        "goal": "Maintain a curated literature/knowledge base (114-paper study registry, tiered AI extractions, synthesis, and a bench-ready isolation manual) as the foundation feeding the computational program.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "A 114-paper screened study registry with inclusion scoring exists as the corpus denominator.",
+            "grounding": "audit/01-understanding.md:21,99 — 03_Study_Registry/studies.csv '114 screened papers (1955-2024) with inclusion probabilities.'"
+          },
+          {
+            "signal": "Three tiers of AI-extracted per-paper data (Structured_JSON, PDF_Metadata, Protocol_Summaries) feed cross-paper synthesis and a bench isolation manual.",
+            "grounding": "audit/01-understanding.md:22-24 (05_Extracted_Data tiers, 06_Synthesis, 07_Lab_Manual); inventory shows ~140 data files (audit/01-understanding.md:38) and 07_Lab_Manual/Mitochondrial_Isolation_Report.pdf '32-page bench-ready isolation manual' (line 135)."
+          }
+        ]
+      },
+      {
+        "goal": "Achieve a clean, cross-platform reproducible computational pipeline (single source of truth for paths, pinned deps, runnable scripts) so the modeling results can be independently regenerated.",
+        "status": "grounded",
+        "success_signals": [
+          {
+            "signal": "A fresh environment built only from the declared dependency manifest can run the pipeline (currently UNMET — scipy and tellurium/roadrunner are missing from requirements.txt).",
+            "grounding": "audit/02-static-audit.md:36-40 (F08 scipy absent), :48-52 (F22 tellurium/roadrunner absent); audit/03-execution.md:98 confirms 'requirements.txt contains no scipy entry.'"
+          },
+          {
+            "signal": "Environment bootstrap works on the target platform (currently UNMET — setup_environment.sh hardcodes Apple-Silicon macOS paths and fails on Linux).",
+            "grounding": "audit/02-static-audit.md:24-28 (F03); audit/03-execution.md:55 — venv workaround used because setup_environment.sh hardcodes /opt/homebrew paths."
+          },
+          {
+            "signal": "All experiment scripts resolve their inputs through the central paths.py and run without path/submodule errors (currently UNMET — F07/F43 wrong result paths, F31 uninitialized submodule, F13 hardcoded Dropbox paths).",
+            "grounding": "audit/03-execution.md:29 (phase_b_cluster_and_sweep FileNotFoundError, F07), :24 (experiment1d F43), :51-53 (archive_v1 OSError on /Users/tomriddle1/ paths, F13); audit/02-static-audit.md:54-58 (F31 uninitialized mitomammal submodule)."
+          }
+        ]
+      },
+      {
+        "goal": "Advance the long-range program of engineering programmable / autonomous extracellular mitochondria (Vision Layers 2–4: pre-modification surviving transit, mitochondria as gene-delivery vehicle, cell-free autonomous operation), with the Layer-1 transit-window model as the foundational first step.",
+        "status": "needs-human-confirmation",
+        "success_signals": [
+          {
+            "signal": "The 4-layer programmable/autonomous-mitochondria vision is documented as the explicit long-range goal, with Layer 1 (transit viability) named as the tractable near-term step.",
+            "grounding": "01_Vision_and_Strategy/Programmable_Mitochondria_Vision_2026-04-21.md:21-97 (four-layer architecture, sequencing Layer1→4); README.md:27-36 (4-layer table, Layers 2-4 marked Design/Concept/Long-range)."
+          },
+          {
+            "signal": "Concrete progress toward Layers 2–4 (pre-modification methods, gene-delivery payload, cell-free operation) — NO executable or data artifact in Stages 1–3 supports any Layer 2–4 progress; only Layer-1 modeling code exists, so this remains a documented aspiration requiring human confirmation of intent/scope.",
+            "grounding": "audit/01-understanding.md:13,25 — the only live executable system is 09_Computational_Modeling (Layer-1 transit-window FBA+ODE); vision doc itself marks Layers 2-4 'Theoretical'/'Decade-horizon' (Programmable_Mitochondria_Vision_2026-04-21.md:62,75,130)."
+          }
+        ]
+      }
+    ]
+  },
+  "research": {
+    "sources": [
+      {
+        "title": "MitoMAMMAL: a genome scale model of mammalian mitochondria predicts cardiac and BAT metabolism (Bioinformatics Advances 2024)",
+        "url": "https://academic.oup.com/bioinformaticsadvances/article/5/1/vbae172/7876298",
+        "claim": "Peer-reviewed genome-scale FBA model of mammalian mitochondria (560 reactions) with human and mouse gene-product-reaction rules; integrates proteomics via E-Flux2 and predicts OXPHOS-coupled energy metabolism in cardiomyocytes and brown adipocytes. This is the stoichiometric scaffold the repository's transit-window FBA is built on.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "MitoMAMMAL (PMC / NCBI archived published version)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11696703/",
+        "claim": "Same published MitoMAMMAL work; can be contextualized with human and mouse -omics data and used in constraint-based FBA. Independent archive of the journal article corroborates the model's content and reaction count.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "MitoMAMMAL bioRxiv preprint (July 2024)",
+        "url": "https://www.biorxiv.org/content/10.1101/2024.07.26.605281v1",
+        "claim": "Preprint of the same MitoMAMMAL study (560-reaction model). Same research group/work as the journal article, so it is the preprint of the primary source rather than independent corroboration.",
+        "corroboration": "single-source"
+      },
+      {
+        "title": "A Biophysical Model of the Mitochondrial Respiratory System and Oxidative Phosphorylation (Beard 2005, PLoS Comput Biol)",
+        "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.0010036",
+        "claim": "Thermodynamically consistent, mass-and-charge balanced ODE model (~17 states) of complexes I/III/IV, ATP synthase, ANT, and Pi transporter, parameter-fitted to isolated cardiac mitochondria. This is the OXPHOS ODE engine the repository validates against (Gate G2; low-Pi DeltaPsi ~186 mV).",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Correction: A Biophysical Model of the Mitochondrial Respiratory System (PMC archive of Beard 2005)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1356095/",
+        "claim": "PMC-archived correction notice for Beard 2005 confirming publication and 16-parameter estimation over 9 independent data curves. Independent archive of the primary source.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Kinetic Mathematical Modeling of Oxidative Phosphorylation in Cardiomyocyte Mitochondria (Tseng & Wei 2022, Cells)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9777548/",
+        "claim": "Independent comparative review of OXPHOS kinetic ODE models (Beard 2005, Magnus-Keizer, Heiske 2017), examining derivations, parameter identifiability, and validation. Independently corroborates Beard 2005 as a reference model and the complexity/identifiability trade-off motivating reduced models.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "QAMAS: Quantitative Analysis of Mitochondrial ATP Synthesis — Jupyter Book (Beard Lab)",
+        "url": "https://beards-lab.github.io/QAMAS_book/",
+        "claim": "Open-source Python/MATLAB/Tellurium implementation of mitochondrial ATP-synthesis ODEs (ETC, ATP synthase, ANT, Pi transporter) with in vitro respirometry and in vivo respiratory-control simulation. Provides reusable code aligned with the repository's Tellurium/roadrunner ODE layer.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Quantitative analysis of mitochondrial ATP synthesis (QAMAS companion paper, ScienceDirect)",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0025556421000833",
+        "claim": "Peer-reviewed companion to the QAMAS Jupyter Book describing the thermodynamic/kinetic ATP-synthesis framework. Corroborates the QAMAS code's underlying model.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Comprehensive mathematical model of oxidative phosphorylation valid for physiological and pathological conditions (Heiske, Letellier, Klipp 2017, FEBS J)",
+        "url": "https://febs.onlinelibrary.wiley.com/doi/full/10.1111/febs.14151",
+        "claim": "Compact OXPHOS ODE reproducing correct P/O ratios and flux-force relations under state 3/4, uncoupling, and substrate shortage; rate constants depend on membrane potential, pH, and substrate concentration; explicitly valid for pathological conditions. A computationally cheaper engine for high-throughput pathological sweeps.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Dynamic Modeling of Mitochondrial Membrane Potential Upon Exposure to Mitochondrial Inhibitors (Frontiers in Pharmacology 2021)",
+        "url": "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.679407/full",
+        "claim": "ODE model of DeltaPsi dynamics under complex I/III/V inhibitors for in silico toxicology screening; argues full Beard-2005 complexity precludes high-throughput use. Supports building a reduced ODE surrogate. Single primary report for this specific reduced-model claim.",
+        "corroboration": "single-source"
+      },
+      {
+        "title": "A simplified model for mitochondrial ATP production (Bertram, Pedersen, Luciani, Sherman 2006)",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0022519306003225",
+        "claim": "Simplified Magnus-Keizer ODE capturing Ca2+ to OXPHOS coupling (MCU/mNCX) with fewer parameters; explains opposite Ca2+ effects on ATP at low vs high load. Relevant to the Ca2+-overload non-proteomic failure mode.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Bertram 2006 — Physiome Model Repository (CellML)",
+        "url": "https://models.physiomeproject.org/exposure/a7f8b4574fe4802f1e06f247006962ac/bertram_2006.cellml/view",
+        "claim": "Independent CellML encoding of Bertram 2006 in the Physiome repository, confirming reuse/interoperability and corroborating the model's existence.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Identifying Site-Specific Superoxide and H2O2 Production From the Mitochondrial ETS Using a Computational Strategy (Bazil et al., Function 2021)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8788716/",
+        "claim": "Thermodynamically consistent ETS-ROS ODE computing site-specific superoxide/H2O2 at complexes I, II, III as a function of membrane potential and NADH/Q redox. Mechanistic basis for the repository's ROS-coupled protein-damage term that closes the 29h to 4-18h gap.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Computational modeling of mitochondrial superoxide production under varying substrate conditions (PMC, Bazil-related)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4426091/",
+        "claim": "Earlier computational ODE analysis of site-specific superoxide production under varying substrate/inhibitor conditions. Independently corroborates the ETS-ROS modeling approach.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Understanding mPTP Transient and Permanent Opening with a Novel Stochastic Model (PMC 2022)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9146742/",
+        "claim": "Stochastic Monte Carlo + Hill model of mPTP opening/closing as a function of ROS in cardiomyocytes; distinguishes transient flickering from permanent opening. Supports the repository's mPTP composite scenario partition.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Dual dynamics of mitochondrial permeability transition pore opening (Nature Scientific Reports 2020)",
+        "url": "https://www.nature.com/articles/s41598-020-60177-1",
+        "claim": "Deterministic ODE model of mPTP under voltage and Ca2+ with a positive-feedback bistability. Independent corroboration of mPTP ODE modeling; complements the stochastic model.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Modeling Mitochondrial Bioenergetics with Integrated Volume Dynamics (Bazil, Buzzard, Rundell 2010, PLoS Comput Biol)",
+        "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1000632",
+        "claim": "ODE model adding matrix osmotic volume as a dynamic state that affects enzyme kinetics and serves as an mPTP-swelling readout. Single primary source for the integrated-volume extension.",
+        "corroboration": "single-source"
+      },
+      {
+        "title": "Impact of Antioxidants on Cardiolipin Oxidation in Liposomes (Lokhmatikov et al. 2016, Oxid Med Cell Longev)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4899610/",
+        "claim": "Kinetic study showing cytochrome c becomes a peroxidase that amplifies cardiolipin peroxidation under oxidative stress, triggering apoptosis. Provides rate-law basis for a CL-peroxidation sub-module (a non-proteomic, FBA-invisible failure mode).",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Cardiolipin, Perhydroxyl Radicals, and Lipid Peroxidation in Mitochondrial Dysfunction and Aging (Panov 2020, PMC)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7499269/",
+        "claim": "Mechanistic analysis: low matrix pH converts superoxide to perhydroxyl radical, initiating the CL peroxidation chain and linking it to membrane-potential collapse. Independently corroborates the CL-peroxidation cascade.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Integrating FBA into Kinetic Models to Decipher Dynamic Metabolism of Shewanella oneidensis MR-1 (PLoS Comput Biol)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3271021/",
+        "claim": "Static-optimization dFBA: time is divided into small intervals, each solved with a mini-FBA whose boundary fluxes feed an ODE update. A workable, validated FBA<->ODE coupling architecture matching the repository's composite FBA->ODE pipeline.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Dynamic Analysis of Integrated Signaling, Metabolic, and Regulatory Networks / iFBA (Covert et al. 2008, PMC)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2377155/",
+        "claim": "iFBA integrates FBA with ODEs and Boolean regulation in one framework. Independently corroborates multi-formalism FBA<->ODE coupling as an established method.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Dynamic Flux Balance Analysis Models in SBML (bioRxiv)",
+        "url": "https://www.biorxiv.org/content/10.1101/245076v2.full",
+        "claim": "Encodes dFBA (LP-based FBA + ODE kinetics) in SBML L3, addressing non-unique LP solutions and infeasibilities, enabling interoperable model exchange. Single preprint source.",
+        "corroboration": "single-source"
+      },
+      {
+        "title": "Gene-Protein-Reaction (GPR) Rules — opencobra/cobrapy (DeepWiki)",
+        "url": "https://deepwiki.com/opencobra/cobrapy/2.6-gene-protein-reaction-(gpr)-rules",
+        "claim": "GPR rules are Boolean expressions (AND for complex subunits, OR for isozymes) that map genes to reactions, enabling knockout simulation and omics integration in COBRApy. Underpins the repository's GPR-aware knockout essential-gene scoring.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Managing Gene-Protein-Reaction Associations — opencobra/cobratoolbox (DeepWiki)",
+        "url": "https://deepwiki.com/opencobra/cobratoolbox/3.2-managing-gene-protein-reaction-associations",
+        "claim": "generateRules converts human-readable grRules into machine-readable GPR rules for systematic constraint application. Independently corroborates GPR tooling for knockout/expression workflows.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "GPRuler: Metabolic gene-protein-reaction rules automatic reconstruction (PLOS Comput Biol)",
+        "url": "https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1009550",
+        "claim": "Open-source Python framework mining biological databases to auto-reconstruct GPR rules for any organism's model, enabling gene-deletion simulation. One primary paper (also archived at PMC), so the GPRuler tool itself is a single source though the GPR concept is broadly corroborated.",
+        "corroboration": "single-source"
+      },
+      {
+        "title": "MitoCarta3.0: updated mitochondrial proteome with sub-organelle localization and pathway annotations (NAR / Oxford Academic)",
+        "url": "https://academic.oup.com/nar/article/49/D1/D1541/5974091",
+        "claim": "1,136 human mitochondrial genes with curated matrix/inner-membrane/IMS/outer-membrane localizations and 149 MitoPathways. Gold-standard reference for validating which genes/reactions belong in a mitochondrial model (the repository cites 127/145 = 87.6% MitoCarta-validated essentials).",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Beyond MitoCarta — network approach to candidate mitochondrial proteins (NAR Genomics and Bioinformatics)",
+        "url": "https://academic.oup.com/nargab/article/5/4/lqad107/7479272",
+        "claim": "MitoCarta3.0 can be extended via network methods to find additional candidate mitochondrial proteins, supporting its use as a validation baseline while noting incompleteness. Corroborates MitoCarta as the reference set.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "A Quantitative Approach to Mapping Mitochondrial Specialization and Plasticity (PMC)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11844627/",
+        "claim": "The 149 MitoPathway scores quantify mitochondrial diversity/plasticity from -omics data, providing a validation framework for model predictions. Independently corroborates MitoPathway-based validation.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "E-Flux2 and SPOT: Validated Methods for Inferring Intracellular Flux from Transcriptomic Data (PMC)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4915706/",
+        "claim": "E-Flux2 constrains reaction bounds proportional to gene expression with L2-norm minimization to predict intracellular flux distributions. The omics-integration method MitoMAMMAL itself uses for tissue contextualization.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Quantitative high-confidence human mitochondrial proteome and dynamics: MitoCoP (Cell Metabolism 2021)",
+        "url": "https://www.cell.com/cell-metabolism/fulltext/S1550-4131(21)00529-5",
+        "claim": "Defines 1,134 high-confidence human mitochondrial proteins with half-lives spanning hours to months and abundances over six orders of magnitude. The specific MitoCoP dataset is a single primary source, though the wide half-life span is corroborated by the turnover studies below.",
+        "corroboration": "single-source"
+      },
+      {
+        "title": "Metabolic Labeling Reveals Proteome Dynamics of Mouse Mitochondria (Mol Cell Proteomics 2020)",
+        "url": "https://www.mcponline.org/article/S1535-9476(20)33455-1/fulltext",
+        "claim": "Cardiac mitochondrial proteins median half-life 17.2 d (0.0402/d); hepatic 4.26 d (0.163/d); 458 proteins by stable-isotope labeling. Provides tissue-specific decay rates for parameterizing the protein-decay transit-window model.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Tissue-specific mitochondrial proteome turnover rates (Scientific Reports 2023)",
+        "url": "https://www.nature.com/articles/s41598-023-38484-0",
+        "claim": "Tissue-specific median mitochondrial protein half-lives range ~4.03 d (liver) to 28.6 d (striatal synaptic). Independently corroborates wide, tissue-dependent turnover used to set decay half-lives.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Systematic analysis of protein turnover in primary cells (Nature Communications 2018)",
+        "url": "https://www.nature.com/articles/s41467-018-03106-1",
+        "claim": "Mitochondrial proteins generally turn over more slowly than other compartments; SILAC+MS validated (dataset PXD008511). Independently corroborates compartment-level turnover behavior.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Functional assessment of isolated mitochondria in vitro (Kuznetsov et al., Methods 2008)",
+        "url": "https://pubmed.ncbi.nlm.nih.gov/19426878/",
+        "claim": "Isolated mitochondria should be used within ~4 h on ice for optimal function; protocol covers OCR, DeltaPsi, ROS, ATP, and swelling. Empirical anchor for the lower end of the transit-window viability range.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Periprocedural therapeutics do not impair extracellular mitochondrial viability in transplantation (PMC 2025)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078252/",
+        "claim": "Isolated mitochondria remain viable on ice ~1-2 h post-isolation; viability assessed by DeltaPsi, OCR, and ATP. Empirical anchor for the transit-window upper bound and viability readouts.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Mitochondrial transplantation: advance to therapeutic application and molecular modulation (Front Cardiovasc Med 2023)",
+        "url": "https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2023.1268814/full",
+        "claim": "Short post-isolation viability window limits transplantation; no cryopreservation fully replicates fresh efficacy; viability metrics are DeltaPsi, OCR, ATP. Corroborates the transit-window constraint and motivates preservation work.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Isolation of mitochondria from mouse tissues for functional analysis (PMC 2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11105805/",
+        "claim": "All steps must stay ice-cold to preserve coupling; viability confirmed with TMRE/MitoTracker Green; rapid isolation is essential. Corroborates handling constraints feeding the transit-window estimator.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Mitochondrial transplantation for therapeutic use (McCully, Clin Transl Med 2016)",
+        "url": "https://onlinelibrary.wiley.com/doi/10.1186/s40169-016-0095-4",
+        "claim": "Autogenous mitochondria isolated in ~30 min within the surgical window; intact viable mitochondria required for uptake/efficacy. Anchors the isolation-time budget of a transplantation timeline tracker.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Measuring mitochondrial membrane potential (EMBO Journal 2025)",
+        "url": "https://link.springer.com/article/10.1038/s44318-025-00632-9",
+        "claim": "TMRM equilibrates in ~15 min and is preferred for quantitative graded DeltaPsi; JC-1 red aggregate needs ~90 min. Informs probe-selection and equilibration enforcement for DeltaPsi time-courses (the wet-lab anchor uses JC-1).",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Mitochondrial Membrane Potential Using JC-1 Dye (PMC 2019)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6343665/",
+        "claim": "JC-1 forms red aggregates at high DeltaPsi and green monomers at low DeltaPsi; ratiometric readout gives semi-quantitative DeltaPsi. Corroborates interpretation of the JC-1 decay time-course used for wet-lab validation.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Mitochondrial membrane potential probes and the proton gradient: practical usage guide (PMC 2011)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3115691/",
+        "claim": "TMRM and JC-1 accumulate proportional to DeltaPsi; TMRM recommended for quantitation; calibration via step-depolarization. Independently corroborates probe behavior and calibration needs.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Assessing mitochondrial dysfunction in cells (PMC 2011)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3076726/",
+        "claim": "Respiratory Control Ratio (state3/state4) is the gold-standard isolated-mitochondria quality metric; healthy values 3-10 by substrate; RCR falls with injury. Basis for an RCR go/no-go viability gate.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "RCR and ATP/O Indices Can Give Contradictory Messages about Mitochondrial Efficiency (Integr Comp Biol 2018)",
+        "url": "https://academic.oup.com/icb/article/58/3/486/5049469",
+        "claim": "RCR and ATP/O can disagree depending on substrate; both should be measured together. Independently corroborates dual-metric quality assessment to avoid single-metric false passes.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Methods for Detection of Mitochondrial and Cellular ROS (PMC 2014)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3887411/",
+        "claim": "MitoSOX is the standard probe for mitochondrial superoxide in live cells/isolated organelles but requires calibration for quantitation. Relevant to interpreting ROS measurements that feed the ROS-damage coupling.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Pitfalls of ROS Measurements and Mitochondrial Superoxide Determination Using MitoSOX (Springer MMB 2020)",
+        "url": "https://link.springer.com/chapter/10.1007/978-3-030-47318-1_2",
+        "claim": "Bulk MitoSOX fluorescence has specificity limits; HPLC detection of 2-OH-Mito-E+ is more specific. Independently corroborates MitoSOX caveats, preventing over-interpretation of plate-reader ROS data.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Computational Modeling of Substrate-Dependent Mitochondrial Respiration in Heart and Kidney (Function 2023)",
+        "url": "https://academic.oup.com/function/article/4/5/zqad038/7231080",
+        "claim": "Per-tissue ODE model fitted to respirometry (OCR under state 3/4, substrates, inhibitors), estimating tissue-specific Vmax while fixing intrinsic Km; predicts redox states, fluxes, DeltaPsi, RCI. A concrete Bayesian-style parameter-estimation workflow for tissue-specific OXPHOS ODE calibration.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Integrated computational model of isolated lung mitochondria bioenergetics (PLoS One 2018)",
+        "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0197921",
+        "claim": "Integrated ODE model of lung mitochondria, demonstrating portability of the Beard-family OXPHOS framework across tissues. Corroborates tissue-portability of the kinetic engine.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "COBRApy: COnstraints-Based Reconstruction and Analysis for Python (PMC)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3751080/",
+        "claim": "Standard Python package for constraint-based modeling: FBA, FVA, gene knockouts, flux sampling, SBML/JSON I/O. The software layer for the repository's FBA and FVA analyses.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Current status and applications of genome-scale metabolic models (Genome Biology / PMC)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6567666/",
+        "claim": "Multi-compartment GEMs (including mitochondria) are standard; context-specific models give more accurate predictions than non-compartmentalized ones. Corroborates the value of FVA/context-specific analysis on the mitochondrial GEM.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "A metabolic model of the mitochondrion and modelling TCA-cycle diseases (BMC Systems Biology, iAS253)",
+        "url": "https://bmcsystbiol.biomedcentral.com/articles/10.1186/1752-0509-5-102",
+        "claim": "FBA of a mitochondrial model (253 reactions) reproduced TCA-cycle disorders (fumarase, SDH, alpha-KGDH deficiency) matching phenotypes. Precedent that mitochondrial-FBA knockouts recapitulate disease phenotypes.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Metabolic flexibility of mitochondrial respiratory chain disorders predicted by computer modelling (PMC)",
+        "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5115619/",
+        "claim": "Cardiomyocyte mitochondrial models (>300 reactions) predict complex I deficiency is compensable while complex III/IV deficiencies most reduce ATP. Corroborates ETC-complex bottleneck/essentiality predictions via FBA knockouts.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Cryopreservation of brain mitochondria: a methodology for functional studies (J Neurosci Methods 2005)",
+        "url": "https://www.sciencedirect.com/science/article/abs/pii/S0165027005003079",
+        "claim": "Cortical mitochondria cryopreserved with 10% DMSO at ~1C/min to -80C; partial post-thaw recovery of transport/synthesis. Basis for a cryopreservation advisor for extended-storage transit scenarios.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Trehalose in cryopreservation: applications, mechanisms, delivery (PMC 2024)",
+        "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11411628/",
+        "claim": "Trehalose plus DMSO improves post-thaw viability and stabilizes membrane phase transitions; outer-membrane integrity confirmed post freeze-thaw. Independently corroborates cryoprotectant strategy for banked mitochondria.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Code coverage — Scientific Python Development Guide (2024)",
+        "url": "https://learn.scientific-python.org/development/guides/coverage/",
+        "claim": "Community guidance: pytest-cov configured via pyproject.toml, GitHub Actions coverage upload, sysmon backend on 3.12+. Standard for making the pipeline reproducible and test-gated (addresses the repository's reproducibility gaps).",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Simple packaging — Scientific Python Development Guide (2024)",
+        "url": "https://learn.scientific-python.org/development/guides/packaging-simple/",
+        "claim": "pyproject.toml [build-system]/[project] is the modern packaging standard; recommended backends Hatchling/Flit-core/PDM/setuptools; semantic versioning expected. Directly addresses the missing-dependency / non-portable-bootstrap reproducibility goal.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "pyOpenSci Software Peer Review Guide (2024)",
+        "url": "https://www.pyopensci.org/software-peer-review/about/intro.html",
+        "claim": "Open peer-review process evaluating test coverage, CI, documentation, license, and citation metadata, with a JOSS publication pathway. Supports a repo-health checklist that strengthens scientific credibility/citability.",
+        "corroboration": "corroborated"
+      },
+      {
+        "title": "Modern Python CI with Coverage in 2025 (Daniel Nouri blog)",
+        "url": "https://danielnouri.org/notes/2025/11/03/modern-python-ci-with-coverage-in-2025/",
+        "claim": "py-cov-action posts PR coverage comments/badges without external services; pytest-xdist parallelizes; hard-coding --cov-config avoids misconfiguration. Single-author blog; practical detail, not independently corroborated.",
+        "corroboration": "single-source"
+      }
+    ],
+    "ideas": [
+      {
+        "idea": "Keep MitoMAMMAL (560-reaction mammalian mitochondrial GEM, human/mouse GPR rules) as the stoichiometric constraint layer of the transit-window pipeline, and treat E-Flux2 proteomics contextualization as the supported route to tissue-specific (cardiac/BAT) flux bounds.",
+        "serves_goal": "Goal 1 (quantitatively predictive transit-window model) explicitly runs time-stepped GPR-aware FBA on MitoMAMMAL; using a peer-reviewed, validated mammalian mitochondrial GEM with native human/mouse GPR rules is the only well-supported scaffold for that and avoids building a network from scratch. E-Flux2 is the same method MitoMAMMAL was validated with.",
+        "sources": [
+          "https://academic.oup.com/bioinformaticsadvances/article/5/1/vbae172/7876298",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC11696703/",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4915706/"
+        ]
+      },
+      {
+        "idea": "Keep Beard-2005 as the core OXPHOS ODE engine and continue gating the implementation against its P/O and DeltaPsi reference behavior (the existing Gate G2 / low-Pi ~186 mV validation), reusing QAMAS open-source code where possible.",
+        "serves_goal": "Goal 1's success signals require the ODE layer to reproduce Beard-2005 well enough to gate the build; a thermodynamically consistent, mass-and-charge-balanced, experimentally fitted model independently re-reviewed (Tseng 2022) is the best-supported mechanistic foundation, and QAMAS gives reusable Python/Tellurium implementations aligned with the repository's roadrunner layer.",
+        "sources": [
+          "https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.0010036",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC1356095/",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9777548/",
+          "https://beards-lab.github.io/QAMAS_book/"
+        ]
+      },
+      {
+        "idea": "Formalize the composite FBA->ODE coupling as static-optimization dynamic FBA (dFBA): per time-step mini-FBA boundary fluxes drive ODE state updates (DeltaPsi/ATP/NADH), with decay fractions mapped to ODE Vmax multipliers.",
+        "serves_goal": "Goal 1's composite-coupling success signal (experiment5_fba_ode bridging the capacity envelope) is exactly static-optimization dFBA; the Shewanella and iFBA papers independently establish this as a validated, workable FBA<->ODE architecture, grounding the repository's existing approach rather than ad hoc coupling.",
+        "sources": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3271021/",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2377155/"
+        ]
+      },
+      {
+        "idea": "Add a site-specific ROS-production module (Bazil ETS-ROS: superoxide/H2O2 at complexes I/II/III as a function of DeltaPsi and NADH/Q redox) that drives a ROS-coupled protein-damage acceleration term in the decay model.",
+        "serves_goal": "Goal 2 (closing the ~29 h proteomic ceiling vs 4-18 h empirical gap) is directly realized by the repository's ROS-coupling experiment where k_damage moves TW from 29h to 8-15h; a mechanistic, thermodynamically consistent ROS source gives the damage term physical grounding rather than a free parameter.",
+        "sources": [
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8788716/",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4426091/"
+        ]
+      },
+      {
+        "idea": "Couple stochastic (Monte Carlo, ROS-driven) and deterministic (Ca2+/voltage bistable) mPTP models downstream of the ROS module, so the system can transition metabolic state -> ROS accumulation -> mPTP opening -> co-limited energy collapse on sub-hour timescales for ischemic scenarios.",
+        "serves_goal": "Goal 2's success signal is exactly the MPTP composite experiment converting Scenario C failure from ATP-first to co-limited at ~0.24h; two independent mPTP models (stochastic + bistable ODE) corroborate that pore dynamics are a tractable, non-proteomic failure mode FBA cannot see.",
+        "sources": [
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9146742/",
+          "https://www.nature.com/articles/s41598-020-60177-1"
+        ]
+      },
+      {
+        "idea": "Add a cardiolipin-peroxidation sub-module (superoxide -> perhydroxyl radical at low matrix pH -> CL peroxidation -> cytochrome c peroxidase amplification -> DeltaPsi collapse/apoptosis) as a second non-proteomic failure pathway linking ROS state to membrane failure.",
+        "serves_goal": "Goal 2 attributes the 29h-vs-empirical gap to membrane/cardiolipin peroxidation among other FBA-invisible modes; two independent mechanistic studies provide rate-law structure to encode this cascade, extending the gap-attribution partition beyond mPTP.",
+        "sources": [
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4899610/",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC7499269/"
+        ]
+      },
+      {
+        "idea": "Keep GPR-aware knockout scoring on MitoMAMMAL (Boolean AND-for-subunits / OR-for-isozymes) to compute the essential nuclear-encoded gene set and identify the rate-limiting ETC complex; use GPRuler only to fill any reactions lacking GPR rules.",
+        "serves_goal": "Goal 3 (proteomic-decay structure governing the ceiling) requires reproducible GPR-aware essential-gene scoring (mouse nuclear genes 100% essential; Complex I 39-subunit AND-clause as bottleneck); COBRApy/COBRA Toolbox GPR semantics are the established basis, and GPRuler covers gap-filling. Prior mitochondrial-FBA models confirm ETC-complex essentiality predictions.",
+        "sources": [
+          "https://deepwiki.com/opencobra/cobrapy/2.6-gene-protein-reaction-(gpr)-rules",
+          "https://deepwiki.com/opencobra/cobratoolbox/3.2-managing-gene-protein-reaction-associations",
+          "https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1009550",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5115619/"
+        ]
+      },
+      {
+        "idea": "Validate the computed essential-gene set and every reaction's compartment assignment against MitoCarta3.0 (1,136 genes; matrix/IM/IMS/OM localizations; 149 MitoPathways), reporting a coverage fraction as a quantitative model-quality metric.",
+        "serves_goal": "Goal 3's deliverable already cites a 127/145 = 87.6% MitoCarta-validated essential set; making MitoCarta3.0 cross-referencing a formal pipeline step gives the bottleneck/essentiality claims a gold-standard denominator and surfaces mis-compartmentalized or non-mitochondrial genes.",
+        "sources": [
+          "https://academic.oup.com/nar/article/49/D1/D1541/5974091",
+          "https://academic.oup.com/nargab/article/5/4/lqad107/7479272",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC11844627/"
+        ]
+      },
+      {
+        "idea": "Parameterize the protein-decay layer with tissue-specific mitochondrial half-lives from metabolic-labeling datasets (cardiac ~17 d, hepatic ~4 d; range ~4-29 d) instead of a single uniform 12 h assumption, and flag proteins whose half-life is shorter than the transit window as high-degradation-risk.",
+        "serves_goal": "Goal 1/Goal 3 rest on a decay model; the uniform-12h assumption is the weakest link (drives the 29h ceiling). Multiple independent turnover studies corroborate wide, tissue-dependent half-lives, letting the model produce tissue-specific ceilings. The MitoCoP-specific dataset is single-source, so cite it as a reference layer only.",
+        "sources": [
+          "https://www.mcponline.org/article/S1535-9476(20)33455-1/fulltext",
+          "https://www.nature.com/articles/s41598-023-38484-0",
+          "https://www.nature.com/articles/s41467-018-03106-1",
+          "https://www.cell.com/cell-metabolism/fulltext/S1550-4131(21)00529-5"
+        ]
+      },
+      {
+        "idea": "Expose a time-and-temperature-parameterized DeltaPsi/ATP viability estimator that emits a transplantation-readiness score, calibrated to the empirical 1-4 h (on-ice) post-isolation viability window and the isolation-time budget (<=30 min).",
+        "serves_goal": "Goal 1 emits a concrete transit-window number, and Goal 2 contrasts it with the 4-18 h empirical band; an estimator anchored to measured viability windows turns model output into the actionable go/no-go readout that motivates the whole transit-window program.",
+        "sources": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC12078252/",
+          "https://pubmed.ncbi.nlm.nih.gov/19426878/",
+          "https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2023.1268814/full",
+          "https://onlinelibrary.wiley.com/doi/10.1186/s40169-016-0095-4"
+        ]
+      },
+      {
+        "idea": "Build the wet-lab validation overlay around proper DeltaPsi probe handling: support the existing JC-1 decay time-course anchor but document TMRM as preferred for quantitative graded DeltaPsi and enforce probe-specific equilibration times (TMRM ~15 min, JC-1 red ~90 min).",
+        "serves_goal": "Goal 5 (anchor temporal predictions to an independent wet-lab decay time-course) currently halts on a missing digitized JC-1 dataset; encoding correct probe semantics ensures the eventual empirical anchor is interpreted correctly and prevents design errors that would invalidate the model-vs-data overlay.",
+        "sources": [
+          "https://link.springer.com/article/10.1038/s44318-025-00632-9",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC6343665/",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3115691/"
+        ]
+      },
+      {
+        "idea": "Add an RCR-based go/no-go viability gate (state3/state4, default threshold ~5) cross-validated against ATP/O, with substrate-specific reference ranges and a warning when the two metrics disagree.",
+        "serves_goal": "Goal 1/Goal 5 need an experimentally measurable quality criterion to compare model viability predictions against; RCR is the gold-standard isolated-mitochondria quality metric, and the dual-metric cross-check prevents single-metric false passes when validating transit-window predictions.",
+        "sources": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3076726/",
+          "https://academic.oup.com/icb/article/58/3/486/5049469"
+        ]
+      },
+      {
+        "idea": "Provide a tissue-specific parameter-estimation workflow that fits OXPHOS ODE maximal velocities to user respirometry (OCR under state 3/4, substrates, inhibitors) while fixing intrinsic Km, reusing the Function-2023 heart/kidney methodology.",
+        "serves_goal": "Goal 1's predictive value depends on tissue-appropriate kinetics; a validated fit-Vmax/fix-Km respirometry workflow lets the transit-window ODE be personalized per tissue rather than using generic cardiac parameters, and the lung-mitochondria model corroborates that the Beard-family engine ports across tissues.",
+        "sources": [
+          "https://academic.oup.com/function/article/4/5/zqad038/7231080",
+          "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0197921"
+        ]
+      },
+      {
+        "idea": "Develop a reduced (few-state) OXPHOS surrogate ODE calibrated against the full Beard/Heiske model for high-throughput pathological sweeps and in silico inhibitor (toxicology) screening, using Heiske-2017 as the compact reference formulation.",
+        "serves_goal": "Goal 2's pathological partitioning (complex deficiencies, inhibitor scenarios) and the MitoQ dose-response abstract figure require many scenario runs; a reduced surrogate keeps those sweeps tractable where the 17-state Beard model is prohibitive, with Heiske-2017 and the Frontiers DeltaPsi-inhibitor model establishing the compact-model approach.",
+        "sources": [
+          "https://febs.onlinelibrary.wiley.com/doi/full/10.1111/febs.14151",
+          "https://www.frontiersin.org/journals/pharmacology/articles/10.3389/fphar.2021.679407/full",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9777548/"
+        ]
+      },
+      {
+        "idea": "Incorporate a Ca2+-coupled OXPHOS module (simplified Magnus-Keizer / Bertram-2006) to represent Ca2+ overload effects on ATP production feeding into the mPTP trigger.",
+        "serves_goal": "Goal 2 names Ca2+ overload as one of the non-proteomic failure modes converting Scenario C to co-limited collapse; a parameter-economical Ca2+->OXPHOS->mPTP coupling supplies the calcium arm of that failure partition, complementing the ROS and mPTP modules already supported.",
+        "sources": [
+          "https://www.sciencedirect.com/science/article/abs/pii/S0022519306003225",
+          "https://models.physiomeproject.org/exposure/a7f8b4574fe4802f1e06f247006962ac/bertram_2006.cellml/view"
+        ]
+      },
+      {
+        "idea": "Use Flux Variability Analysis (and matrix-volume dynamics as an mPTP-swelling readout) to map which mitochondrial reactions are tightly constrained vs flexible at the threshold-crossing time, prioritizing the bottleneck reactions for experimental measurement.",
+        "serves_goal": "Goal 3 identifies ETC complexes as the capacity bottleneck binding at the threshold time; FVA on the GEM quantifies which reactions are near-fixed vs have alternative routes (strengthening the bottleneck claim), and Bazil-2010 matrix-volume gives an observable swelling output for the mPTP arm. Volume model is single-source, so treat that piece as exploratory.",
+        "sources": [
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3751080/",
+          "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6567666/",
+          "https://journals.plos.org/ploscompbiol/article?id=10.1371%2Fjournal.pcbi.1000632"
+        ]
+      },
+      {
+        "idea": "Modernize the repository to pyproject.toml packaging with pinned dependencies (including the currently-missing scipy and tellurium/roadrunner) plus a GitHub Actions CI that runs the pipeline, gates on metabolic-task tests, and reports coverage; track pyOpenSci submission criteria.",
+        "serves_goal": "Goal 7 (clean cross-platform reproducible pipeline) is currently UNMET: scipy/tellurium absent from requirements, macOS-hardcoded bootstrap, broken paths. The Scientific Python packaging/coverage standards and pyOpenSci checklist directly remediate these and make the modeling results independently regenerable and citable. The CI-blog detail is single-source, so adopt the guide-backed parts as canonical.",
+        "sources": [
+          "https://learn.scientific-python.org/development/guides/packaging-simple/",
+          "https://learn.scientific-python.org/development/guides/coverage/",
+          "https://www.pyopensci.org/software-peer-review/about/intro.html",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC3751080/"
+        ]
+      },
+      {
+        "idea": "Add an optional cryopreservation advisor (10% DMSO +/- trehalose, ~1C/min controlled cooling to -80C, with published post-thaw membrane-integrity outcomes) for extended-storage transit scenarios beyond the fresh on-ice window.",
+        "serves_goal": "Supports the Vision Layer-2 (surviving extended transit) extension of Goal 1/Goal 8 by offering a literature-grounded preservation pathway with expected post-thaw viability fractions, while honestly noting no method yet replicates fresh-mitochondria efficacy. Lower priority than the core transit-window/gap work.",
+        "sources": [
+          "https://www.sciencedirect.com/science/article/abs/pii/S0165027005003079",
+          "https://pmc.ncbi.nlm.nih.gov/articles/PMC11411628/",
+          "https://www.frontiersin.org/journals/cardiovascular-medicine/articles/10.3389/fcvm.2023.1268814/full"
+        ]
+      }
+    ]
+  }
+}
+```
