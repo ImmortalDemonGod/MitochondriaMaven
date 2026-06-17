@@ -1,0 +1,728 @@
+# 05 — Execution-Ready Plan
+
+_Generated 2026-06-17T15:37:10.672Z · branch `claude/upbeat-keller-4c0z1s` · forensic-audit-pipeline_
+
+**35 ordered change items.** Each links to a finding/goal-gap, is localized, carries a verification signal, and is dependency-ordered.
+
+| # | Item | Links to | Location | Verify by | Depends on |
+|---|---|---|---|---|---|
+| P01 | Initialize and pin the mitomammal (and Human-GEM) git submodules so MODEL_PATH resolves | F31 | `.gitmodules; 09_Computational_Modeling/Whole_Cell_Modeling/mitomammal/; 09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/; 09_Computational_Modeling/README.md (clone instructions)` | From a fresh clone, after the documented init command, `python -c "from paths import MODEL_PATH; print(MODEL_PATH.exists())"` prints True and `cobra.io.read_sbml_model(MODEL_PATH)` loads 560 reactions/782 genes/445 metabolites without FileNotFoundError. | — |
+| P02 | Add scipy to requirements.txt | F08 | `09_Computational_Modeling/requirements.txt` | `pip install -r requirements.txt` in a fresh venv followed by `python -c "import scipy; from scipy.integrate import solve_ivp"` succeeds with no ImportError; ode_utils imports cleanly. | — |
+| P03 | Resolve tellurium/roadrunner dependency for beard_qamas reference model | F22 | `09_Computational_Modeling/requirements.txt; 09_Computational_Modeling/Whole_Cell_Modeling/beards_lab/beard_qamas_in_vitro_reference.py:2-5` | On a clean install per the declared manifest, either `import tellurium, roadrunner` succeeds, or importing the core pipeline modules succeeds while beard_qamas degrades with a clear, documented optional-dependency message (no bare ImportError crash). | — |
+| P04 | Add __main__ guard to beard_qamas_in_vitro_reference.py | F02 | `09_Computational_Modeling/Whole_Cell_Modeling/beards_lab/beard_qamas_in_vitro_reference.py:1,257-322` | `python -c "import beard_qamas_in_vitro_reference"` returns immediately with no simulation output and no blocking matplotlib window; a programmatic check confirms has_main_guard=True. | P03 |
+| P05 | Fix ANNOTATED_PATH and PARTITION_PATH to point at results/phase_b/ | F07 | `09_Computational_Modeling/scripts/investigation_phases/phase_b_cluster_and_sweep.py:40-41; 09_Computational_Modeling/scripts/experiments_v2/experiment1d_minimal_set.py:50` | phase_b_cluster_and_sweep.py and experiment1d_minimal_set.py run to completion (no FileNotFoundError) after phase_b_annotate_essentials.py has populated results/phase_b/; the prior runtime crash documented in 03-execution.md:29 no longer reproduces. | P01 |
+| P06 | Fix PARTITION_PATH resolution bug in experiment1d/phase_b (F43 companion to F07) | F43 | `09_Computational_Modeling/scripts/experiments_v2/experiment1d_minimal_set.py:50; 09_Computational_Modeling/scripts/investigation_phases/phase_b_cluster_and_sweep.py:41` | experiment1d_minimal_set.py executes its A3 minimal-set comparison end-to-end producing experiment1d_summary.json; absence of the partition file yields a clear actionable message rather than an unhandled traceback. | P05 |
+| P07 | Make setup_environment.sh cross-platform (Linux + macOS) and remove shell-injection surface | F03 | `09_Computational_Modeling/setup_environment.sh:30-31,35,43,50,74` | `bash setup_environment.sh` runs to completion on Linux (the current platform), creates the env, installs deps, and the SBML smoke-test loads the model; no '/opt/homebrew not found' error occurs. | P02, P03 |
+| P08 | Fix or remove hardcoded /Users/tomriddle1 Dropbox paths in archive_v1 scripts | F13 | `09_Computational_Modeling/scripts/archive_v1/experiment1_transit_window.py:29; experiment1b_gene_sensitivity.py; experiment1c_halflife_sweep.py` | The three archive_v1 scripts either run without OSError on Linux (resolving the model via paths.py) or are documented/relocated as deprecated; the OSError on /Users/tomriddle1/ confirmed in 03-execution.md:51-53 no longer occurs in any active script. | P01 |
+| P09 | Refactor shared functions out of experiment scripts to remove inverted dependencies | F26 | `09_Computational_Modeling/composite_utils.py:351-356; 09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:50-51; new shared module under 09_Computational_Modeling/` | composite_utils.py and phase_k import the shared functions without any sys.path mutation; phase_c_forensic_29h.py C.3 (which crashed with ModuleNotFoundError in 03-execution.md:31) runs to completion from any working directory. | — |
+| P10 | Surface the silent ImportError in compose_fba_ode scenario application | F06 | `09_Computational_Modeling/composite_utils.py:351-356` | A deliberately broken import in a test shows the scenario-application step now logs/raises rather than silently passing; normal runs still apply scenario bounds (confirmable by differing FBA inputs across scenarios A/B/C). | P09 |
+| P11 | Add BEARD_DIR to paths.py to honor the single-source-of-truth contract | F25 | `09_Computational_Modeling/paths.py; 09_Computational_Modeling/ode_utils.py:657-659` | `python -c "from paths import BEARD_DIR; print(BEARD_DIR)"` succeeds and ode_utils.default_param_file() resolves beard_2005_params.csv via the import path (not the except branch), verifiable by instrumenting the try/except. | — |
+| P12 | Reconcile compute_fluxes() proton-leak model with beard_rhs() (constant, formula, MPTP factor) | F01 | `09_Computational_Modeling/ode_utils.py:519-525,367,385` | At t=24h with leak_growth_rate=0.1 the compute_fluxes leak multiplier matches beard_rhs (previously 46.46 vs 19.19, ratio 2.42x -> ~1.0x); with MPTP enabled, J_leak no longer diverges by ~10001x. | — |
+| P13 | Guard against double-counted dCL_ox when ros_enabled and leak_growth_rate are both set | F30 | `09_Computational_Modeling/ode_utils.py:444,449-451` | With ros_enabled=True AND leak_growth_rate=0.1, CL_ox at 2h no longer exceeds the larger single-mechanism value (previously combined=0.218 vs ros_only=0.037/leak_only=0.181); a unit test confirms no additive double-count. | P12 |
+| P14 | Implement true per-subunit half-life assignment for CI subunits | F04 | `09_Computational_Modeling/scripts/experiments_v2/experiment1_v3_empirical.py:110-132` | transit_window_empirical.csv shows the independence and holoenzyme regimes now use different per-gene inputs (not identical 141h), so the P2 independence-vs-correlation comparison is no longer degenerate. | P09 |
+| P15 | Correct Phase H permutation-test null lower bound from log(72) to log(3) | F05 | `09_Computational_Modeling/scripts/investigation_phases/phase_h_ci_subunit_analysis.py:174-177` | Re-running phase_h emits a permutation p-value computed against the [3h,500h] null (materially different from the prior p=0.56); ci_correlation_analysis.json and CI_SUBUNIT_DEEP_DIVE.md reflect the corrected test. | — |
+| P16 | Replace two-sample KS test in Phase K with a valid goodness-of-fit metric | F33 | `09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:169-173` | phase_k outputs an RMSE (or one-sample GOF) figure rather than an uninterpretable two-sample KS p-value; code review confirms ks_2samp is no longer applied to deterministic-vs-observed arrays. | — |
+| P17 | Fix CompositeResult.atp_trace mislabel (cytosolic vs matrix ATP) | F41 | `09_Computational_Modeling/composite_utils.py:309,384,424` | Field name/comment match the stored quantity; a test reading CompositeResult.atp_trace receives the documented compartment; the dead sumATP_x assignment is removed (no unused-variable warning). | — |
+| P18 | Make read_mitocarta_crossref() resolve via paths.py instead of CWD-relative path | F38 | `09_Computational_Modeling/scripts/composite/experiment8_abstract_figure.py:95-97` | Running experiment8_abstract_figure.py from any working directory loads the real MitoCarta cross-ref counts (not the silent fallback) or logs an explicit warning; the final abstract figure shows current counts. | P05 |
+| P19 | Send the MyGene.info size=1 parameter so annotation queries return one hit per gene | F44 | `09_Computational_Modeling/scripts/investigation_phases/phase_b_annotate_essentials.py:44-63` | Inspecting the outgoing request shows 'size' is included; essential_genes_annotated.csv has at most one annotation row per input gene ID (no multi-hit duplication) when the API is reachable. | — |
+| P20 | Fix dpsi normalization hardcode and remaining dead-code smells | F29 | `09_Computational_Modeling/ode_utils.py:391; experiment10_mptp_composite.py:82; composite_utils.py:154; phase_g5_ros_coupling.py:57,63` | MCU dpsi_factor scales with the parametrized baseline DeltaPsi rather than a literal; static analysis reports no dead 'if False' branch or unused flux_buffer/o2s-rate variables in the cited locations. | — |
+| P21 | Remove third-party PII (Dr. Justin Nash) from tracked files | F09 | `01_Vision_and_Strategy/Notebook_Transcription_Otter.txt:272; INDEX.md:136; 08_Experimental_Work/Experiments_Overview.md:11` | `grep -ri "justin nash" .` over the repository returns no matches; the three cited files no longer name the individual. | — |
+| P22 | Strip committed developer usernames and absolute machine paths | F13 | `09_Computational_Modeling/docs/conference_planning/DOCINSIGHT_AGENT_HANDOFF.md:46-75; DOCINSIGHT_MITO_QUERY_GUIDE.md:189-217; 09_Computational_Modeling/LAB_NOTEBOOK.md:600; 06_Synthesis/Consolidated_Protocols.txt:1,207` | `grep -rE "tomriddle1\|/home/epas\|\.claude/plans" .` returns no matches in tracked active docs; absolute machine paths are replaced with repo-relative placeholders. | — |
+| P23 | Resolve copyrighted verbatim journal text exposure and align README/.gitignore | F10 | `.gitignore:27-31; 05_Extracted_Data/Structured_JSON/; 05_Extracted_Data/PDF_Metadata/; 06_Synthesis/Consolidated_Protocols.txt; README.md:89` | README.md copyright statement and .gitignore are mutually consistent (no contradiction between 'excluded' text and tracked files); if untracked, `git ls-files 05_Extracted_Data/Structured_JSON` returns nothing. | — |
+| P24 | Pin git submodules to explicit commits/tags to close the supply-chain gap | F14 | `.gitmodules:1-6` | A fresh clone + submodule init checks out the exact pinned SHAs recorded in the repo (e.g. mitomammal c0f8103b per Stage 3); the pinned references are visible in tracked metadata. | P01 |
+| P25 | Update ode_utils.py docstring from 10 to 13 state variables | F16 | `09_Computational_Modeling/ode_utils.py:15,49-58` | Docstring states 13 state variables; matches integrate_baseline returning y.shape=(13, N) confirmed in 03-execution.md:63. | — |
+| P26 | Refresh stale 09_Computational_Modeling/README.md and composite/README.md status tables | F17 | `09_Computational_Modeling/README.md:82-112; 09_Computational_Modeling/scripts/composite/README.md:13,31-33` | Both README directory maps list every script and results subdir that exists on disk per the Stage-1 inventory; no script with shipped results is labeled 'Not written', and no validate_against_cortassa.py reference remains. | — |
+| P27 | Correct stale INDEX.md and LAB_NOTEBOOK.md status/inventory claims | F23 | `INDEX.md:41,69,98; 09_Computational_Modeling/LAB_NOTEBOOK.md:49` | INDEX.md describes Consolidated_Protocols.txt accurately, omits source_archive.zip, and shows MitoMAMMAL as cloned; LAB_NOTEBOOK reflects efflux_method.py as an imported dependency of decay_utils/composite_utils. | — |
+| P28 | Fix abstract-figure 'Ex 12' mislabel and validate_against_beard return annotation | F37 | `09_Computational_Modeling/scripts/composite/experiment8_abstract_figure.py:6,188; 09_Computational_Modeling/scripts/composite/validate_against_beard.py:51` | Regenerated final_abstract_figure_composite.png legend reads 'Ex 11' (no phantom Ex 12); validate_against_beard.py:51 annotation is tuple[np.ndarray, dict, float, bool] matching the 4-value return/unpack. | — |
+| P29 | Execute the six compute-timed-out scripts to completion and capture non-empty logs | audit/03-execution.md independent_check: six 0-byte timeout logs (experiment1_v3_empirical, experiment4_interventions, phase_d_adversarial, phase_e_anomaly, phase_g1_order_statistics, experiment5c_sensitivity) | `09_Computational_Modeling/scripts/experiments_v2/experiment1_v3_empirical.py; experiment4_interventions.py; scripts/investigation_phases/phase_d_adversarial_suite.py; phase_e_anomaly_hunt.py; phase_g1_order_statistics.py; scripts/composite/experiment5c_sensitivity.py` | Each of the six scripts writes a non-zero-byte log and its declared output artifact (e.g. transit_window_empirical.csv, intervention_bar_chart.png, ex5_6_sensitivity.csv); coverage rises above the Stage-3 62.5% with no hidden startup errors. | P01, P02, P05, P07 |
+| P30 | Check out Human-GEM submodule and run the cross-model validation scripts | F31 | `09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/; scripts/investigation_phases/phase_g2_cross_model.py; phase_g2b_human_gem_decay.py; scripts/composite/experiment7_human_gem.py` | phase_g2_cross_model.py, phase_g2b_human_gem_decay.py, and experiment7_human_gem.py run without the OSError on missing Human-GEM.xml (03-execution.md:35-36,46) and emit their cross-model result files. | P01 |
+| P31 | Correct the four stale conference-abstract status markers so they state the verifiable repo fact: drafted but NOT submitted, deadline lapsed | Goal 4 gap (deliver q-bio abstract) / F28: README.md:99 marks the abstract '✅ … drafted' while the May 31 2026 deadline has passed (today 2026-06-17) and no submission/decision record exists in the repository | `README.md:99; 09_Computational_Modeling/LAB_NOTEBOOK.md:2; INDEX.md:91; 09_Computational_Modeling/README.md:2` | `grep -rn "May 31" README.md INDEX.md 09_Computational_Modeling/README.md 09_Computational_Modeling/LAB_NOTEBOOK.md` shows every hit now carries the 'NOT submitted / deadline lapsed' qualifier; `grep -n "✅.*abstract" README.md` returns no match (the ✅ on line 99 is gone); no line claims the abstract was submitted or accepted. | — |
+| P32 | Ship the wet-lab JC-1 input contract (committed CSV template + schema README) and stop Phase K writing placeholder output under the deliverable filename | Goal 5 gap (anchor predictions to a wet-lab decay time-course) / F33 context: phase_k_wet_lab_validation.py is env-gated on the absent Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.csv and currently writes a placeholder curve plus a 'data_pending' file under the real deliverable name ks_test_result.json | `09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.template.csv (new); 09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/README.md (new); 09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:13-19,54-69,112-155` | jc1_timeline.template.csv and README.md exist under Whole_Cell_Modeling/wet_lab_2024/ with the documented 'time_h,jc1_normalized' header and ~90 min JC-1 equilibration note; running phase_k with no jc1_timeline.csv produces only *.PENDING.* files (no ks_test_result.json / wet_lab_overlay.png); copying the template to jc1_timeline.csv with the example rows drives the real-validation branch to emit wet_lab_overlay.png and the P16 goodness-of-fit metric. | P01, P16 |
+| P33 | Parameterize the decay layer with tissue-specific mitochondrial half-lives | Goal 1/Goal 3 (decay model governing the transit-window ceiling); external-research idea: tissue-specific turnover datasets | `09_Computational_Modeling/decay_utils.py; scripts/experiments_v2/experiment1_v3_empirical.py (half-life maps)` | A transit-window run with a tissue-specific half-life set produces a ceiling distinct from the uniform-12h 29h result and lists high-risk short-half-life proteins; the source dataset is cited in code/docs. | P14 |
+| P34 | Formalize MitoCarta3.0 cross-validation as a pipeline step | Goal 3 (essential-gene set / bottleneck characterization); external-research idea: MitoCarta3.0 gold-standard validation | `09_Computational_Modeling/scripts/investigation_phases/phase_b_*; results/phase_b/essential_genes_mitocarta_crossref.csv` | Running the step regenerates the cross-ref CSV with a computed coverage fraction (not the hardcoded fallback from P18) and lists genes lacking MitoCarta confirmation. | P18, P19 |
+| P35 | Modernize packaging to pyproject.toml with CI that runs the pipeline | Goal 7 (clean cross-platform reproducible pipeline) | `09_Computational_Modeling/ (new pyproject.toml); new .github/workflows/ CI config` | A CI run on a clean runner initializes submodules, installs from pyproject, and executes validate_against_beard.py + experiment1_v2_transit_window.py to completion (Gate G2 PASS, TW=29h) with a green status. | P01, P02, P03, P05, P07 |
+
+## Detail
+
+### P01 · Initialize and pin the mitomammal (and Human-GEM) git submodules so MODEL_PATH resolves
+- **Links to:** F31
+- **Location:** `.gitmodules; 09_Computational_Modeling/Whole_Cell_Modeling/mitomammal/; 09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/; 09_Computational_Modeling/README.md (clone instructions)`
+- **Change:** Run 'git submodule update --init --recursive' to materialize the mitomammal SBML model (6_universal_mito_model.xml) and Human-GEM model, commit the resolved submodule SHAs, and document the init step in README so paths.py:22 MODEL_PATH points to an existing file rather than an empty directory.
+- **Verification signal:** From a fresh clone, after the documented init command, `python -c "from paths import MODEL_PATH; print(MODEL_PATH.exists())"` prints True and `cobra.io.read_sbml_model(MODEL_PATH)` loads 560 reactions/782 genes/445 metabolites without FileNotFoundError.
+- **Depends on:** —
+- **Effort:** S
+
+### P02 · Add scipy to requirements.txt
+- **Links to:** F08
+- **Location:** `09_Computational_Modeling/requirements.txt`
+- **Change:** Add a pinned scipy entry (e.g. scipy==1.17.1, the version confirmed working in Stage 3) to the pip-freeze manifest so ode_utils.py (scipy.integrate.solve_ivp) and phase_k_wet_lab_validation.py (scipy.stats.ks_2samp) import on a clean install.
+- **Verification signal:** `pip install -r requirements.txt` in a fresh venv followed by `python -c "import scipy; from scipy.integrate import solve_ivp"` succeeds with no ImportError; ode_utils imports cleanly.
+- **Depends on:** —
+- **Effort:** S
+
+### P03 · Resolve tellurium/roadrunner dependency for beard_qamas reference model
+- **Links to:** F22
+- **Location:** `09_Computational_Modeling/requirements.txt; 09_Computational_Modeling/Whole_Cell_Modeling/beards_lab/beard_qamas_in_vitro_reference.py:2-5`
+- **Change:** Either add pinned tellurium and roadrunner entries to requirements.txt, or move them into an optional extras group and guard the import in beard_qamas_in_vitro_reference.py so the absence of these heavy deps does not break core-pipeline installs; document which path was chosen.
+- **Verification signal:** On a clean install per the declared manifest, either `import tellurium, roadrunner` succeeds, or importing the core pipeline modules succeeds while beard_qamas degrades with a clear, documented optional-dependency message (no bare ImportError crash).
+- **Depends on:** —
+- **Effort:** S
+
+### P04 · Add __main__ guard to beard_qamas_in_vitro_reference.py
+- **Links to:** F02
+- **Location:** `09_Computational_Modeling/Whole_Cell_Modeling/beards_lab/beard_qamas_in_vitro_reference.py:1,257-322`
+- **Change:** Wrap the module-level model build, the two ~60-iteration simulate loops, and the plt.show() call (lines 6-246, 257-322) behind 'if __name__ == "__main__":' so importing the module no longer triggers ~600s of simulation or blocks on an interactive matplotlib window.
+- **Verification signal:** `python -c "import beard_qamas_in_vitro_reference"` returns immediately with no simulation output and no blocking matplotlib window; a programmatic check confirms has_main_guard=True.
+- **Depends on:** P03
+- **Effort:** S
+
+### P05 · Fix ANNOTATED_PATH and PARTITION_PATH to point at results/phase_b/
+- **Links to:** F07
+- **Location:** `09_Computational_Modeling/scripts/investigation_phases/phase_b_cluster_and_sweep.py:40-41; 09_Computational_Modeling/scripts/experiments_v2/experiment1d_minimal_set.py:50`
+- **Change:** Change results_path('essential_genes_annotated.csv') to results_path('phase_b','essential_genes_annotated.csv') and results_path('essential_dispensable_partition.json') to results_path('phase_b','essential_dispensable_partition.json') in all three sites so they match the canonical writer in phase_b_annotate_essentials.py.
+- **Verification signal:** phase_b_cluster_and_sweep.py and experiment1d_minimal_set.py run to completion (no FileNotFoundError) after phase_b_annotate_essentials.py has populated results/phase_b/; the prior runtime crash documented in 03-execution.md:29 no longer reproduces.
+- **Depends on:** P01
+- **Effort:** S
+
+### P06 · Fix PARTITION_PATH resolution bug in experiment1d/phase_b (F43 companion to F07)
+- **Links to:** F43
+- **Location:** `09_Computational_Modeling/scripts/experiments_v2/experiment1d_minimal_set.py:50; 09_Computational_Modeling/scripts/investigation_phases/phase_b_cluster_and_sweep.py:41`
+- **Change:** Ensure the essential_dispensable_partition.json reads resolve via results_path('phase_b', ...) consistently and add a guard that runs (or instructs the user to run) the partition-generating script when the file is absent, instead of raising a bare FileNotFoundError.
+- **Verification signal:** experiment1d_minimal_set.py executes its A3 minimal-set comparison end-to-end producing experiment1d_summary.json; absence of the partition file yields a clear actionable message rather than an unhandled traceback.
+- **Depends on:** P05
+- **Effort:** S
+
+### P07 · Make setup_environment.sh cross-platform (Linux + macOS) and remove shell-injection surface
+- **Links to:** F03
+- **Location:** `09_Computational_Modeling/setup_environment.sh:30-31,35,43,50,74`
+- **Change:** Replace the hardcoded /opt/homebrew Apple-Silicon CONDA_BIN/ENV_PYTHON paths with conda/python discovered via PATH (or a venv fallback as used in Stage 3), and pass $MITO_DIR into the smoke-test Python via sys.argv/env var rather than bare double-quote interpolation to eliminate the F15 quote-injection risk.
+- **Verification signal:** `bash setup_environment.sh` runs to completion on Linux (the current platform), creates the env, installs deps, and the SBML smoke-test loads the model; no '/opt/homebrew not found' error occurs.
+- **Depends on:** P02, P03
+- **Effort:** M
+
+### P08 · Fix or remove hardcoded /Users/tomriddle1 Dropbox paths in archive_v1 scripts
+- **Links to:** F13
+- **Location:** `09_Computational_Modeling/scripts/archive_v1/experiment1_transit_window.py:29; experiment1b_gene_sensitivity.py; experiment1c_halflife_sweep.py`
+- **Change:** Replace the hardcoded macOS Dropbox MODEL_PATH in all three archive_v1 scripts with the central paths.py MODEL_PATH import (the same bootstrap pattern used by current scripts), or relocate archive_v1 to a clearly-marked deprecated area and exclude it from reproducibility claims.
+- **Verification signal:** The three archive_v1 scripts either run without OSError on Linux (resolving the model via paths.py) or are documented/relocated as deprecated; the OSError on /Users/tomriddle1/ confirmed in 03-execution.md:51-53 no longer occurs in any active script.
+- **Depends on:** P01
+- **Effort:** S
+
+### P09 · Refactor shared functions out of experiment scripts to remove inverted dependencies
+- **Links to:** F26
+- **Location:** `09_Computational_Modeling/composite_utils.py:351-356; 09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:50-51; new shared module under 09_Computational_Modeling/`
+- **Change:** Move apply_scenario (from experiment1_v2_transit_window.py) and build_halflife_map_per_subunit (from experiment1_v3_empirical.py) into a proper shared utility module, then import them normally from composite_utils.py and phase_k instead of via sys.path.insert; replace the bare 'except ImportError: pass' with a logged hard failure.
+- **Verification signal:** composite_utils.py and phase_k import the shared functions without any sys.path mutation; phase_c_forensic_29h.py C.3 (which crashed with ModuleNotFoundError in 03-execution.md:31) runs to completion from any working directory.
+- **Depends on:** —
+- **Effort:** M
+
+### P10 · Surface the silent ImportError in compose_fba_ode scenario application
+- **Links to:** F06
+- **Location:** `09_Computational_Modeling/composite_utils.py:351-356`
+- **Change:** Remove the silent 'except ImportError: pass' so a failure to import/apply apply_scenario raises or logs an explicit warning, guaranteeing scenarios A/B/C receive their exchange-bound constraints rather than silently falling back to default FBA bounds.
+- **Verification signal:** A deliberately broken import in a test shows the scenario-application step now logs/raises rather than silently passing; normal runs still apply scenario bounds (confirmable by differing FBA inputs across scenarios A/B/C).
+- **Depends on:** P09
+- **Effort:** S
+
+### P11 · Add BEARD_DIR to paths.py to honor the single-source-of-truth contract
+- **Links to:** F25
+- **Location:** `09_Computational_Modeling/paths.py; 09_Computational_Modeling/ode_utils.py:657-659`
+- **Change:** Define BEARD_DIR (Whole_Cell_Modeling/beards_lab) in paths.py alongside MITOMAMMAL_DIR/CORTASSA_DIR so the 'from paths import BEARD_DIR' in ode_utils.default_param_file() succeeds instead of always falling through to the hardcoded relative-path fallback.
+- **Verification signal:** `python -c "from paths import BEARD_DIR; print(BEARD_DIR)"` succeeds and ode_utils.default_param_file() resolves beard_2005_params.csv via the import path (not the except branch), verifiable by instrumenting the try/except.
+- **Depends on:** —
+- **Effort:** S
+
+### P12 · Reconcile compute_fluxes() proton-leak model with beard_rhs() (constant, formula, MPTP factor)
+- **Links to:** F01
+- **Location:** `09_Computational_Modeling/ode_utils.py:519-525,367,385`
+- **Change:** Replace the hardcoded MEMBRANE_MAX_FOLD=50.0 and the time-exponential leak formula in compute_fluxes() with the same CL_ox-driven leak_multiplier (p.CL_leak_max_fold=20.0) and the mptp_factor term used by beard_rhs(), so both functions return consistent J_leak for the same state (covers F01, F21, and F42).
+- **Verification signal:** At t=24h with leak_growth_rate=0.1 the compute_fluxes leak multiplier matches beard_rhs (previously 46.46 vs 19.19, ratio 2.42x -> ~1.0x); with MPTP enabled, J_leak no longer diverges by ~10001x.
+- **Depends on:** —
+- **Effort:** M
+
+### P13 · Guard against double-counted dCL_ox when ros_enabled and leak_growth_rate are both set
+- **Links to:** F30
+- **Location:** `09_Computational_Modeling/ode_utils.py:444,449-451`
+- **Change:** Make the Kagan-cycle dCL_ox path (line 444) and the backwards-compat leak_growth_rate accumulation (lines 449-451) mutually exclusive (e.g. only apply the legacy term when ros_enabled is False), so CL_ox accumulation is not summed twice when both mechanisms are active.
+- **Verification signal:** With ros_enabled=True AND leak_growth_rate=0.1, CL_ox at 2h no longer exceeds the larger single-mechanism value (previously combined=0.218 vs ros_only=0.037/leak_only=0.181); a unit test confirms no additive double-count.
+- **Depends on:** P12
+- **Effort:** S
+
+### P14 · Implement true per-subunit half-life assignment for CI subunits
+- **Links to:** F04
+- **Location:** `09_Computational_Modeling/scripts/experiments_v2/experiment1_v3_empirical.py:110-132`
+- **Change:** Implement the gene-symbol->subunit mapping so build_halflife_map_per_subunit() assigns the individual measured CI half-lives (NDUFS1=138h, NDUFS2=427h, NDUFA9=144h, NDUFB10=120h) instead of the complex median (141h) to all CI subunits, making the per-subunit (independence) regime genuinely distinct from the per-complex regime.
+- **Verification signal:** transit_window_empirical.csv shows the independence and holoenzyme regimes now use different per-gene inputs (not identical 141h), so the P2 independence-vs-correlation comparison is no longer degenerate.
+- **Depends on:** P09
+- **Effort:** M
+
+### P15 · Correct Phase H permutation-test null lower bound from log(72) to log(3)
+- **Links to:** F05
+- **Location:** `09_Computational_Modeling/scripts/investigation_phases/phase_h_ci_subunit_analysis.py:174-177`
+- **Change:** Change the null distribution lower bound in np.random.uniform(np.log(72), np.log(500), 4) to np.log(3) to match the documented ~3-500h broad mitochondrial half-life range, so the null no longer overlaps and mirrors the observed CI data [120-427h] and biases p toward 'cannot reject independence'.
+- **Verification signal:** Re-running phase_h emits a permutation p-value computed against the [3h,500h] null (materially different from the prior p=0.56); ci_correlation_analysis.json and CI_SUBUNIT_DEEP_DIVE.md reflect the corrected test.
+- **Depends on:** —
+- **Effort:** S
+
+### P16 · Replace two-sample KS test in Phase K with a valid goodness-of-fit metric
+- **Links to:** F33
+- **Location:** `09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:169-173`
+- **Change:** Replace ks_2samp (which assumes two iid samples) on the deterministic np.interp model curve vs digitized observations with a statistically valid comparison — a one-sample KS against a fitted CDF or an RMSE/goodness-of-fit metric — so the reported statistic is interpretable.
+- **Verification signal:** phase_k outputs an RMSE (or one-sample GOF) figure rather than an uninterpretable two-sample KS p-value; code review confirms ks_2samp is no longer applied to deterministic-vs-observed arrays.
+- **Depends on:** —
+- **Effort:** S
+
+### P17 · Fix CompositeResult.atp_trace mislabel (cytosolic vs matrix ATP)
+- **Links to:** F41
+- **Location:** `09_Computational_Modeling/composite_utils.py:309,384,424`
+- **Change:** Either rename/relabel atp_trace to reflect that it stores cytosolic ATP (sumATP_c) and update the '# matrix ATP' comment, or expose both matrix (sumATP_x) and cytosolic traces explicitly and remove the dead atp=traj.get('sumATP_x') assignment at line 384, so callers receive the compartment they expect.
+- **Verification signal:** Field name/comment match the stored quantity; a test reading CompositeResult.atp_trace receives the documented compartment; the dead sumATP_x assignment is removed (no unused-variable warning).
+- **Depends on:** —
+- **Effort:** S
+
+### P18 · Make read_mitocarta_crossref() resolve via paths.py instead of CWD-relative path
+- **Links to:** F38
+- **Location:** `09_Computational_Modeling/scripts/composite/experiment8_abstract_figure.py:95-97`
+- **Change:** Replace the bare Path('results/phase_b/essential_genes_mitocarta_crossref.csv') with results_path('phase_b', ...) and, when the file is genuinely absent, emit a visible warning rather than silently returning the hardcoded (145,127) fallback that can ship stale counts into the abstract figure.
+- **Verification signal:** Running experiment8_abstract_figure.py from any working directory loads the real MitoCarta cross-ref counts (not the silent fallback) or logs an explicit warning; the final abstract figure shows current counts.
+- **Depends on:** P05
+- **Effort:** S
+
+### P19 · Send the MyGene.info size=1 parameter so annotation queries return one hit per gene
+- **Links to:** F44
+- **Location:** `09_Computational_Modeling/scripts/investigation_phases/phase_b_annotate_essentials.py:44-63`
+- **Change:** Pass the built params dict (including 'size':1) into the requests.post call instead of constructing an inline dict that extracts only params['fields'], so the multi-hit guard is actually applied and annotations are not polluted by duplicate/off-target MyGene results.
+- **Verification signal:** Inspecting the outgoing request shows 'size' is included; essential_genes_annotated.csv has at most one annotation row per input gene ID (no multi-hit duplication) when the API is reachable.
+- **Depends on:** —
+- **Effort:** S
+
+### P20 · Fix dpsi normalization hardcode and remaining dead-code smells
+- **Links to:** F29
+- **Location:** `09_Computational_Modeling/ode_utils.py:391; experiment10_mptp_composite.py:82; composite_utils.py:154; phase_g5_ros_coupling.py:57,63`
+- **Change:** Draw the 0.175 V resting-DeltaPsi MCU normalization from a BeardParams field instead of a literal (F29); remove the permanently-False 'if False' ca_x_peak placeholder (F36), the unused flux_buffer parameter (F35), and the unused o2s-rate computations (F40) — or wire them to real outputs.
+- **Verification signal:** MCU dpsi_factor scales with the parametrized baseline DeltaPsi rather than a literal; static analysis reports no dead 'if False' branch or unused flux_buffer/o2s-rate variables in the cited locations.
+- **Depends on:** —
+- **Effort:** S
+
+### P21 · Remove third-party PII (Dr. Justin Nash) from tracked files
+- **Links to:** F09
+- **Location:** `01_Vision_and_Strategy/Notebook_Transcription_Otter.txt:272; INDEX.md:136; 08_Experimental_Work/Experiments_Overview.md:11`
+- **Change:** Redact or anonymize the full name and professional title of the former external collaborator across the three tracked files (e.g. replace with 'a former collaborator'), absent documented consent for public disclosure of their identity and departure status.
+- **Verification signal:** `grep -ri "justin nash" .` over the repository returns no matches; the three cited files no longer name the individual.
+- **Depends on:** —
+- **Effort:** S
+
+### P22 · Strip committed developer usernames and absolute machine paths
+- **Links to:** F13
+- **Location:** `09_Computational_Modeling/docs/conference_planning/DOCINSIGHT_AGENT_HANDOFF.md:46-75; DOCINSIGHT_MITO_QUERY_GUIDE.md:189-217; 09_Computational_Modeling/LAB_NOTEBOOK.md:600; 06_Synthesis/Consolidated_Protocols.txt:1,207`
+- **Change:** Replace the '/Users/tomriddle1/Dropbox/...' absolute paths and the internal .claude plan filename in the docs, and remove the '/home/epas/...' username/paths embedded in the accidental pip-output Consolidated_Protocols.txt (covers F12), so no personal usernames or local filesystem layouts remain committed.
+- **Verification signal:** `grep -rE "tomriddle1|/home/epas|\.claude/plans" .` returns no matches in tracked active docs; absolute machine paths are replaced with repo-relative placeholders.
+- **Depends on:** —
+- **Effort:** M
+
+### P23 · Resolve copyrighted verbatim journal text exposure and align README/.gitignore
+- **Links to:** F10
+- **Location:** `.gitignore:27-31; 05_Extracted_Data/Structured_JSON/; 05_Extracted_Data/PDF_Metadata/; 06_Synthesis/Consolidated_Protocols.txt; README.md:89`
+- **Change:** Make an explicit, documented decision on the 91 Structured_JSON + 22 PDF_Metadata files holding verbatim copyrighted article bodies (and the author-email PII): either untrack them and restore the .gitignore exclusions, or retain with a documented rights basis; then update README.md:89 so its 'intentionally excluded' claim matches reality (covers F11).
+- **Verification signal:** README.md copyright statement and .gitignore are mutually consistent (no contradiction between 'excluded' text and tracked files); if untracked, `git ls-files 05_Extracted_Data/Structured_JSON` returns nothing.
+- **Depends on:** —
+- **Effort:** M
+
+### P24 · Pin git submodules to explicit commits/tags to close the supply-chain gap
+- **Links to:** F14
+- **Location:** `.gitmodules:1-6`
+- **Change:** Record the intended commit (and optionally a branch=/tag= constraint) for the mitomammal and Human-GEM submodules so 'git submodule update --remote' or a fresh clone cannot silently pull a divergent upstream HEAD of the primary FBA model without a visible diff.
+- **Verification signal:** A fresh clone + submodule init checks out the exact pinned SHAs recorded in the repo (e.g. mitomammal c0f8103b per Stage 3); the pinned references are visible in tracked metadata.
+- **Depends on:** P01
+- **Effort:** S
+
+### P25 · Update ode_utils.py docstring from 10 to 13 state variables
+- **Links to:** F16
+- **Location:** `09_Computational_Modeling/ode_utils.py:15,49-58`
+- **Change:** Correct the line-15 docstring '(10 state variables; 3 conserved quantities derived)' to reflect the 13 entries in STATE_NAMES (the original 10 plus Ca_x, H2O2_x, CL_ox added during the MPTP/ROS work) so documentation matches N_STATES=13.
+- **Verification signal:** Docstring states 13 state variables; matches integrate_baseline returning y.shape=(13, N) confirmed in 03-execution.md:63.
+- **Depends on:** —
+- **Effort:** S
+
+### P26 · Refresh stale 09_Computational_Modeling/README.md and composite/README.md status tables
+- **Links to:** F17
+- **Location:** `09_Computational_Modeling/README.md:82-112; 09_Computational_Modeling/scripts/composite/README.md:13,31-33`
+- **Change:** Add the scripts/composite/ directory and phases G-K to the 09 README directory map (F17); correct composite/README.md so experiment5-11 and validate_against_beard.py are marked implemented-with-results rather than 'Not written'/'Deferred' (F18), rename validate_against_cortassa.py to validate_against_beard.py (F19), and note Cortassa-Aon was never implemented (F20).
+- **Verification signal:** Both README directory maps list every script and results subdir that exists on disk per the Stage-1 inventory; no script with shipped results is labeled 'Not written', and no validate_against_cortassa.py reference remains.
+- **Depends on:** —
+- **Effort:** M
+
+### P27 · Correct stale INDEX.md and LAB_NOTEBOOK.md status/inventory claims
+- **Links to:** F23
+- **Location:** `INDEX.md:41,69,98; 09_Computational_Modeling/LAB_NOTEBOOK.md:49`
+- **Change:** Fix the INDEX.md description of Consolidated_Protocols.txt (it is accidental pip terminal output, not unified protocols — F23), remove the non-existent source_archive.zip entry (F24), update the 'Awaiting cloned repos … MitoMAMMAL' status to reflect that the repo is cloned/inspected (F32), and correct the LAB_NOTEBOOK Session-1 'we do NOT need efflux_method.py' note now that it is a core dependency (F27).
+- **Verification signal:** INDEX.md describes Consolidated_Protocols.txt accurately, omits source_archive.zip, and shows MitoMAMMAL as cloned; LAB_NOTEBOOK reflects efflux_method.py as an imported dependency of decay_utils/composite_utils.
+- **Depends on:** —
+- **Effort:** S
+
+### P28 · Fix abstract-figure 'Ex 12' mislabel and validate_against_beard return annotation
+- **Links to:** F37
+- **Location:** `09_Computational_Modeling/scripts/composite/experiment8_abstract_figure.py:6,188; 09_Computational_Modeling/scripts/composite/validate_against_beard.py:51`
+- **Change:** Relabel the Kagan-cycle panel/docstring from 'Ex 12' to 'Ex 11' (the only ROS/MitoQ experiment that exists — F37) and correct the run_steady_state return annotation from a 3-tuple to the actual 4-tuple it returns (F39).
+- **Verification signal:** Regenerated final_abstract_figure_composite.png legend reads 'Ex 11' (no phantom Ex 12); validate_against_beard.py:51 annotation is tuple[np.ndarray, dict, float, bool] matching the 4-value return/unpack.
+- **Depends on:** —
+- **Effort:** S
+
+### P29 · Execute the six compute-timed-out scripts to completion and capture non-empty logs
+- **Links to:** audit/03-execution.md independent_check: six 0-byte timeout logs (experiment1_v3_empirical, experiment4_interventions, phase_d_adversarial, phase_e_anomaly, phase_g1_order_statistics, experiment5c_sensitivity)
+- **Location:** `09_Computational_Modeling/scripts/experiments_v2/experiment1_v3_empirical.py; experiment4_interventions.py; scripts/investigation_phases/phase_d_adversarial_suite.py; phase_e_anomaly_hunt.py; phase_g1_order_statistics.py; scripts/composite/experiment5c_sensitivity.py`
+- **Change:** Run the six compute-heavy scripts with adequate timeouts (and/or reduce bootstrap/Monte-Carlo/FVA sample counts behind a fast-mode flag) so each produces a complete, non-empty result log, confirming the 'timed-out' status was genuinely compute-bound and not a startup/correctness failure.
+- **Verification signal:** Each of the six scripts writes a non-zero-byte log and its declared output artifact (e.g. transit_window_empirical.csv, intervention_bar_chart.png, ex5_6_sensitivity.csv); coverage rises above the Stage-3 62.5% with no hidden startup errors.
+- **Depends on:** P01, P02, P05, P07
+- **Effort:** M
+
+### P30 · Check out Human-GEM submodule and run the cross-model validation scripts
+- **Links to:** F31
+- **Location:** `09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/; scripts/investigation_phases/phase_g2_cross_model.py; phase_g2b_human_gem_decay.py; scripts/composite/experiment7_human_gem.py`
+- **Change:** Initialize the Human-GEM submodule (left uninitialized in Stage 3) so the three Human-GEM-dependent scripts can run, providing the cross-model replication that rules out MitoMAMMAL-specific artifacts in the decay/transit-window findings.
+- **Verification signal:** phase_g2_cross_model.py, phase_g2b_human_gem_decay.py, and experiment7_human_gem.py run without the OSError on missing Human-GEM.xml (03-execution.md:35-36,46) and emit their cross-model result files.
+- **Depends on:** P01
+- **Effort:** S
+
+### P31 · Correct the four stale conference-abstract status markers so they state the verifiable repo fact: drafted but NOT submitted, deadline lapsed
+- **Links to:** Goal 4 gap (deliver q-bio abstract) / F28: README.md:99 marks the abstract '✅ … drafted' while the May 31 2026 deadline has passed (today 2026-06-17) and no submission/decision record exists in the repository
+- **Location:** `README.md:99; 09_Computational_Modeling/LAB_NOTEBOOK.md:2; INDEX.md:91; 09_Computational_Modeling/README.md:2`
+- **Change:** Edit the four cited status lines to remove the completion-implying '✅'/'ACTIVE' framing and replace it with text stating exactly what the repo can verify, without inventing an outcome the repo does not record. At README.md:99 change the line from '✅ Conference-style [abstract + full manuscript outline](...) — drafted' to a non-✅ marker reading 'abstract + manuscript outline — DRAFTED, NOT submitted (q-bio Chicago 2026 deadline May 31 2026 has lapsed; no submission/acceptance/withdrawal record in this repository as of 2026-06-17)'. Apply the same correction to the LAB_NOTEBOOK.md:2 header, INDEX.md:91 'Status: ACTIVE — … deadline May 31', and 09_Computational_Modeling/README.md:2 'Deliverable: …' so all four agree. Do NOT assert submitted/accepted/rejected — only the lapsed-deadline + no-record state, which is fully determinable from the repo. If the researcher later supplies the true outcome, this same line is where it is recorded.
+- **Verification signal:** `grep -rn "May 31" README.md INDEX.md 09_Computational_Modeling/README.md 09_Computational_Modeling/LAB_NOTEBOOK.md` shows every hit now carries the 'NOT submitted / deadline lapsed' qualifier; `grep -n "✅.*abstract" README.md` returns no match (the ✅ on line 99 is gone); no line claims the abstract was submitted or accepted.
+- **Depends on:** —
+- **Effort:** S
+
+### P32 · Ship the wet-lab JC-1 input contract (committed CSV template + schema README) and stop Phase K writing placeholder output under the deliverable filename
+- **Links to:** Goal 5 gap (anchor predictions to a wet-lab decay time-course) / F33 context: phase_k_wet_lab_validation.py is env-gated on the absent Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.csv and currently writes a placeholder curve plus a 'data_pending' file under the real deliverable name ks_test_result.json
+- **Location:** `09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.template.csv (new); 09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/README.md (new); 09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:13-19,54-69,112-155`
+- **Change:** Create the wet_lab_2024 directory with a committed jc1_timeline.template.csv holding the exact header 'time_h,jc1_normalized' and 2-3 commented example rows, plus a README.md documenting the schema (columns, units, normalization to t=0=1.0) and the probe-handling provenance the eventual data must satisfy (JC-1 red-aggregate ~90 min equilibration, per Stage-4 external research, vs TMRM ~15 min). In phase_k_wet_lab_validation.py: (1) point the docstring usage block (lines 13-19) and load_empirical_jc1() (lines 54-69) at the committed template path; (2) in the data-missing branch (lines 112-155) write the placeholder status to a distinctly-named file (e.g. results/phase_k/ks_test_result.PENDING.json) and rename the placeholder PNG to wet_lab_overlay.PENDING.png so the absence of real data can never be mistaken for a completed validation deliverable. This is a repo/code change only — it does NOT fabricate measurements; jc1_timeline.csv (the real data) remains a user drop-in conforming to the now-committed template.
+- **Verification signal:** jc1_timeline.template.csv and README.md exist under Whole_Cell_Modeling/wet_lab_2024/ with the documented 'time_h,jc1_normalized' header and ~90 min JC-1 equilibration note; running phase_k with no jc1_timeline.csv produces only *.PENDING.* files (no ks_test_result.json / wet_lab_overlay.png); copying the template to jc1_timeline.csv with the example rows drives the real-validation branch to emit wet_lab_overlay.png and the P16 goodness-of-fit metric.
+- **Depends on:** P01, P16
+- **Effort:** M
+
+### P33 · Parameterize the decay layer with tissue-specific mitochondrial half-lives
+- **Links to:** Goal 1/Goal 3 (decay model governing the transit-window ceiling); external-research idea: tissue-specific turnover datasets
+- **Location:** `09_Computational_Modeling/decay_utils.py; scripts/experiments_v2/experiment1_v3_empirical.py (half-life maps)`
+- **Change:** Add a tissue-specific half-life option (e.g. cardiac ~17 d, hepatic ~4 d, range ~4-29 d from metabolic-labeling datasets) alongside the current uniform 12h assumption, and flag proteins whose half-life is shorter than the transit window as high-degradation-risk, so the model can emit tissue-specific ceilings rather than a single 29h figure.
+- **Verification signal:** A transit-window run with a tissue-specific half-life set produces a ceiling distinct from the uniform-12h 29h result and lists high-risk short-half-life proteins; the source dataset is cited in code/docs.
+- **Depends on:** P14
+- **Effort:** M
+
+### P34 · Formalize MitoCarta3.0 cross-validation as a pipeline step
+- **Links to:** Goal 3 (essential-gene set / bottleneck characterization); external-research idea: MitoCarta3.0 gold-standard validation
+- **Location:** `09_Computational_Modeling/scripts/investigation_phases/phase_b_*; results/phase_b/essential_genes_mitocarta_crossref.csv`
+- **Change:** Make MitoCarta3.0 cross-referencing (localization + MitoPathway annotations) an explicit, reproducible pipeline step that regenerates essential_genes_mitocarta_crossref.csv and reports the coverage fraction (currently cited as 127/145 = 87.6%) as a model-quality metric, surfacing any mis-compartmentalized or non-mitochondrial genes.
+- **Verification signal:** Running the step regenerates the cross-ref CSV with a computed coverage fraction (not the hardcoded fallback from P18) and lists genes lacking MitoCarta confirmation.
+- **Depends on:** P18, P19
+- **Effort:** M
+
+### P35 · Modernize packaging to pyproject.toml with CI that runs the pipeline
+- **Links to:** Goal 7 (clean cross-platform reproducible pipeline)
+- **Location:** `09_Computational_Modeling/ (new pyproject.toml); new .github/workflows/ CI config`
+- **Change:** Introduce a pyproject.toml with pinned dependencies (including the now-added scipy and tellurium/roadrunner extras) and a GitHub Actions workflow that initializes submodules, installs the manifest, and runs a smoke subset of the pipeline so reproducibility regressions (missing deps, broken paths) are caught automatically.
+- **Verification signal:** A CI run on a clean runner initializes submodules, installs from pyproject, and executes validate_against_beard.py + experiment1_v2_transit_window.py to completion (Gate G2 PASS, TW=29h) with a green status.
+- **Depends on:** P01, P02, P03, P05, P07
+- **Effort:** L
+
+
+
+## Machine-checkable data
+
+```json
+{
+  "items": [
+    {
+      "id": "P01",
+      "title": "Initialize and pin the mitomammal (and Human-GEM) git submodules so MODEL_PATH resolves",
+      "links_to": "F31",
+      "location": ".gitmodules; 09_Computational_Modeling/Whole_Cell_Modeling/mitomammal/; 09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/; 09_Computational_Modeling/README.md (clone instructions)",
+      "change_summary": "Run 'git submodule update --init --recursive' to materialize the mitomammal SBML model (6_universal_mito_model.xml) and Human-GEM model, commit the resolved submodule SHAs, and document the init step in README so paths.py:22 MODEL_PATH points to an existing file rather than an empty directory.",
+      "verification_signal": "From a fresh clone, after the documented init command, `python -c \"from paths import MODEL_PATH; print(MODEL_PATH.exists())\"` prints True and `cobra.io.read_sbml_model(MODEL_PATH)` loads 560 reactions/782 genes/445 metabolites without FileNotFoundError.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P02",
+      "title": "Add scipy to requirements.txt",
+      "links_to": "F08",
+      "location": "09_Computational_Modeling/requirements.txt",
+      "change_summary": "Add a pinned scipy entry (e.g. scipy==1.17.1, the version confirmed working in Stage 3) to the pip-freeze manifest so ode_utils.py (scipy.integrate.solve_ivp) and phase_k_wet_lab_validation.py (scipy.stats.ks_2samp) import on a clean install.",
+      "verification_signal": "`pip install -r requirements.txt` in a fresh venv followed by `python -c \"import scipy; from scipy.integrate import solve_ivp\"` succeeds with no ImportError; ode_utils imports cleanly.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P03",
+      "title": "Resolve tellurium/roadrunner dependency for beard_qamas reference model",
+      "links_to": "F22",
+      "location": "09_Computational_Modeling/requirements.txt; 09_Computational_Modeling/Whole_Cell_Modeling/beards_lab/beard_qamas_in_vitro_reference.py:2-5",
+      "change_summary": "Either add pinned tellurium and roadrunner entries to requirements.txt, or move them into an optional extras group and guard the import in beard_qamas_in_vitro_reference.py so the absence of these heavy deps does not break core-pipeline installs; document which path was chosen.",
+      "verification_signal": "On a clean install per the declared manifest, either `import tellurium, roadrunner` succeeds, or importing the core pipeline modules succeeds while beard_qamas degrades with a clear, documented optional-dependency message (no bare ImportError crash).",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P04",
+      "title": "Add __main__ guard to beard_qamas_in_vitro_reference.py",
+      "links_to": "F02",
+      "location": "09_Computational_Modeling/Whole_Cell_Modeling/beards_lab/beard_qamas_in_vitro_reference.py:1,257-322",
+      "change_summary": "Wrap the module-level model build, the two ~60-iteration simulate loops, and the plt.show() call (lines 6-246, 257-322) behind 'if __name__ == \"__main__\":' so importing the module no longer triggers ~600s of simulation or blocks on an interactive matplotlib window.",
+      "verification_signal": "`python -c \"import beard_qamas_in_vitro_reference\"` returns immediately with no simulation output and no blocking matplotlib window; a programmatic check confirms has_main_guard=True.",
+      "depends_on": [
+        "P03"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P05",
+      "title": "Fix ANNOTATED_PATH and PARTITION_PATH to point at results/phase_b/",
+      "links_to": "F07",
+      "location": "09_Computational_Modeling/scripts/investigation_phases/phase_b_cluster_and_sweep.py:40-41; 09_Computational_Modeling/scripts/experiments_v2/experiment1d_minimal_set.py:50",
+      "change_summary": "Change results_path('essential_genes_annotated.csv') to results_path('phase_b','essential_genes_annotated.csv') and results_path('essential_dispensable_partition.json') to results_path('phase_b','essential_dispensable_partition.json') in all three sites so they match the canonical writer in phase_b_annotate_essentials.py.",
+      "verification_signal": "phase_b_cluster_and_sweep.py and experiment1d_minimal_set.py run to completion (no FileNotFoundError) after phase_b_annotate_essentials.py has populated results/phase_b/; the prior runtime crash documented in 03-execution.md:29 no longer reproduces.",
+      "depends_on": [
+        "P01"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P06",
+      "title": "Fix PARTITION_PATH resolution bug in experiment1d/phase_b (F43 companion to F07)",
+      "links_to": "F43",
+      "location": "09_Computational_Modeling/scripts/experiments_v2/experiment1d_minimal_set.py:50; 09_Computational_Modeling/scripts/investigation_phases/phase_b_cluster_and_sweep.py:41",
+      "change_summary": "Ensure the essential_dispensable_partition.json reads resolve via results_path('phase_b', ...) consistently and add a guard that runs (or instructs the user to run) the partition-generating script when the file is absent, instead of raising a bare FileNotFoundError.",
+      "verification_signal": "experiment1d_minimal_set.py executes its A3 minimal-set comparison end-to-end producing experiment1d_summary.json; absence of the partition file yields a clear actionable message rather than an unhandled traceback.",
+      "depends_on": [
+        "P05"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P07",
+      "title": "Make setup_environment.sh cross-platform (Linux + macOS) and remove shell-injection surface",
+      "links_to": "F03",
+      "location": "09_Computational_Modeling/setup_environment.sh:30-31,35,43,50,74",
+      "change_summary": "Replace the hardcoded /opt/homebrew Apple-Silicon CONDA_BIN/ENV_PYTHON paths with conda/python discovered via PATH (or a venv fallback as used in Stage 3), and pass $MITO_DIR into the smoke-test Python via sys.argv/env var rather than bare double-quote interpolation to eliminate the F15 quote-injection risk.",
+      "verification_signal": "`bash setup_environment.sh` runs to completion on Linux (the current platform), creates the env, installs deps, and the SBML smoke-test loads the model; no '/opt/homebrew not found' error occurs.",
+      "depends_on": [
+        "P02",
+        "P03"
+      ],
+      "effort": "M"
+    },
+    {
+      "id": "P08",
+      "title": "Fix or remove hardcoded /Users/tomriddle1 Dropbox paths in archive_v1 scripts",
+      "links_to": "F13",
+      "location": "09_Computational_Modeling/scripts/archive_v1/experiment1_transit_window.py:29; experiment1b_gene_sensitivity.py; experiment1c_halflife_sweep.py",
+      "change_summary": "Replace the hardcoded macOS Dropbox MODEL_PATH in all three archive_v1 scripts with the central paths.py MODEL_PATH import (the same bootstrap pattern used by current scripts), or relocate archive_v1 to a clearly-marked deprecated area and exclude it from reproducibility claims.",
+      "verification_signal": "The three archive_v1 scripts either run without OSError on Linux (resolving the model via paths.py) or are documented/relocated as deprecated; the OSError on /Users/tomriddle1/ confirmed in 03-execution.md:51-53 no longer occurs in any active script.",
+      "depends_on": [
+        "P01"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P09",
+      "title": "Refactor shared functions out of experiment scripts to remove inverted dependencies",
+      "links_to": "F26",
+      "location": "09_Computational_Modeling/composite_utils.py:351-356; 09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:50-51; new shared module under 09_Computational_Modeling/",
+      "change_summary": "Move apply_scenario (from experiment1_v2_transit_window.py) and build_halflife_map_per_subunit (from experiment1_v3_empirical.py) into a proper shared utility module, then import them normally from composite_utils.py and phase_k instead of via sys.path.insert; replace the bare 'except ImportError: pass' with a logged hard failure.",
+      "verification_signal": "composite_utils.py and phase_k import the shared functions without any sys.path mutation; phase_c_forensic_29h.py C.3 (which crashed with ModuleNotFoundError in 03-execution.md:31) runs to completion from any working directory.",
+      "depends_on": [],
+      "effort": "M"
+    },
+    {
+      "id": "P10",
+      "title": "Surface the silent ImportError in compose_fba_ode scenario application",
+      "links_to": "F06",
+      "location": "09_Computational_Modeling/composite_utils.py:351-356",
+      "change_summary": "Remove the silent 'except ImportError: pass' so a failure to import/apply apply_scenario raises or logs an explicit warning, guaranteeing scenarios A/B/C receive their exchange-bound constraints rather than silently falling back to default FBA bounds.",
+      "verification_signal": "A deliberately broken import in a test shows the scenario-application step now logs/raises rather than silently passing; normal runs still apply scenario bounds (confirmable by differing FBA inputs across scenarios A/B/C).",
+      "depends_on": [
+        "P09"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P11",
+      "title": "Add BEARD_DIR to paths.py to honor the single-source-of-truth contract",
+      "links_to": "F25",
+      "location": "09_Computational_Modeling/paths.py; 09_Computational_Modeling/ode_utils.py:657-659",
+      "change_summary": "Define BEARD_DIR (Whole_Cell_Modeling/beards_lab) in paths.py alongside MITOMAMMAL_DIR/CORTASSA_DIR so the 'from paths import BEARD_DIR' in ode_utils.default_param_file() succeeds instead of always falling through to the hardcoded relative-path fallback.",
+      "verification_signal": "`python -c \"from paths import BEARD_DIR; print(BEARD_DIR)\"` succeeds and ode_utils.default_param_file() resolves beard_2005_params.csv via the import path (not the except branch), verifiable by instrumenting the try/except.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P12",
+      "title": "Reconcile compute_fluxes() proton-leak model with beard_rhs() (constant, formula, MPTP factor)",
+      "links_to": "F01",
+      "location": "09_Computational_Modeling/ode_utils.py:519-525,367,385",
+      "change_summary": "Replace the hardcoded MEMBRANE_MAX_FOLD=50.0 and the time-exponential leak formula in compute_fluxes() with the same CL_ox-driven leak_multiplier (p.CL_leak_max_fold=20.0) and the mptp_factor term used by beard_rhs(), so both functions return consistent J_leak for the same state (covers F01, F21, and F42).",
+      "verification_signal": "At t=24h with leak_growth_rate=0.1 the compute_fluxes leak multiplier matches beard_rhs (previously 46.46 vs 19.19, ratio 2.42x -> ~1.0x); with MPTP enabled, J_leak no longer diverges by ~10001x.",
+      "depends_on": [],
+      "effort": "M"
+    },
+    {
+      "id": "P13",
+      "title": "Guard against double-counted dCL_ox when ros_enabled and leak_growth_rate are both set",
+      "links_to": "F30",
+      "location": "09_Computational_Modeling/ode_utils.py:444,449-451",
+      "change_summary": "Make the Kagan-cycle dCL_ox path (line 444) and the backwards-compat leak_growth_rate accumulation (lines 449-451) mutually exclusive (e.g. only apply the legacy term when ros_enabled is False), so CL_ox accumulation is not summed twice when both mechanisms are active.",
+      "verification_signal": "With ros_enabled=True AND leak_growth_rate=0.1, CL_ox at 2h no longer exceeds the larger single-mechanism value (previously combined=0.218 vs ros_only=0.037/leak_only=0.181); a unit test confirms no additive double-count.",
+      "depends_on": [
+        "P12"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P14",
+      "title": "Implement true per-subunit half-life assignment for CI subunits",
+      "links_to": "F04",
+      "location": "09_Computational_Modeling/scripts/experiments_v2/experiment1_v3_empirical.py:110-132",
+      "change_summary": "Implement the gene-symbol->subunit mapping so build_halflife_map_per_subunit() assigns the individual measured CI half-lives (NDUFS1=138h, NDUFS2=427h, NDUFA9=144h, NDUFB10=120h) instead of the complex median (141h) to all CI subunits, making the per-subunit (independence) regime genuinely distinct from the per-complex regime.",
+      "verification_signal": "transit_window_empirical.csv shows the independence and holoenzyme regimes now use different per-gene inputs (not identical 141h), so the P2 independence-vs-correlation comparison is no longer degenerate.",
+      "depends_on": [
+        "P09"
+      ],
+      "effort": "M"
+    },
+    {
+      "id": "P15",
+      "title": "Correct Phase H permutation-test null lower bound from log(72) to log(3)",
+      "links_to": "F05",
+      "location": "09_Computational_Modeling/scripts/investigation_phases/phase_h_ci_subunit_analysis.py:174-177",
+      "change_summary": "Change the null distribution lower bound in np.random.uniform(np.log(72), np.log(500), 4) to np.log(3) to match the documented ~3-500h broad mitochondrial half-life range, so the null no longer overlaps and mirrors the observed CI data [120-427h] and biases p toward 'cannot reject independence'.",
+      "verification_signal": "Re-running phase_h emits a permutation p-value computed against the [3h,500h] null (materially different from the prior p=0.56); ci_correlation_analysis.json and CI_SUBUNIT_DEEP_DIVE.md reflect the corrected test.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P16",
+      "title": "Replace two-sample KS test in Phase K with a valid goodness-of-fit metric",
+      "links_to": "F33",
+      "location": "09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:169-173",
+      "change_summary": "Replace ks_2samp (which assumes two iid samples) on the deterministic np.interp model curve vs digitized observations with a statistically valid comparison — a one-sample KS against a fitted CDF or an RMSE/goodness-of-fit metric — so the reported statistic is interpretable.",
+      "verification_signal": "phase_k outputs an RMSE (or one-sample GOF) figure rather than an uninterpretable two-sample KS p-value; code review confirms ks_2samp is no longer applied to deterministic-vs-observed arrays.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P17",
+      "title": "Fix CompositeResult.atp_trace mislabel (cytosolic vs matrix ATP)",
+      "links_to": "F41",
+      "location": "09_Computational_Modeling/composite_utils.py:309,384,424",
+      "change_summary": "Either rename/relabel atp_trace to reflect that it stores cytosolic ATP (sumATP_c) and update the '# matrix ATP' comment, or expose both matrix (sumATP_x) and cytosolic traces explicitly and remove the dead atp=traj.get('sumATP_x') assignment at line 384, so callers receive the compartment they expect.",
+      "verification_signal": "Field name/comment match the stored quantity; a test reading CompositeResult.atp_trace receives the documented compartment; the dead sumATP_x assignment is removed (no unused-variable warning).",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P18",
+      "title": "Make read_mitocarta_crossref() resolve via paths.py instead of CWD-relative path",
+      "links_to": "F38",
+      "location": "09_Computational_Modeling/scripts/composite/experiment8_abstract_figure.py:95-97",
+      "change_summary": "Replace the bare Path('results/phase_b/essential_genes_mitocarta_crossref.csv') with results_path('phase_b', ...) and, when the file is genuinely absent, emit a visible warning rather than silently returning the hardcoded (145,127) fallback that can ship stale counts into the abstract figure.",
+      "verification_signal": "Running experiment8_abstract_figure.py from any working directory loads the real MitoCarta cross-ref counts (not the silent fallback) or logs an explicit warning; the final abstract figure shows current counts.",
+      "depends_on": [
+        "P05"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P19",
+      "title": "Send the MyGene.info size=1 parameter so annotation queries return one hit per gene",
+      "links_to": "F44",
+      "location": "09_Computational_Modeling/scripts/investigation_phases/phase_b_annotate_essentials.py:44-63",
+      "change_summary": "Pass the built params dict (including 'size':1) into the requests.post call instead of constructing an inline dict that extracts only params['fields'], so the multi-hit guard is actually applied and annotations are not polluted by duplicate/off-target MyGene results.",
+      "verification_signal": "Inspecting the outgoing request shows 'size' is included; essential_genes_annotated.csv has at most one annotation row per input gene ID (no multi-hit duplication) when the API is reachable.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P20",
+      "title": "Fix dpsi normalization hardcode and remaining dead-code smells",
+      "links_to": "F29",
+      "location": "09_Computational_Modeling/ode_utils.py:391; experiment10_mptp_composite.py:82; composite_utils.py:154; phase_g5_ros_coupling.py:57,63",
+      "change_summary": "Draw the 0.175 V resting-DeltaPsi MCU normalization from a BeardParams field instead of a literal (F29); remove the permanently-False 'if False' ca_x_peak placeholder (F36), the unused flux_buffer parameter (F35), and the unused o2s-rate computations (F40) — or wire them to real outputs.",
+      "verification_signal": "MCU dpsi_factor scales with the parametrized baseline DeltaPsi rather than a literal; static analysis reports no dead 'if False' branch or unused flux_buffer/o2s-rate variables in the cited locations.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P21",
+      "title": "Remove third-party PII (Dr. Justin Nash) from tracked files",
+      "links_to": "F09",
+      "location": "01_Vision_and_Strategy/Notebook_Transcription_Otter.txt:272; INDEX.md:136; 08_Experimental_Work/Experiments_Overview.md:11",
+      "change_summary": "Redact or anonymize the full name and professional title of the former external collaborator across the three tracked files (e.g. replace with 'a former collaborator'), absent documented consent for public disclosure of their identity and departure status.",
+      "verification_signal": "`grep -ri \"justin nash\" .` over the repository returns no matches; the three cited files no longer name the individual.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P22",
+      "title": "Strip committed developer usernames and absolute machine paths",
+      "links_to": "F13",
+      "location": "09_Computational_Modeling/docs/conference_planning/DOCINSIGHT_AGENT_HANDOFF.md:46-75; DOCINSIGHT_MITO_QUERY_GUIDE.md:189-217; 09_Computational_Modeling/LAB_NOTEBOOK.md:600; 06_Synthesis/Consolidated_Protocols.txt:1,207",
+      "change_summary": "Replace the '/Users/tomriddle1/Dropbox/...' absolute paths and the internal .claude plan filename in the docs, and remove the '/home/epas/...' username/paths embedded in the accidental pip-output Consolidated_Protocols.txt (covers F12), so no personal usernames or local filesystem layouts remain committed.",
+      "verification_signal": "`grep -rE \"tomriddle1|/home/epas|\\.claude/plans\" .` returns no matches in tracked active docs; absolute machine paths are replaced with repo-relative placeholders.",
+      "depends_on": [],
+      "effort": "M"
+    },
+    {
+      "id": "P23",
+      "title": "Resolve copyrighted verbatim journal text exposure and align README/.gitignore",
+      "links_to": "F10",
+      "location": ".gitignore:27-31; 05_Extracted_Data/Structured_JSON/; 05_Extracted_Data/PDF_Metadata/; 06_Synthesis/Consolidated_Protocols.txt; README.md:89",
+      "change_summary": "Make an explicit, documented decision on the 91 Structured_JSON + 22 PDF_Metadata files holding verbatim copyrighted article bodies (and the author-email PII): either untrack them and restore the .gitignore exclusions, or retain with a documented rights basis; then update README.md:89 so its 'intentionally excluded' claim matches reality (covers F11).",
+      "verification_signal": "README.md copyright statement and .gitignore are mutually consistent (no contradiction between 'excluded' text and tracked files); if untracked, `git ls-files 05_Extracted_Data/Structured_JSON` returns nothing.",
+      "depends_on": [],
+      "effort": "M"
+    },
+    {
+      "id": "P24",
+      "title": "Pin git submodules to explicit commits/tags to close the supply-chain gap",
+      "links_to": "F14",
+      "location": ".gitmodules:1-6",
+      "change_summary": "Record the intended commit (and optionally a branch=/tag= constraint) for the mitomammal and Human-GEM submodules so 'git submodule update --remote' or a fresh clone cannot silently pull a divergent upstream HEAD of the primary FBA model without a visible diff.",
+      "verification_signal": "A fresh clone + submodule init checks out the exact pinned SHAs recorded in the repo (e.g. mitomammal c0f8103b per Stage 3); the pinned references are visible in tracked metadata.",
+      "depends_on": [
+        "P01"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P25",
+      "title": "Update ode_utils.py docstring from 10 to 13 state variables",
+      "links_to": "F16",
+      "location": "09_Computational_Modeling/ode_utils.py:15,49-58",
+      "change_summary": "Correct the line-15 docstring '(10 state variables; 3 conserved quantities derived)' to reflect the 13 entries in STATE_NAMES (the original 10 plus Ca_x, H2O2_x, CL_ox added during the MPTP/ROS work) so documentation matches N_STATES=13.",
+      "verification_signal": "Docstring states 13 state variables; matches integrate_baseline returning y.shape=(13, N) confirmed in 03-execution.md:63.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P26",
+      "title": "Refresh stale 09_Computational_Modeling/README.md and composite/README.md status tables",
+      "links_to": "F17",
+      "location": "09_Computational_Modeling/README.md:82-112; 09_Computational_Modeling/scripts/composite/README.md:13,31-33",
+      "change_summary": "Add the scripts/composite/ directory and phases G-K to the 09 README directory map (F17); correct composite/README.md so experiment5-11 and validate_against_beard.py are marked implemented-with-results rather than 'Not written'/'Deferred' (F18), rename validate_against_cortassa.py to validate_against_beard.py (F19), and note Cortassa-Aon was never implemented (F20).",
+      "verification_signal": "Both README directory maps list every script and results subdir that exists on disk per the Stage-1 inventory; no script with shipped results is labeled 'Not written', and no validate_against_cortassa.py reference remains.",
+      "depends_on": [],
+      "effort": "M"
+    },
+    {
+      "id": "P27",
+      "title": "Correct stale INDEX.md and LAB_NOTEBOOK.md status/inventory claims",
+      "links_to": "F23",
+      "location": "INDEX.md:41,69,98; 09_Computational_Modeling/LAB_NOTEBOOK.md:49",
+      "change_summary": "Fix the INDEX.md description of Consolidated_Protocols.txt (it is accidental pip terminal output, not unified protocols — F23), remove the non-existent source_archive.zip entry (F24), update the 'Awaiting cloned repos … MitoMAMMAL' status to reflect that the repo is cloned/inspected (F32), and correct the LAB_NOTEBOOK Session-1 'we do NOT need efflux_method.py' note now that it is a core dependency (F27).",
+      "verification_signal": "INDEX.md describes Consolidated_Protocols.txt accurately, omits source_archive.zip, and shows MitoMAMMAL as cloned; LAB_NOTEBOOK reflects efflux_method.py as an imported dependency of decay_utils/composite_utils.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P28",
+      "title": "Fix abstract-figure 'Ex 12' mislabel and validate_against_beard return annotation",
+      "links_to": "F37",
+      "location": "09_Computational_Modeling/scripts/composite/experiment8_abstract_figure.py:6,188; 09_Computational_Modeling/scripts/composite/validate_against_beard.py:51",
+      "change_summary": "Relabel the Kagan-cycle panel/docstring from 'Ex 12' to 'Ex 11' (the only ROS/MitoQ experiment that exists — F37) and correct the run_steady_state return annotation from a 3-tuple to the actual 4-tuple it returns (F39).",
+      "verification_signal": "Regenerated final_abstract_figure_composite.png legend reads 'Ex 11' (no phantom Ex 12); validate_against_beard.py:51 annotation is tuple[np.ndarray, dict, float, bool] matching the 4-value return/unpack.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P29",
+      "title": "Execute the six compute-timed-out scripts to completion and capture non-empty logs",
+      "links_to": "audit/03-execution.md independent_check: six 0-byte timeout logs (experiment1_v3_empirical, experiment4_interventions, phase_d_adversarial, phase_e_anomaly, phase_g1_order_statistics, experiment5c_sensitivity)",
+      "location": "09_Computational_Modeling/scripts/experiments_v2/experiment1_v3_empirical.py; experiment4_interventions.py; scripts/investigation_phases/phase_d_adversarial_suite.py; phase_e_anomaly_hunt.py; phase_g1_order_statistics.py; scripts/composite/experiment5c_sensitivity.py",
+      "change_summary": "Run the six compute-heavy scripts with adequate timeouts (and/or reduce bootstrap/Monte-Carlo/FVA sample counts behind a fast-mode flag) so each produces a complete, non-empty result log, confirming the 'timed-out' status was genuinely compute-bound and not a startup/correctness failure.",
+      "verification_signal": "Each of the six scripts writes a non-zero-byte log and its declared output artifact (e.g. transit_window_empirical.csv, intervention_bar_chart.png, ex5_6_sensitivity.csv); coverage rises above the Stage-3 62.5% with no hidden startup errors.",
+      "depends_on": [
+        "P01",
+        "P02",
+        "P05",
+        "P07"
+      ],
+      "effort": "M"
+    },
+    {
+      "id": "P30",
+      "title": "Check out Human-GEM submodule and run the cross-model validation scripts",
+      "links_to": "F31",
+      "location": "09_Computational_Modeling/Whole_Cell_Modeling/Human-GEM/; scripts/investigation_phases/phase_g2_cross_model.py; phase_g2b_human_gem_decay.py; scripts/composite/experiment7_human_gem.py",
+      "change_summary": "Initialize the Human-GEM submodule (left uninitialized in Stage 3) so the three Human-GEM-dependent scripts can run, providing the cross-model replication that rules out MitoMAMMAL-specific artifacts in the decay/transit-window findings.",
+      "verification_signal": "phase_g2_cross_model.py, phase_g2b_human_gem_decay.py, and experiment7_human_gem.py run without the OSError on missing Human-GEM.xml (03-execution.md:35-36,46) and emit their cross-model result files.",
+      "depends_on": [
+        "P01"
+      ],
+      "effort": "S"
+    },
+    {
+      "id": "P31",
+      "title": "Correct the four stale conference-abstract status markers so they state the verifiable repo fact: drafted but NOT submitted, deadline lapsed",
+      "links_to": "Goal 4 gap (deliver q-bio abstract) / F28: README.md:99 marks the abstract '✅ … drafted' while the May 31 2026 deadline has passed (today 2026-06-17) and no submission/decision record exists in the repository",
+      "location": "README.md:99; 09_Computational_Modeling/LAB_NOTEBOOK.md:2; INDEX.md:91; 09_Computational_Modeling/README.md:2",
+      "change_summary": "Edit the four cited status lines to remove the completion-implying '✅'/'ACTIVE' framing and replace it with text stating exactly what the repo can verify, without inventing an outcome the repo does not record. At README.md:99 change the line from '✅ Conference-style [abstract + full manuscript outline](...) — drafted' to a non-✅ marker reading 'abstract + manuscript outline — DRAFTED, NOT submitted (q-bio Chicago 2026 deadline May 31 2026 has lapsed; no submission/acceptance/withdrawal record in this repository as of 2026-06-17)'. Apply the same correction to the LAB_NOTEBOOK.md:2 header, INDEX.md:91 'Status: ACTIVE — … deadline May 31', and 09_Computational_Modeling/README.md:2 'Deliverable: …' so all four agree. Do NOT assert submitted/accepted/rejected — only the lapsed-deadline + no-record state, which is fully determinable from the repo. If the researcher later supplies the true outcome, this same line is where it is recorded.",
+      "verification_signal": "`grep -rn \"May 31\" README.md INDEX.md 09_Computational_Modeling/README.md 09_Computational_Modeling/LAB_NOTEBOOK.md` shows every hit now carries the 'NOT submitted / deadline lapsed' qualifier; `grep -n \"✅.*abstract\" README.md` returns no match (the ✅ on line 99 is gone); no line claims the abstract was submitted or accepted.",
+      "depends_on": [],
+      "effort": "S"
+    },
+    {
+      "id": "P32",
+      "title": "Ship the wet-lab JC-1 input contract (committed CSV template + schema README) and stop Phase K writing placeholder output under the deliverable filename",
+      "links_to": "Goal 5 gap (anchor predictions to a wet-lab decay time-course) / F33 context: phase_k_wet_lab_validation.py is env-gated on the absent Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.csv and currently writes a placeholder curve plus a 'data_pending' file under the real deliverable name ks_test_result.json",
+      "location": "09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/jc1_timeline.template.csv (new); 09_Computational_Modeling/Whole_Cell_Modeling/wet_lab_2024/README.md (new); 09_Computational_Modeling/scripts/investigation_phases/phase_k_wet_lab_validation.py:13-19,54-69,112-155",
+      "change_summary": "Create the wet_lab_2024 directory with a committed jc1_timeline.template.csv holding the exact header 'time_h,jc1_normalized' and 2-3 commented example rows, plus a README.md documenting the schema (columns, units, normalization to t=0=1.0) and the probe-handling provenance the eventual data must satisfy (JC-1 red-aggregate ~90 min equilibration, per Stage-4 external research, vs TMRM ~15 min). In phase_k_wet_lab_validation.py: (1) point the docstring usage block (lines 13-19) and load_empirical_jc1() (lines 54-69) at the committed template path; (2) in the data-missing branch (lines 112-155) write the placeholder status to a distinctly-named file (e.g. results/phase_k/ks_test_result.PENDING.json) and rename the placeholder PNG to wet_lab_overlay.PENDING.png so the absence of real data can never be mistaken for a completed validation deliverable. This is a repo/code change only — it does NOT fabricate measurements; jc1_timeline.csv (the real data) remains a user drop-in conforming to the now-committed template.",
+      "verification_signal": "jc1_timeline.template.csv and README.md exist under Whole_Cell_Modeling/wet_lab_2024/ with the documented 'time_h,jc1_normalized' header and ~90 min JC-1 equilibration note; running phase_k with no jc1_timeline.csv produces only *.PENDING.* files (no ks_test_result.json / wet_lab_overlay.png); copying the template to jc1_timeline.csv with the example rows drives the real-validation branch to emit wet_lab_overlay.png and the P16 goodness-of-fit metric.",
+      "depends_on": [
+        "P01",
+        "P16"
+      ],
+      "effort": "M"
+    },
+    {
+      "id": "P33",
+      "title": "Parameterize the decay layer with tissue-specific mitochondrial half-lives",
+      "links_to": "Goal 1/Goal 3 (decay model governing the transit-window ceiling); external-research idea: tissue-specific turnover datasets",
+      "location": "09_Computational_Modeling/decay_utils.py; scripts/experiments_v2/experiment1_v3_empirical.py (half-life maps)",
+      "change_summary": "Add a tissue-specific half-life option (e.g. cardiac ~17 d, hepatic ~4 d, range ~4-29 d from metabolic-labeling datasets) alongside the current uniform 12h assumption, and flag proteins whose half-life is shorter than the transit window as high-degradation-risk, so the model can emit tissue-specific ceilings rather than a single 29h figure.",
+      "verification_signal": "A transit-window run with a tissue-specific half-life set produces a ceiling distinct from the uniform-12h 29h result and lists high-risk short-half-life proteins; the source dataset is cited in code/docs.",
+      "depends_on": [
+        "P14"
+      ],
+      "effort": "M"
+    },
+    {
+      "id": "P34",
+      "title": "Formalize MitoCarta3.0 cross-validation as a pipeline step",
+      "links_to": "Goal 3 (essential-gene set / bottleneck characterization); external-research idea: MitoCarta3.0 gold-standard validation",
+      "location": "09_Computational_Modeling/scripts/investigation_phases/phase_b_*; results/phase_b/essential_genes_mitocarta_crossref.csv",
+      "change_summary": "Make MitoCarta3.0 cross-referencing (localization + MitoPathway annotations) an explicit, reproducible pipeline step that regenerates essential_genes_mitocarta_crossref.csv and reports the coverage fraction (currently cited as 127/145 = 87.6%) as a model-quality metric, surfacing any mis-compartmentalized or non-mitochondrial genes.",
+      "verification_signal": "Running the step regenerates the cross-ref CSV with a computed coverage fraction (not the hardcoded fallback from P18) and lists genes lacking MitoCarta confirmation.",
+      "depends_on": [
+        "P18",
+        "P19"
+      ],
+      "effort": "M"
+    },
+    {
+      "id": "P35",
+      "title": "Modernize packaging to pyproject.toml with CI that runs the pipeline",
+      "links_to": "Goal 7 (clean cross-platform reproducible pipeline)",
+      "location": "09_Computational_Modeling/ (new pyproject.toml); new .github/workflows/ CI config",
+      "change_summary": "Introduce a pyproject.toml with pinned dependencies (including the now-added scipy and tellurium/roadrunner extras) and a GitHub Actions workflow that initializes submodules, installs the manifest, and runs a smoke subset of the pipeline so reproducibility regressions (missing deps, broken paths) are caught automatically.",
+      "verification_signal": "A CI run on a clean runner initializes submodules, installs from pyproject, and executes validate_against_beard.py + experiment1_v2_transit_window.py to completion (Gate G2 PASS, TW=29h) with a green status.",
+      "depends_on": [
+        "P01",
+        "P02",
+        "P03",
+        "P05",
+        "P07"
+      ],
+      "effort": "L"
+    }
+  ]
+}
+```
