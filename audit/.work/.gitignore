@@ -1,0 +1,15 @@
+# Transient per-worker outputs, logs, and intra-stage handoff temps.
+# NOT needed for cross-stage resume (regenerated within each stage from the
+# durable consolidated artifacts + state.json, which remain tracked).
+a_*.json
+orchestrator.log
+preflight_handoff.json
+run-logs/
+s1_files.json
+s2_known.txt
+s2_candidates.json
+s2_findings_for_exec.json
+s3_claimed.json
+s4_research_raw.json
+s5_plan.json
+s5_ambig.json
