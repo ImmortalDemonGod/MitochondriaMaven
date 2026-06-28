@@ -88,9 +88,9 @@ Lab experiments — planned and completed. See Experiments_Overview.md for detai
 **Completed (2024):** Successful yeast mitochondrial extraction, Taguchi optimization, JC-1 membrane potential verification.
 
 ### 09_Computational_Modeling/
-**Status: ACTIVE — q-bio Chicago 2026 abstract deadline May 31.** See Modeling_Overview.md for full plan.
+**Status: q-bio Chicago 2026 DROPPED** — abstract drafted, **not submitted** (May 31 2026 deadline lapsed; deliberately chosen against). Modeling pipeline complete and self-audited; seeking another venue. See Modeling_Overview.md for full plan.
 
-Primary goal: predict the **functional transit window** for extracted mitochondria — how long they maintain ATP production during extracellular transit before reuptake viability is lost. Uses time-stepped FBA on MitoMAMMAL (560 reactions) constrained by ETC protein half-life data, validated against 2024 JC-1 extraction data.
+Primary goal: predict the **functional transit window** for extracted mitochondria — how long they maintain ATP production during extracellular transit before reuptake viability is lost. Uses time-stepped FBA on MitoMAMMAL (560 reactions) constrained by ETC protein half-life data. **Not yet validated against wet-lab data** — the planned 2024 yeast JC-1 anchor is unavailable (data lost); an independent empirical anchor remains the key open gap.
 
 | Subdirectory/File | Status |
 |---|---|

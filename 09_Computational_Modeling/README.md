@@ -1,6 +1,6 @@
 # Computational Modeling — Mitochondria Maven
 
-**Project goal:** Predict the functional transit window for extracted mammalian mitochondria using time-stepped Flux Balance Analysis (FBA) on the MitoMAMMAL genome-scale metabolic model. Deliverable: q-bio Chicago 2026 abstract (May 31, 2026).
+**Project goal:** Predict the functional transit window for extracted mammalian mitochondria using time-stepped Flux Balance Analysis (FBA) on the MitoMAMMAL genome-scale metabolic model. Output: abstract + manuscript outline — drafted, **NOT submitted** (q-bio Chicago 2026 deliberately dropped; May 31 2026 deadline lapsed).
 
 **Core thesis:** Extracted mitochondria don't need to survive forever — only long enough to transit from extraction to recipient cell reuptake. The transit window is computationally tractable: model nuclear-encoded ETC protein decay over time, compute when ATP flux drops below the reuptake viability threshold.
 

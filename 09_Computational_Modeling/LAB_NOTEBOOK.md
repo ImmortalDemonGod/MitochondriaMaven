@@ -1,5 +1,5 @@
 # Computational Lab Notebook — Mitochondria Maven
-**Project:** q-bio Chicago 2026 abstract (deadline May 31, 2026)
+**Project:** abstract + manuscript outline — drafted, not submitted (q-bio Chicago 2026 deliberately dropped; May 31 2026 deadline lapsed)
 **Goal:** Predict functional transit window for extracted mitochondria using time-stepped FBA on MitoMAMMAL.
 
 ---

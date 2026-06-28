@@ -96,7 +96,7 @@ To stay lean and avoid redistributing third-party material, the following are in
 
 - ✅ Literature foundation (114 papers) and bench protocol — complete (2024)
 - ✅ Transit-window modeling pipeline + composite FBA↔ODE model — built and self-audited
-- ✅ Conference-style **[abstract + full manuscript outline](09_Computational_Modeling/docs/conference_planning/ABSTRACT_DRAFT_2026-04-23.md)** — drafted
+- ⏹️ Conference-style **[abstract + full manuscript outline](09_Computational_Modeling/docs/conference_planning/ABSTRACT_DRAFT_2026-04-23.md)** — drafted, **not submitted** (q-bio Chicago 2026 deliberately dropped; May 31 2026 deadline lapsed). Modeling stands on its own; seeking another venue.
 - ⏳ Independent empirical anchor (a wet-lab decay time-course) — the key open validation gap
 - ⏳ Wet-lab experiments E1–E8 — planned
 
